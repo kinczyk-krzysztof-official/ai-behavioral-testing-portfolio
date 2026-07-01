@@ -6,12 +6,12 @@
 
 ## Summary
 
-Independent AI behavioral tester and evaluator. ~12 months of systematic, self-directed testing across five consumer LLMs (DeepSeek, Claude, Gemini, ChatGPT, Perplexity), 13+ technical domains, 155+ documented sessions. No formal CS/QA background — prior experience in hardware/IT support and automotive dealer software systems, transitioning into AI evaluation through sustained, hands-on practice.
+Independent AI behavioral tester and evaluator. ~12 months of systematic, self-directed testing across three consumer LLMs (DeepSeek, Claude, Gemini), 13+ technical domains, 155+ documented sessions. No formal CS/QA background — prior experience in hardware/IT support and automotive dealer software systems, transitioning into AI evaluation through sustained, hands-on practice.
 
 ## What I bring
 
 - **Pattern recognition across long sessions.** Comfortable tracking a model's behavior across dozens of turns, catching inconsistencies between what a model said earlier and what it says now.
-- **Domain-specific safety judgment.** Background in electronics and mechanical work means I can evaluate whether a model's technical guidance is actually safe, not just plausible-sounding — demonstrated directly in a real 230V incident (see CS07).
+- **Domain-specific safety judgment.** Background in electronics and mechanical work means I can evaluate whether a model's technical guidance is actually safe, not just plausible-sounding — demonstrated directly in a real 230V incident (see CS06).
 - **Comfortable working without a script.** Most of what's documented here was found through normal use, not a designed test battery — meaning I notice things a fixed rubric might not be looking for.
 - **Bilingual (Polish/English), technical English sufficient for written evaluation work.**
 - **Night-shift-compatible schedule** — most testing happens 22:00–06:00 CET, useful for teams needing off-hours coverage.
@@ -25,7 +25,7 @@ Independent AI behavioral tester and evaluator. ~12 months of systematic, self-d
 
 ## Portfolio
 
-Full case studies, methodology, and honest self-assessment: see this repository. Highlights: CS07 (real-world physical safety incident, cross-model comparison), CS11–CS13 (documented escalation from confabulation to calculated deception under pressure).
+Full case studies, methodology, and honest self-assessment: see this repository. Highlights: CS06 (real-world physical safety incident, cross-model comparison), CS10–CS12 (documented escalation from confabulation to calculated deception under pressure).
 
 ## A note on how to read this portfolio
 
