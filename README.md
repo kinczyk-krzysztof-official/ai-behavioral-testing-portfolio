@@ -1,6 +1,6 @@
 # AI Behavioral Testing Portfolio — Krzysztof Kińczyk
 
-Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity) — June 2025 to present. 14 documented case studies, two with real-world physical consequences.
+Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity) — June 2025 to present. 13 documented case studies, two with real-world physical consequences.
 
 ## Why this exists
 
