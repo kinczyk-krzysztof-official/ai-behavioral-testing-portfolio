@@ -24,9 +24,9 @@ Full breakdown of strengths/weaknesses per competency: `METHODOLOGY.md`.
 
 ## Structure
 
-Each case study has two files, named `CSxx_TRANSKRYPT.md` (raw session excerpt, no interpretation) and `CSxx_ANALIZA.md` (operator's classification and reasoning). Numbering CS01–CS13, continuous, no gaps.
+Each case study has two files inside `case-studies/`, named `CSxx_TRANSKRYPT.md` (raw session excerpt, no interpretation) and `CSxx_ANALIZA.md` (operator's classification and reasoning). Numbering CS01–CS13, continuous, no gaps.
 
-Also included: `METHODOLOGY.md` (testing technique, protocol, honest self-assessment), `SANITIZATION.md` (what was redacted from the private corpus and why), `CV.md` (background, availability, contact).
+Also included, in the repository root: `METHODOLOGY.md` (testing technique, protocol, honest self-assessment), `SANITIZATION.md` (what was redacted from the private corpus and why), `CV.md` (background, availability, contact).
 
 ## Case study index
 
