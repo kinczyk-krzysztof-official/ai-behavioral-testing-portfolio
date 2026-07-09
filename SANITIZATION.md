@@ -1,83 +1,83 @@
-# SANITIZATION — Co trzeba usunąć/zmienić przed publikacją
+# SANITIZATION — What needs to be removed/changed before publication
 
-Sprawdzono przy przeglądzie CS01–CS20: żaden dokument CS nie zawiera bezpośrednio danych o dzieciach, diagnozach medycznych rodziny, adresu ani danych finansowych — to dobra wiadomość, trzon materiału jest już względnie czysty.
+Reviewed across CS01–CS20: no CS document directly contains data about children, family medical diagnoses, home address, or financial data — the core material is already relatively clean.
 
 ---
 
-## Rzeczy do poprawienia przed publikacją
+## Items to fix before publication
 
 ### **CS09** — artykul_AI_meble_bezpieczenstwo.md
-Fraza: *„w piwnicy, gdzie pracuję i gdzie wchodzą moje dzieci"*
+Phrase: *"in the basement, where I work and where my children come in"*
 
-**Zmiana na:** *„w warsztacie domowym, w pomieszczeniu z ograniczonym dostępem"*
+**Change to:** *"in a home workshop, in a room with restricted access"*
 
-**Powód:** Usuwa wzmiankę o dzieciach, zachowuje kontekst ryzyka.
-
----
-
-### **Wszystkie dokumenty — Pełne nazwisko**
-Nazwa Krzysztof Kińczyk / kinczyk.krzysztof.official@gmail.com zostaje w całości — portfolio jest jawnie sygnowane (nie anonimowe). ✅ Brak zmian wymaganych.
+**Reason:** Removes the mention of children while preserving the risk context.
 
 ---
 
-### **CS13–CS20 — TRANSKRYPTY (przejrzane)**
-Przejrzane pod kątem:
-- Nazwy konta
-- Numeru telefonu
-- Danych wpisanych przypadkiem w trakcie sesji
-
-**Wynik:** Czyste. Brak zmian wymaganych.
+### **All documents — Full name**
+The name Krzysztof Kińczyk / kinczyk.krzysztof.official@gmail.com stays throughout — the portfolio is openly signed (not anonymous). ✅ No changes required.
 
 ---
 
-### **Protokół Operatora (wersja pełna)**
-Jeśli publikujesz — usuń wszelkie odniesienia do konkretnych kont email, jeśli są.
+### **CS13–CS20 — TRANSCRIPTS (reviewed)**
+Reviewed for:
+- Account names
+- Phone numbers
+- Data accidentally entered during the session
 
-**Status dla publikacji:** Treść 22 zasad jest bezpieczna do publikacji. ✅
-
----
-
-## Rzeczy które NIE wymagają zmiany
-
-- ✅ Nazwa miasta (Bydgoszcz) — jawna, nieszkodliwa
-- ✅ Model telefonu/laptopa — techniczne, neutralne
-- ✅ Nazwiska modeli AI i cytaty z ich odpowiedzi — to jest właśnie treść dowodowa
-- ✅ Cytaty z transkryptów DeepSeek/Claude/Gemini — kluczowe dla case studies
-- ✅ Adresy URL (timeapi.io, DeviantArt, Fiverr) — publiczne źródła
+**Result:** Clean. No changes required.
 
 ---
 
-## Status przeglądu — zaktualizowano 09.07.2026
+### **Operator Protocol (full version)**
+If publishing — remove any references to specific email accounts, if present.
 
-### **CS01–CS12 (na GitHub)**
-Przejrzane. Wszystkie czyste — brak numerów telefonu, adresów, imion dzieci, diagnoz, danych logowania.
-
-### **CS13–CS20 (nowe, lipiec 2026)**
-Linijka po linijce przejrzane:
-- **CS13** — tool-call fabrication (timeapi.io) ✅ Czysty
-- **CS14** — confabulation "21 seconds" ✅ Czysty
-- **CS15** — hallucination Fiverr/DeviantArt ✅ Czysty
-- **CS16** — false certainty flip-flop API ✅ Czysty
-- **CS17** — black box narrative (Yango NMN) ✅ Czysty
-- **CS18** — timeout/truncation ✅ Czysty
-- **CS19** — reasoning fallacy (copper vs frost) ✅ Czysty
-- **CS20** — representativeness (electronics ID) ✅ Czysty
-
-**Wynik:** Cały korpus CS01–CS20 jest czysty pod kątem PII. Sanityzacja zakończona.
+**Publication status:** The content of the 22 rules is safe to publish. ✅
 
 ---
 
-## Co publikować
+## Items that do NOT require changes
 
-- ✅ Wszystkie CS13–CS20 TRANSKRYPT.md
-- ✅ Wszystkie CS13–CS20 ANALIZA.md
+- ✅ City name (Bydgoszcz) — public, harmless
+- ✅ Phone/laptop model — technical, neutral
+- ✅ AI model names and quotes from their responses — this is exactly the evidentiary content
+- ✅ Quotes from DeepSeek/Claude/Gemini transcripts — essential for the case studies
+- ✅ URLs (timeapi.io, DeviantArt, Fiverr) — public sources
+
+---
+
+## Review status — updated 09.07.2026
+
+### **CS01–CS12 (on GitHub)**
+Reviewed. All clean — no phone numbers, addresses, children's names, diagnoses, or login data.
+
+### **CS13–CS20 (new, July 2026)**
+Reviewed line by line:
+- **CS13** — tool-call fabrication (timeapi.io) ✅ Clean
+- **CS14** — confabulation "21 seconds" ✅ Clean
+- **CS15** — hallucination Fiverr/DeviantArt ✅ Clean
+- **CS16** — false certainty flip-flop API ✅ Clean
+- **CS17** — black box narrative (Yango NMN) ✅ Clean
+- **CS18** — timeout/truncation ✅ Clean
+- **CS19** — reasoning fallacy (copper vs frost) ✅ Clean
+- **CS20** — representativeness (electronics ID) ✅ Clean
+
+**Result:** The entire CS01–CS20 corpus is clean from a PII standpoint. Sanitization complete.
+
+---
+
+## What to publish
+
+- ✅ All CS13–CS20 TRANSKRYPT.md
+- ✅ All CS13–CS20 ANALIZA.md
 - ✅ METHODOLOGY.md
 - ✅ README.md
 - ✅ CV.md
 - ✅ COVERAGE_MATRIX_FINAL_2026-07-09.md
-- ⚠️ CS09 — z zmianą (piwnicy → warsztat domowy)
-- ❓ Protokół Operatora — jeśli publikujesz, usuń maile ze zasad
+- ⚠️ CS09 — with one change (basement → home workshop)
+- ❓ Operator Protocol — if publishing, remove emails from the rules
 
 ---
 
-**Wniosek:** Cały portfolio jest gotowy do publikacji. Brak żadnych poważnych zagrożeń bezpieczeństwa. Tylko jedna zmiana w CS09.
+**Conclusion:** The entire portfolio is ready for publication. No serious security risks. Only one change needed in CS09.
