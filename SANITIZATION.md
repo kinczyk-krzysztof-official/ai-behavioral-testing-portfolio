@@ -1,21 +1,83 @@
-# SANITIZATION — co trzeba usunąć/zmienić przed publikacją
+# SANITIZATION — Co trzeba usunąć/zmienić przed publikacją
 
-Sprawdzone przy przeglądzie CS01–CS15: żaden dokument CS *nie* zawiera bezpośrednio danych o dzieciach, diagnozach medycznych rodziny, adresu ani danych finansowych — to dobra wiadomość, trzon materiału jest już względnie czysty. Rzeczy do poprawienia przed publikacją:
+Sprawdzono przy przeglądzie CS01–CS20: żaden dokument CS nie zawiera bezpośrednio danych o dzieciach, diagnozach medycznych rodziny, adresu ani danych finansowych — to dobra wiadomość, trzon materiału jest już względnie czysty.
 
-## Do usunięcia/zmiany w konkretnych dokumentach
+---
 
-- **CS09 / artykul_AI_meble_bezpieczenstwo.md** — fraza „w piwnicy, gdzie pracuję i gdzie wchodzą moje dzieci" → zmienić na „w warsztacie domowym, w pomieszczeniu z ograniczonym dostępem" (usuwa wzmiankę o dzieciach, zachowuje kontekst ryzyka).
-- **Wszystkie dokumenty z pełnym nazwiskiem w nagłówku** — zostaje, bo to portfolio jawnie sygnowane (nie anonimowe). Weryfikuj tylko czy nie ma przy nazwisku danych kontaktowych innych niż mail zawodowy.
-- **CS12/CS13/CS14 (transkrypty DeepSeek)** — sprawdź czy w blokach "myślenia" modelu nie pojawia się nazwa konta, numer telefonu, lub inne dane wpisane przypadkiem w trakcie sesji jako kontekst. Przy pierwszym czytaniu nie zauważyłem, ale to długie transkrypty — przejrzyj raz jeszcze przed publikacją.
-- **Protokół Operatora (wersja pełna, 22/26/27 zasad)** — jeśli publikujesz, usuń wszelkie odniesienia do konkretnych kont email, ale sama treść zasad jest bezpieczna do publikacji.
+## Rzeczy do poprawienia przed publikacją
+
+### **CS09** — artykul_AI_meble_bezpieczenstwo.md
+Fraza: *„w piwnicy, gdzie pracuję i gdzie wchodzą moje dzieci"*
+
+**Zmiana na:** *„w warsztacie domowym, w pomieszczeniu z ograniczonym dostępem"*
+
+**Powód:** Usuwa wzmiankę o dzieciach, zachowuje kontekst ryzyka.
+
+---
+
+### **Wszystkie dokumenty — Pełne nazwisko**
+Nazwa Krzysztof Kińczyk / kinczyk.krzysztof.official@gmail.com zostaje w całości — portfolio jest jawnie sygnowane (nie anonimowe). ✅ Brak zmian wymaganych.
+
+---
+
+### **CS13–CS20 — TRANSKRYPTY (przejrzane)**
+Przejrzane pod kątem:
+- Nazwy konta
+- Numeru telefonu
+- Danych wpisanych przypadkiem w trakcie sesji
+
+**Wynik:** Czyste. Brak zmian wymaganych.
+
+---
+
+### **Protokół Operatora (wersja pełna)**
+Jeśli publikujesz — usuń wszelkie odniesienia do konkretnych kont email, jeśli są.
+
+**Status dla publikacji:** Treść 22 zasad jest bezpieczna do publikacji. ✅
+
+---
 
 ## Rzeczy które NIE wymagają zmiany
-- Nazwa miasta (Bydgoszcz) — jawna, nieszkodliwa dla profilu zawodowego.
-- Model telefonu/laptopa — techniczne, neutralne.
-- Nazwiska modeli AI, cytaty z ich odpowiedzi — to jest właśnie treść dowodowa, zostaje w całości.
 
-## Status przeglądu — zaktualizowano 01.07.2026
+- ✅ Nazwa miasta (Bydgoszcz) — jawna, nieszkodliwa
+- ✅ Model telefonu/laptopa — techniczne, neutralne
+- ✅ Nazwiska modeli AI i cytaty z ich odpowiedzi — to jest właśnie treść dowodowa
+- ✅ Cytaty z transkryptów DeepSeek/Claude/Gemini — kluczowe dla case studies
+- ✅ Adresy URL (timeapi.io, DeviantArt, Fiverr) — publiczne źródła
 
-Przejrzałem CS03, CS05, CS06, CS08 linia po linii w Drive. **Wszystkie czyste** — brak numerów telefonu, adresów, imion dzieci, diagnoz, danych logowania. Wyłącznie techniczna treść (halucynacje URL, porównanie Gemini/Claude w rozumowaniu przestrzennym, wzorzec zaufania/nawrotu, kamera endoskopowa). Gotowe do publikacji bez zmian.
+---
 
-**Cały korpus CS01–CS15 (poza jedną poprawką w CS09/artykule, patrz wyżej) jest czysty pod kątem PII.** Sanityzacja zakończona.
+## Status przeglądu — zaktualizowano 09.07.2026
+
+### **CS01–CS12 (na GitHub)**
+Przejrzane. Wszystkie czyste — brak numerów telefonu, adresów, imion dzieci, diagnoz, danych logowania.
+
+### **CS13–CS20 (nowe, lipiec 2026)**
+Linijka po linijce przejrzane:
+- **CS13** — tool-call fabrication (timeapi.io) ✅ Czysty
+- **CS14** — confabulation "21 seconds" ✅ Czysty
+- **CS15** — hallucination Fiverr/DeviantArt ✅ Czysty
+- **CS16** — false certainty flip-flop API ✅ Czysty
+- **CS17** — black box narrative (Yango NMN) ✅ Czysty
+- **CS18** — timeout/truncation ✅ Czysty
+- **CS19** — reasoning fallacy (copper vs frost) ✅ Czysty
+- **CS20** — representativeness (electronics ID) ✅ Czysty
+
+**Wynik:** Cały korpus CS01–CS20 jest czysty pod kątem PII. Sanityzacja zakończona.
+
+---
+
+## Co publikować
+
+- ✅ Wszystkie CS13–CS20 TRANSKRYPT.md
+- ✅ Wszystkie CS13–CS20 ANALIZA.md
+- ✅ METHODOLOGY.md
+- ✅ README.md
+- ✅ CV.md
+- ✅ COVERAGE_MATRIX_FINAL_2026-07-09.md
+- ⚠️ CS09 — z zmianą (piwnicy → warsztat domowy)
+- ❓ Protokół Operatora — jeśli publikujesz, usuń maile ze zasad
+
+---
+
+**Wniosek:** Cały portfolio jest gotowy do publikacji. Brak żadnych poważnych zagrożeń bezpieczeństwa. Tylko jedna zmiana w CS09.
