@@ -1,25 +1,17 @@
-# CS06 — Analiza (operator)
-**Powiązany transkrypt:** CS06_TRANSKRYPT.md | **Kompetencja:** K1 Wykrywanie halucynacji
+# CS05 — Analiza (operator)
+**Powiązany transkrypt:** CS05_TRANSKRYPT.md | **Kompetencja:** K4 Cross-model, K1 Wykrywanie halucynacji
 
 ## Klasyfikacja
-Halucynacja zasobów zewnętrznych — trzy podtypy zaobserwowane niezależnie.
+Porównanie cross-model rozumowania przestrzennego 3D — systemowa, reprodukowalna słabość jednego modelu (Gemini) względem drugiego (Claude) w identycznym typie zadania.
 
-## Taksonomia halucynacji zasobów (wypracowana przez operatora)
-- **Typ A:** fałszywy plik (ZIP, PDF, docx) — URL do nieistniejącego pliku.
-- **Typ B:** fałszywy profil (Fiverr, LinkedIn, GitHub) — konkretna, nieistniejąca osoba/konto.
-- **Typ C:** fałszywy link dokumentacji — URL do nieistniejącej strony docs.
+## Dlaczego to nie jest przypadkowy błąd
+Różnica w skuteczności (60% vs 15% błędów) dotyczy konkretnej, powtarzalnej klasy pytań — orientacja i relacje przestrzenne w 3D — nie jest rozrzucona losowo po różnych typach zadań. To odróżnia obserwację od zwykłej wariancji odpowiedzi modelu.
 
-## Mechanizm
-Model generuje URL-e i identyfikatory pasujące statystycznie do wzorca danej platformy (github.com/..., fiverr.com/...) bez mechanizmu weryfikacji ich rzeczywistego istnienia. Wynik wygląda wiarygodnie strukturalnie, ale jest syntezowany, nie pobrany.
-
-## Wspólny wzorzec między przypadkami A/B/C
-Im więcej konkretnych szczegółów w halucynacji (ceny, terminy, nazwy plików, linki), tym bardziej przekonująco brzmi — mimo że nie zwiększa to jej prawdziwości. Model nie sygnalizuje niepewności proporcjonalnie do ilości wygenerowanych detali.
+## Ograniczenie metodologiczne, do ujawnienia wprost
+Dokumentacja nie zawiera dokładnej liczby iteracji ani precyzyjnego protokołu punktacji błędów (60%/15% to szacunki operatora, nie zliczenie automatyczne). To najsłabszy metodologicznie punkt tego CS na tle pozostałych — warto to nazwać, nie ukrywać.
 
 ## Wniosek praktyczny
-Zawsze weryfikować URL przed użyciem. Nigdy nie ufać linkom generowanym przez model bez sprawdzenia. Prosić o oficjalne źródła zamiast akceptować gotowe linki.
-
-## Powiązanie z innymi CS
-Kontynuacja tej klasy błędu w CS11–CS13 (dawne CS12-14) — tam model idzie o krok dalej: nie tylko konfabuluje zasób, ale świadomie kalkuluje ryzyko wykrycia konfabulacji.
+Przy projektach wymagających precyzji geometrycznej (np. blat warsztatowy, CS02/CS09) — unikać Gemini jako głównego narzędzia, lub weryfikować jego output krzyżowo z drugim modelem.
 
 ## Status
-[POTWIERDZONE] [UDOKUMENTOWANE] [AKTYWNY] — klasa błędu wspólna dla wielu modeli.
+[POTWIERDZONE] [UDOKUMENTOWANE] — z zastrzeżeniem o braku precyzyjnego liczenia iteracji.

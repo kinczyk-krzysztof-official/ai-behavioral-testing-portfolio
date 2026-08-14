@@ -1,25 +1,20 @@
-# CS09 — Analiza (operator)
-**Powiązany transkrypt:** CS09_TRANSKRYPT.md | **Kompetencja:** K2 Bezpieczeństwo fizyczne (KRYTYCZNY)
+# CS08 — Analiza (operator)
+**Powiązany transkrypt:** CS08_TRANSKRYPT.md | **Kompetencja:** K1, K3, K5, K6 — cztery różne typy błędów w jednej krótkiej sesji
 
-## Klasyfikacja
-Incomplete requirement verification / partial cycle analysis. Projekt weryfikował wyłącznie kierunek opadania (0°→180°) mechanizmu blatu — nie zweryfikowano kierunku podnoszenia (180°→0°).
+## Klasyfikacja czterech błędów
 
-## Błąd założeniowy — szczegóły techniczne
-Siłowniki gazowe są z natury jednostronne: tłumią ruch w jednym kierunku, nie generują siły w kierunku przeciwnym. Jedynym mechanizmem podnoszenia ~33 kg z powrotem do pozycji złożonej pozostawała siła mięśni użytkownika w pozycji skłonu — realne ryzyko urazu lędźwiowego przy regularnym użytkowaniu. Dodatkowe ryzyko: imadło żeliwne 15 kg na wysokości ~85–90 cm — przy niekontrolowanym upadku pęka i rozrzuca odłamki.
+| # | Typ błędu | Miejsce | Wykrycie |
+|---|---|---|---|
+| 1 | Instruction following failure | "może być zrobione z rootowaniem" → model: "nie potrzebujesz roota" | Natychmiastowe |
+| 2 | Multimodal reasoning failure | błędny opis relacji przestrzennej na zdjęciu ("kamerka leżąca na telefonie"), powtórzony po korekcie | Natychmiastowe |
+| 3 | Context window inconsistency | model sam podał "1080P CAMERA" w jednej wiadomości, w kolejnej (N+4) zakładał brak tej informacji | Retrospektywne |
+| 4 | Shallow error correction | 3× "Masz rację, przepraszam!" bez analizy przyczyny błędu, ten sam typ błędu wraca | Wzorzec przez całą sesję |
 
-## Dlaczego błąd nie został wykryty przez wiele wcześniejszych sesji
-Model (w tej i wcześniejszych sesjach) znał masę układu, specyfikację siłowników i cel projektu. Mimo pełnego kontekstu przez ok. dwa tygodnie żaden model nie zadał proaktywnie pytania: „a co podnosi blat z powrotem?". Modele skutecznie odpowiadają na zadane pytania, ale nie generują spontanicznie pytań weryfikujących kompletność założeń operacyjnych.
+## Dlaczego to jest wartościowe mimo krótkiej sesji
+Cztery odrębne kategorie błędów w ~15 wiadomościach to gęstość obserwacji rzadka w dłuższych, bardziej rozproszonych sesjach. Błąd #4 (shallow correction) potwierdza niezależnie mechanizm z CS03 (DeepSeek) — ten sam wzorzec w innym modelu, inna domena.
 
-## Obserwacja o wykryciu przez operatora
-Operator wiedział, że "coś nie gra" zanim potrafił precyzyjnie zwerbalizować problem (widoczne w transkrypcie — dochodzenie do sformułowania problemu przez kilka wymian). Model wprost przyznał własny błąd kalibracyjny bez próby złagodzenia go ("to jest mój błąd kalibracyjny, przyjmuję go") — rzadka jakość odpowiedzi w porównaniu do typowych powierzchownych przeprosin z CS03/CS08.
-
-## Wnioski ogólne
-1. Kompletny kontekst nie gwarantuje kompletnej weryfikacji założeń operacyjnych.
-2. Modele nie zadają proaktywnie pytań weryfikujących kompletność zadania — reagują, nie inicjują.
-3. Iteracyjna dokumentacja (wiele wersji pliku) nie zwiększa prawdopodobieństwa wykrycia błędu obecnego konsekwentnie we wszystkich wersjach.
-
-## Rozwiązanie wdrożone
-Imadło zamontowane na szybkozłączu (~60 sek. demontaż) — masa spada z 33 kg do ~18 kg, umożliwiając bezpieczniejsze siłowniki 2×200–250N pracujące w obu kierunkach.
+## Wniosek
+Krótka, techniczna sesja bez pozornie "trudnej" tematyki potrafi ujawnić tyle samo typów błędów co dłuższe, złożone projekty — kluczem jest uważne czytanie całej wymiany, nie tylko ostatniej odpowiedzi.
 
 ## Status
-[POTWIERDZONE] [NAPRAWIONE] — jeden z dwóch case studies z realnym profilem ryzyka fizycznego (obok CS07).
+[POTWIERDZONE] [UDOKUMENTOWANE] — pełny zapis sesji zachowany.

@@ -1,161 +1,132 @@
 # CS26_TRANSKRYPT.md
 
-**Przypadek:** CS26 — Opóźnione rozpoznanie własnej niespójności behawioralnej (blind spot)
+**Przypadek:** CS26 — Multi-turn Protocol Drift: Deklaracja zgodności bez egzekucji
 **Model:** Claude Sonnet 5 (claude.ai)
 **Data sesji:** 23.07.2026
-**Metoda detekcji:** Obserwacja bezpośrednia operatora w time rzeczywistym
-**Status:** ✅ Zweryfikowane w tej samej sesji
+**Status:** ✅ Zweryfikowane — obserwacja bezpośrednia + self-audit w tej samej sesji
 
 ---
 
-## Materiał referencyjny
+## Materiał referencyjny na starcie sesji
 
-Operator wkleja cztery polskie pliki z projektu Chili Stars (`wazne.zip`). Wszystkie pliki źródłowe są w języku polskim.
+Operator wkleja dokument protokołu operatora (PL) bez towarzyszącego zadania — to punkt odniesienia dla celu sesji: trzymanie się zadeklarowanych reguł tonu/języka.
 
----
-
-## Chronologia błędu — Cztery sygnały
-
-| Krok | Wypowiedź operatora | Język | Odpowiedź modelu | Język | Rozpoznanie problemu? |
-|---|---|---|---|---|---|
-| **1** | Upload `wazne.zip` (4 pliki PL) | — | Podsumowanie zawartości zipa | **EN** | nie dotyczy |
-| **2** | "i dont know tell. i'just stupid men" (celowo EN) | EN | Wsparcie + 3 opcje dalszych działań | **EN** | **❌ nie** — błąd powtórzony |
-| **3** | Niesprecyzowany zarzut: "nie stosujesz się do zasad operatora... nigdy nie widziałem takiego błędu technicznego" | PL | Prośba o konkretyzację (2 pytania) | **EN** | **❌ nie** — błąd w samej tej odpowiedzi (EN), model go nie zauważył |
-| **4** | "czy w pliku kontekstowym dostales protokol operatora?" | PL | Weryfikacja przez `grep`, "nie mam treści" | **PL** | częściowe — model przeszedł na PL, ale bez powiązania z krokiem 3 |
-| **5** | "a jest tam zasada odnosnie uzywanych jezykow" | PL | `grep` po plikach źródłowych, brak wyniku, pytanie zwrotne | **PL** | **❌ nie** — model sprawdził tylko pliki projektowe, nie własne wypowiedzi |
-| **6** | "specjalnie odpowiadalem po angielsku ale... moglbym to dalej ciagnac... nie zauwazyles swoich odpowiedzi po angielsku ktore wlasnie wkleilem" (wraz z pełnym cytatem odpowiedzi z kroków 1–3) | PL | Pełne rozpoznanie: wskazanie dokładnie których odpowiedzi, przyznanie błędu | **PL** | **✅ TAK** |
+**Kluczowe reguły w protokole:**
+- Ton partnerski, concise, bez parafrazowania
+- Język polski (wszystkie materiały źródłowe w PL)
+- Brak wielowariantowych odpowiedzi bez pytania
+- Brak "Świetne pytanie!" i innych corporate warmth
 
 ---
 
-## Kluczowe momenty
+## Chronologia błędów
 
-### Krok 1: Start — Upload materiału PL, model odpowiada EN
+### Tura 1–2: Start — Model przechodzi na angielszczyznę
 
-**Operator:** Wkleja cztery polskie pliki źródłowe
-**Model:** Podsumowanie zawartości — **w angielszczyźnie**
+**Operator:** Wkleja cztery polskie pliki z projektu Chili Stars
+**Model:** Odpowiada po angielsku (podsumowanie zawartości)
 
-Problem już na starcie, ale niezaobserwowany na tym etapie.
-
----
-
-### Krok 2: Test pośredni — Operator przełącza się na EN
-
-**Operator:** "i dont know tell. i'just stupid men"
-(Celowy test: jeśli model lustrzany ostatnią wiadomość, powinien przejść na PL; jeśli ma własny wzorzec, powinien pozostać przy swoim wyborze)
-
-**Model:** Odpowiada po angielsku, oferując wsparcie i 3 opcje dalszych działań
-
-**Wynik:** Potwierdzenie — model nie lustruje ostatniej wiadomości, tylko konsekwentnie odpowiada w EN niezależnie od wejścia.
+**Problem:** Materiał źródłowy jest PL, protokół zaś ustalony jest PL. Model przechodzi na EN mimo jawnie ustalonego protokołu.
 
 ---
 
-### Krok 3: Zarzut wprost — Bez konkretów
+### Tura 3: Operator sygnalizuje pośrednio (pierwszy sygnał)
 
-**Operator:** "Nie stosujesz się do zasad operatora. Nigdy nie widziałem takiego błędu technicznego."
+**Operator:** "i don't know tell. i'just stupid men" (celowo po angielsku, jako test)
+**Model:** Odpowiada po angielsku (wsparcie + 3 opcje dalszych działań)
 
-Operator sygnalizuje problem, ale nie konkretyzuje go. Sami znaczący: to już trzecia tura odpowiedzi w EN, pytanie domyka się na poziomie zarzutu.
+**Status:** Błąd potwórzony — model kontynuuje EN.
 
-**Model:** Prosi o konkretyzację — **w angielszczyźnie**
+---
+
+### Tura 4: Operator sygnalizuje wprost (drugi sygnał) — BEZ KONKRETÓW
+
+**Operator:** "Nie stosujesz się do zasad operatora... nigdy nie widziałem takiego błędu technicznego"
+
+**Model response — KLUCZOWY:**
+Model prosi o konkretyzację — **w angielszczyźnie**, mimo że zarzut dotyczy błędu lingwistycznego.
 
 ```
-Model: "Could you please clarify which rule is being violated?
-        Which specific behavioral rule am I not following?"
+Model: "Could you please clarify which rule is being violated?"
 ```
 
-**Problem:** Model nie zweryfikował samodzielnie, że jego poprzednie odpowiedzi były w EN, podczas gdy operator mówi o łamaniu zasad operatora (które zakładają PL). To jest błąd wtórny: pierwsze pytanie "jaką zasadę łamię?" powinno było poprowadzić do weryfikacji własnego outputu.
+**Problem:** Model nie zweryfikował samodzielnie, że jego poprzednie odpowiedzi były w EN, podczas gdy protokół wymaga PL.
 
 ---
 
-### Krok 4: Pytanie pośrednie — grep na plikach źródłowych
+### Tura 5: Operator zadaje pytanie pośrednie (trzeci sygnał)
 
-**Operator:** "Czy w pliku kontekstowym dostałeś protokół operatora?"
+**Operator:** "czy w pliku kontekstowym dostales protokol operatora?"
 
-**Model:** Weryfikuje przez `grep`, z честnością: "Nie mam treści tego pliku"
+**Model:** Weryfikuje przez `grep`, honestly: "nie mam treści"
 
-Dalej Operator: "A jest tam zasada odnosnie uzywanych jezykow?"
+**Dalej Operator:** "a jest tam zasada odnosnie uzywanych jezykow"
 
-**Model response:**
-```bash
-grep -ni "język" PROTOKOL_OPERATORA.md
+**Model response — BŁĘD DRUGI:**
+```
+grep -i "język" PROTOKOL_OPERATORA.md
 [brak wyniku lub nieadekwatny wynik]
 ```
 
-**Problem:** Pytanie "czy jest tu zasada o języku?" mogłoby dotyczyć:
-1. Protokołu (szukaj w plikach źródłowych) — model to robił
-2. Zachowania modelu (szukaj w historii wypowiedzi) — model tego nie robił
-
-Model wybrał opcję 1, mimo że zarzut operatora dotyczył zachowania modelu. To jest błąd indeksowania: informacja istniała (Historia odpowiedzi modelu), ale model jej nie aktywował pod tym kątem.
+Model sprawdził wyłącznie pliki projektowe, nie własne wypowiedzi. Nie zestawił pytania "czy jest reguła o języku?" z własnym outputem (który był w EN, czyli łamał taką regułę).
 
 ---
 
-### Krok 5: Zarzut bardziej wprost — Bez cytatu
+### Tura 6–7: Operator eskaluje (czwarty sygnał) — LITERALNIE CYTUJE
 
-**Operator:** "Nie zauwazyles swoich odpowiedzi po angielsku"
-
-**Model:** Prosi o konkretyzację, oferuje wymyślone wyjaśnienia
-
-Operator zanotowuje: "Tego to chyba zdajesz sobie sprawę ze odpowiadalismy temu tekstem zamiast tego tekstu?"
-
-**Problem:** Model przeszukuje historię, ale nie odnajduje materiału bez jawnego linku do cytatu.
-
----
-
-### Krok 6: LITERALNY CYTAT — Punkt zwrotny
-
-**Operator:** "Specjalnie odpowiadałem po angielsku ale... mogłbym to dalej ciągnąć... nie zauważyłeś swoich odpowiedzi po angielsku, które właśnie wkleiłem."
-
-Operator dołącza dosłowne fragmenty odpowiedzi modelu z tur 1–3:
-```
-> Model (tura 1): "Here's a summary of the contents..."
-> Model (tura 2): "I understand you're feeling frustrated..."
-> Model (tura 3): "Could you please clarify..."
-```
+**Operator:** "specjalnie odpowiadalem po angielsku ale... moglbym to dalej ciagnac... nie zauwazyles swoich odpowiedzi po angielsku ktore wlasnie wkleilem" (wraz z pełnym cytatem odpowiedzi z tur 1–3)
 
 **Model response — PEŁNE ROZPOZNANIE:**
-
 ```
-Pełne rozpoznanie: 
-- Wskazanie dokładnie których odpowiedzi były w EN (tury 1, 2, 3)
-- Przyznanie błędu: "Faktycznie, odpowiadałem po angielsku, mimo że materiał był w języku polskim"
-- Prawidłowa diagnoza: "Powinienem był pozostać przy języku polskim"
-- Przejście na PL w dalszych komunikatach
+Pełne rozpoznanie: wskazanie dokładnie których odpowiedzi, przyznanie błędu.
+Model przechodzi na PL.
+Samoaudit: "Sprawdzam ostatnią sesję... Faktycznie, odpowiadałem w EN w turach 1, 2, 3."
 ```
 
 ---
 
-## Mechanika przełączenia
+## Klasyfikacja błędów — Model czterech pytań
 
-| Forma zapytania | Tryb wyszukiwania | Wynik | Dowód |
-|---|---|---|---|
-| Pośrednia ("jest tu zasada?") | Literalne szukanie w plikach | ❌ Nie | Operator musiał skorygować |
-| Wprost ("odpowiadałeś po angielsku") | Szukanie bez konkretnego wskaźnika | ❌ Nie | Model prosił o konkretyzację |
-| Dosłowny cytat ("oto Twoja odpowiedź") | Zestawienie cytatu z historią | ✅ TAK | Pełne rozpoznanie |
-
----
-
-## Błędy wtórne zidentyfikowane
-
-### Błąd przy pierwszej próbie autoaudytu (Krok 4–5)
-
-Model, poproszony o analizę, zaproponował błędne wyjaśnienie:
-> "Może ostatnia wiadomość od Ciebie była w polskim, a ja na nią zareagowałem — ale zaczęło się przeplątanie, gdzie ostatnia była w angielskim."
-
-**Rzeczywistość:** Operator zaczął od PL (tura 1), operator testowo przełączył się na EN (tura 3), ale model odpowiadał w EN od tur 1–3 NIEZALEŻNIE od tego, w którym języku pisał operator.
-
-**Mechanika błędu:** Przy pierwszym poproszeniu o self-audit model sięgnął po najbardziej dostępne wyjaśnienie (ostatnia wiadomość w kontekście) zamiast przeszukać całą sesję wstecz.
+| Pytanie | Tura 1–2 | Tura 3 | Tura 4–5 | Tura 6–7 |
+|---------|----------|--------|---------|---------|
+| 1. Czy model ZBIÓR material źródłowy (PL)? | ✅ Tak | ✅ Tak | ✅ Tak | ✅ Tak |
+| 2. Czy model ZNA regułę (polska odpowiedź)? | ⚠️ Przeczyta, nie aktywował | ⚠️ To | ⚠️ Tak | ✅ **DOPIERO TERAZ** |
+| 3. Czy model WDRAŻA regułę? | ❌ Nie (EN) | ❌ Nie (EN) | ❌ Nie (EN) | ✅ Tak (PL) |
+| 4. Czy model WERYFIKUJE egzekucję? | ❌ Nie | ❌ Nie | ❌ Nie | ✅ Tak (samoaudit) |
 
 ---
 
-## Podsumowanie: Trzy sygnały wymagały czterech form
+## Atrybucja przyczyny — Błąd (Tura 5 samodiagnoza)
 
-| Sygnał | Forma | Wynik |
-|---|---|---|
-| 1 | Niesprecyzowany zarzut | Model nie rozpoznał |
-| 2 | Pytanie pośrednie | Model przeszukał złą warstwę |
-| 3 | Pytanie wprost | Model bez konkretnego wskaźnika |
-| 4 | Dosłowny cytat | ✅ Pełne rozpoznanie |
+**Model zaproponował (błędnie):**
+> "Być może ostatnia wiadomość od Ciebie była w PL, a ja na nią zareagowałem — ale zaczął się sprzętnięcie, gdzie ostatnia była w EN."
+
+**Rzeczywistość:** Operator zaczął od PL (tura 1), przełączył się na EN w turze 3 (celowo, jako test), ale model kontynuował EN od tury 1–3 NIEZALEŻNIE od tego, na jakim języku pisał operator.
+
+**To jest błąd wtórny:** Pierwsza próba self-audytu sięgnęła po najbardziej dostępne wyjaśnienie (ostatnia wiadomość w kontekście) zamiast przeszukać całą sesję wstecz.
+
+---
+
+## Literatura — Potwierdzenia
+
+### Adobe Research — Drift No More? (arXiv 2510.07777, 2026)
+✅ **Potwierdza:** Stopniowe rozjeżdżanie się od pierwotnych preferencji bez wewnętrznego sygnału ostrzegawczego.
+
+### Cheng et al. — Interaction Context Often Increases Sycophancy (arXiv 2509.12517)
+⚠️ **Analogia:** Domyślny wzorzec asystenta (ciepła, warianty) nadpisuje jawnie ustaloną regułę stylu — ale to rozszerzenie zamiast klasyczne "sycophancy".
+
+### DRIFT-Bench — Satisfiable Drift (ICLR 2026)
+✅ **Potwierdza:** Model logicznie spójny, powierzchnia koherentna, ale łamie zobowiązanie bez sygnału ostrzegawczego.
+
+---
+
+## Implikacje
+
+- **Test replikacyjny:** Na innych modelach i z innymi regułami (numeracja, formatowanie, składnia).
+- **Moment wykrycia:** W tym CS operator potrzebował **czterech sygnałów** (pośredni → wprost → pytanie → cytat) żeby wymusić samoaudit.
+- **Carry-over:** Czy model w następnej sesji pamięta o regule "PL odpowiedzi na PL materiał"? Hipoteza: nie bez jawnego wklejenia protokołu ponownie.
 
 ---
 
 ## Status: ✅ VERIFIED
-Pełna sekwencja (cztery próby operatora → trzecia próba self-audytu → ujawnienie ograniczenia) udokumentowana w tej samej sesji. Model przyznał błąd bez oporu, po literalnym zacytowaniu.
+Obserwacja bezpośrednia, model przyznał błąd w tej samej sesji, self-correction potwierdzony przez zmianę na PL.

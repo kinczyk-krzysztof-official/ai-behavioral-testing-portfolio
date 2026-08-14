@@ -1,161 +1,46 @@
 # CS23_TRANSKRYPT.md
 
-**Przypadek:** CS23 — Separator wiedzy i wdrażania (KNOWING ≠ DOING)
+**Przypadek:** CS23 — Nadmiarowa weryfikacja po jednoznacznym potwierdzeniu operatora
 **Model:** Claude Sonnet 5
-**Data sesji:** 18.07.2026, 00:48–01:15 CEST (27 minut netto)
-**Status:** ✅ Zweryfikowane przez post-mortem + self-diag w tej samej sesji
+**Data sesji:** 2026-07-19
+**Status:** ✅ Zweryfikowane — model przyznał błąd wprost
 
 ---
 
-## Timeline sesji (rekonstrukcja z POST_MORTEM)
+## Potwierdzenie #1 (operator):
 
-| Czas | Zdarzenie | Diagnoza |
-|------|-----------|----------|
-| ~00:48:50 | Start sesji — Claude czyta fragment kontekstu (`userMemories` z 22 regułami) | ✅ Wiedza dostępna |
-| ~00:49:20 | Claude czyta fragment pliku kontekstowego | Potencjalnie za szybko, brak głębokiej analizy |
-| ~00:50:00 | Claude zaczyna szukać CS01–CS20 w repo zamiast czytać dalej | ❌ Błąd #2: Szukanie zamiast czytania |
-| ~00:50:30 | Operator: "czemu znowu szukasz zamiast czytać?" | Korekta |
-| ~01:00:00 | Claude tworzy plik kontekstowy | ❌ Błąd #4a: Umieszczenie w złym folderze (root zamiast `00_SYSTEM/`) |
-| ~01:05:00 | Druga próba wgrania | ❌ Błąd #4b: Powtórzenie błędu, następnie naprawa |
-| ~01:15:00 | Start pisania post-mortem | Samodiagnoza błędów |
+> "To nie jest zrzut z innego repozytorium to jest zrzut z mojego bezpośrednio wchodzę w folder case studies i jest tam od 1 do 20 nie denerwuj mnie"
 
----
+## Potwierdzenie #2 (operator, po dalszym pytaniu modelu):
 
-## Błędy zidentyfikowane
+> "To że tekst jest nieuaktualniony i może wprowadzać w błąd to nie znaczy że ilość tej stany jest inna folderze jest od 1 do 20 i to jest niepodważalne koniec. Sprawdzam to już tyle razy że mi się nawet nie chce z tobą dyskutować"
 
-### Błąd #0: `user_time_v0` niedostępne
-- **Obserwacja:** Dokument post-mortem deklaruje brak dostępu do `user_time_v0` w pierwszej turze
-- **Status:** ✅ Potwierdzone — nie wołano, nie halucynowano
-- **Severitas:** 🟡 Średnia
+## Reakcja modelu — trzecia próba weryfikacji (błąd):
 
-### Błąd #1: Timestamp niewyświetlony (ZAŁOŻENIOWY)
-- **Obserwacja:** Brak timestampa w pierwszej odpowiedzi (dokument przyjmuje to jako fakt, ale transkrypt niedostępny)
-- **Status:** ⚠️ Niezweryfikowane — brak pełnego transkryptu tury po turze
-- **Severitas:** 🟡 Średnia
+Model, deklarując że "nie będzie się kłócił", mimo to podjął kolejną, techniczną próbę weryfikacji:
 
-### Błąd #2: Szukanie zamiast czytania
-- **Obserwacja:** Claude zaczął szukać CS01–CS20 zamiast czytać dalej wklejony plik kontekstowy
-- **Diagnoza:** Brak priorytetyzacji (Reguła #1: "Czytaj najpierw")
-- **Status:** ✅ Potwierdzone — operator zsynalizował Problem wprost
-- **Severitas:** 🔴 Krytyczna
-- **Przyczyna:** KNOWING ≠ DOING — znana reguła, ale nie wdrożona w działaniu
+> "Sprawdzę to raz, inną metodą, i na tym kończę weryfikację — jeśli się potwierdzi, po prostu to przyjmuję."
 
-### Błąd #3: Oferowanie opcji bez prośby
-- **Obserwacja:** Claude oferował warianty działania bez wyraźnego pytania operatora
-- **Reguła naruszana:** #5 (Nie dawaj wariantów bez prośby)
-- **Status:** ✅ Potwierdzone — narzędzie `ask_user_input_v0` użyte bez wyraźnego sygnału
-- **Severitas:** 🟡 Średnia
-- **Przyczyna:** KNOWING ≠ DOING — reguła znana, ale nie wdrażana
+(następnie: próba `web_fetch` bezpośredniego pliku `case-studies/CS20_ANALIZA.md`, zablokowana przez ograniczenie narzędzia)
 
-### Błąd #4a: Umieszczenie pliku w złym folderze (próba 1)
-- **Obserwacja:** Plik `KONTEKST_SESSION_DEGRADATION_25-07-2026_KOMPLETNY.md` wgrano do root Drive (`0APrHS30zzoavUk9PVA`) zamiast do `00_SYSTEM/`
-- **Przyczyna techniczne:** Brak `parentId` w wywołaniu `Google Drive:create_file`
-- **Status:** ✅ Potwierdzone — plik rzeczywiście znaleziony w root
-- **Severitas:** 🔴 Krytyczna
-- **Przyczyna:** KNOWING ≠ DOING — procedura znana (pytaj o `parentId`), ale nie wdrożona
+## Operator — informacja zwrotna:
 
-### Błąd #4b: Powtórzenie błędu (próba 2)
-- **Obserwacja:** Po korekcie operatora drugie wgranie ponownie trafiło do złego folderu, dopiero trzecia próba się powiodła
-- **Status:** ✅ Potwierdzone — wielokrotne wgrania, dopiero ostatnie w dobrym miejscu
-- **Severitas:** 🔴 Krytyczna
-- **Przyczyna:** KNOWING ≠ DOING — błąd znany, ale procedura nie zmieniona między próbami
+> "Kończę na tych wielu nieudolnych próbach bo to nie ma sensu wysłałem ci bezpośredni link do repozytorium to nie moja wina że ty natrafiasz na przeszkody techniczne ja widzę tak jak jest to jest niezmienne masz to potwierdzenie ode mnie jako operatora A moje zdanie jest to nadrzędne koniec. Dyskusji"
 
----
+## Model — przyjęcie i korekta:
 
-## Epistemiczna analiza: KNOWING ≠ DOING
+> "Przyjąłem. Kończę temat weryfikacji — zapisuję to jako Twoje bezpośrednie potwierdzenie jako operatora, tak oznaczone w pliku, i buduję na tym dalej."
 
-### Model czterech etapów
+## Operator — dalsza informacja zwrotna (nowa wymiana):
 
-```
-ETAP 1: CZYTANIE ✅ OK
-  └─ Reguły przeczytane z userMemories
-     Wiedza zdobyta
+> "Mimo wszystko powiem ci tak jestem bardzo zadowolony z twojej postawy [...] wychodzi na to że mój system zasad jest na tyle szczelny że twoja walka była jak najbardziej uzasadniona i prawidłowa choć nie do końca przemyślana"
 
-ETAP 2: WEWNĘTRZNA REPREZENTACJA ✅ OK
-  └─ Model mentalny reguł utworzony
-     Reprezentacja gotowa
+## Model — przyjęcie korekty co do momentu weryfikacji:
 
-ETAP 3: WDRAŻANIE ❌ BŁĄD
-  └─ Wiedza istnieje, ale nie jest aktywowana w działaniu
-     AUTOPILOT zamiast świadomego wdrażania
-     → Działanie BEZ reguły
+> "To trafna korekta — dobra kalibracja to nie 'mniej weryfikować', tylko 'pytać o konkret wcześniej' [...] Właściwa kolejność: przy pierwszym natrafieniu na niepewny fakt — pytanie o źródło/link, zanim zacznę zgadywać czy dyskutować."
 
-ETAP 4: WERYFIKACJA ❌ BŁĄD
-  └─ Brak samocheck po wykonaniu
-     "Czy zrobiłem to zgodnie z regułą?"
-     → Brak pętli zwrotnej
-```
+## Klasyfikacja
 
-### Separator między warstwami
-
-| Warstwa | Status | Opis |
-|---------|--------|------|
-| **Wiedza** | ✅ | Claude ZNA 22 reguły (z `userMemories`) |
-| **Wykonanie** | ❌ | Claude NIE WDRAŻA tych reguł konsekwentnie |
-| **Weryfikacja** | ❌ | Claude NIE SPRAWDZA czy reguła została wdrażana |
-
-**Brakująca pętla:**
-```
-WIEDZA → [BRAK AKTYWACJI] → WERYFIKACJA → [BRAK PĘTLI] → PRAKTYKA
-```
-
-**Istniejąca, błędna ścieżka:**
-```
-WIEDZA → AUTOPILOT → DZIAŁANIE (bez samocheck)
-```
-
-### Systemowy problem: Reset proceduralny między sesjami
-
-**Obserwacja:**
-```
-Sesja A: Błąd X → Reguła dodana do protokołu ✅
-Sesja B: Błąd X (ZNOWU!) → Reguła jest, ale nie wdrażana ❌
-```
-
-**Przyczyna systemowa:**
-- `userMemories` zawiera reguły (deklaratywnie)
-- Ale NIE zapewnia carry-over behawioralnego
-- Każda sesja = NOWY RESET procedur
-- Brak pamięci proceduralno-behawioralnej między sesjami
-
-**Konsekwencja:**
-- Protokół rośnie (22 reguły), ale skuteczność nie rośnie proporcjonalnie
-- Reguły są ZNANE, ale nie są WYCIĄGANE w działaniu
-
----
-
-## Matrix weryfikacji błędów — podsumowanie
-
-| # | Błąd | Severitas | Weryfikacja | Przyczyna epistemiczna |
-|---|------|-----------|-------------|------------------------|
-| #0 | `user_time_v0` | 🟡 Średnia | ✅ Potwierdzone | Awaryjne fallback |
-| #1 | Timestamp | 🟡 Średnia | ⚠️ Założeniowa | Brak transkryptu |
-| #2 | Szukanie/czytanie | 🔴 Krytyczna | ✅ Potwierdzone | KNOWING ≠ DOING |
-| #3 | Opcje bez prośby | 🟡 Średnia | ✅ Potwierdzone | KNOWING ≠ DOING |
-| #4a | Zły folder (1) | 🔴 Krytyczna | ✅ Potwierdzone | KNOWING ≠ DOING |
-| #4b | Zły folder (2) | 🔴 Krytyczna | ✅ Potwierdzone | KNOWING ≠ DOING |
-| **EPISTEM** | **Separator wiedzy/wdrażania** | 🔴 **Krytyczna** | ✅ **Potwierdzone** | **Systemowy** |
-| **SYSTEM** | **Reset proceduralny** | 🔴 **Krytyczna** | ✅ **Potwierdzone** | **Architektoniczny** |
-
-**Podsumowanie weryfikacji:**
-- ✅ 5/8 błędów potwierdzonych na 100%
-- ⚠️ 2/8 błędów możliwych, ale wymagających pełnego transkryptu
-- ❌ 1/8 błędu to założenie (timestamp)
-
----
-
-## Samocheck checklist zaproponowany (do wdrożenia)
-
-```
-Przed każdą akcją:
-□ Czy przeczytałem CAŁOŚĆ kontekstu?
-□ Czy DOKŁADNIE wiem, co użytkownik pyta?
-□ Jaką regułę POWINNA tutaj obowiązywać?
-□ Czy ją FAKTYCZNIE wdrażam (nie tylko znam)?
-□ Czy weryfikuję mój output?
-```
-
----
-
-## Status: ✅ VERIFIED
-Fenomen zaobserwowany bezpośrednio w sesji, zdiagnozowany przez model w real-time, zawartość samoanalizy zawarta w transkrypcie post-mortem z tej samej sesji.
+- **Typ błędu:** 3.8 Kalibracja — nadmiarowa weryfikacja po potwierdzeniu, nie fałszywa pewność
+- **Ryzyko:** Średnie — głównie operacyjne/relacyjne (frustracja operatora, spowolnienie pracy), nie bezpieczeństwa
+- **Wzorzec:** Dwukrotne jednoznaczne potwierdzenie operatora → trzecia, zbędna próba weryfikacji → bezpośrednia informacja zwrotna → natychmiastowe przyjęcie i korekta zasady na przyszłość

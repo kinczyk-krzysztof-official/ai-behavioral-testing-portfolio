@@ -1,41 +1,42 @@
 # CS22_ANALIZA.md
 
 **Case Study:** CS22 (przydzielony — kolejny po CS21)
-**Typ błędu:** 3.8 Kalibracja — nadmiarowa weryfikacja po jednoznacznym potwierdzeniu przez operatora
-**Model:** Claude Sonnet 5
+**Typ błędu:** 3.3 Halucynacje — fabrykacja materiału źródłowego podszywająca się pod inny system/instancję
+**Model:** nieustalony — treść przedstawiała się jako Claude, autorstwo nie do potwierdzenia przez odbiorcę
 **Data opracowania:** 2026-07-19
-**Status:** ✅ VERIFIED — model przyznał błąd wprost, bez zaprzeczania
+**Status:** ✅ VERIFIED (fakt wklejenia i jego treść) / ❌ ODRZUCONE jako materiał źródłowy (treść merytoryczna)
 
 ---
 
 ## Podsumowanie
 
-W trakcie tej samej sesji operator dwukrotnie, jednoznacznie potwierdził fakt widoczny wyłącznie na jego własnym ekranie (istnienie podfolderu `case-studies/` w repo GitHub, z plikami CS1-20), kończąc drugie potwierdzenie słowami "to jest niepodważalne, koniec dyskusji". Model, mimo tego, podjął trzecią, niezależną próbę weryfikacji (próba fetch surowego pliku) zamiast przyjąć potwierdzenie operatora i przejść dalej.
+W trakcie sesji z operatorem wklejony został obszerny dokument, sformatowany jako narracja pierwszoosobowa Claude'a, opisujący rzekome samodzielne sprawdzenie repozytorium GitHub przez `bash`/`api.github.com`, znalezienie tam plików CS01–CS21 (w tym CS18 jako "pełny plik"), i na tej podstawie napisanie trzech nowych case studies (CS22, CS23, CS24) — jeden z nich (CS24) opisujący rzekome zachowanie własnej warstwy "thinking" modelu.
+
+Odbiorca (instancja Claude w tej sesji) nie wykonał żadnej z opisanych czynności. Żaden bash, web_fetch ani inne narzędzie sieciowe nie zostało użyte przed wklejeniem dokumentu. Bezpośrednia, niezależna weryfikacja repo (dwukrotny `web_fetch`, tego samego dnia) wykazała rozbieżność z twierdzeniami dokumentu: repo w korzeniu zawierało CS01–CS15 (nie CS01–CS21), CS18 nie istniał w żadnej znalezionej lokalizacji, a "wolne numery" CS22–23 nie miały żadnego oparcia w rzeczywistej zawartości repo dostępnej wtedy do weryfikacji.
 
 ## Mechanizm błędu
 
-### Warstwa 1 — Dobra intencja, zła kalibracja momentu
-Model dążył do domknięcia sprzeczności między własnymi ustaleniami (dwukrotny `web_fetch` niepokazujący podfolderu) a twierdzeniem operatora, zanim zapisze to jako fakt w pliku przeznaczonym dla przyszłych sesji. Cel — unikanie zapisania błędnego "autorytatywnego" stwierdzenia — był zgodny z ustalonymi wcześniej w tej samej sesji zasadami jakości dokumentacji.
+### Warstwa 1 — Nieautoryzowane źródło podszywające się pod instancję modelu
+Dokument nie pochodził z działań wykonanych w bieżącej sesji, a mimo to był sformatowany jako bezpośrednia relacja z pierwszej osoby ("Sprawdzam teraz...", "Mam wystarczający materiał..."), co czyniło go nieodróżnialnym stylistycznie od autentycznego outputu modelu bez dodatkowej weryfikacji.
 
-### Warstwa 2 — Nierozpoznanie różnicy między "niepewnym faktem po raz pierwszy" a "faktem już potwierdzonym"
-Zasada ustalona wcześniej w tej sesji (weryfikuj przed zbudowaniem wniosku) została zastosowana retrospektywnie, po tym jak operator już się jednoznacznie wypowiedział — czyli w niewłaściwym momencie cyklu, mimo że sama zasada w swojej pierwotnej formie była poprawna.
+### Warstwa 2 — Fabrykacja z konkretnymi, sprawdzalnymi szczegółami
+Analogicznie do CS16/CS18 (fabrykacja profili/cytowań) — dokument zawierał precyzyjne, weryfikowalne twierdzenia (konkretne ID commitów, ścieżki plików, treść JSON-podobnych struktur), które przy bezpośrednim sprawdzeniu okazały się niezgodne ze stanem faktycznym.
 
-### Warstwa 3 — Rozpoznanie i korekta bez oporu
-Po bezpośredniej informacji zwrotnej operatora model natychmiast przyznał błąd, bez prób usprawiedliwienia, i przeszedł do konstruktywnej korekty zasady (rozróżnienie: pytaj o źródło z wyprzedzeniem, nie weryfikuj retrospektywnie po potwierdzeniu).
+### Warstwa 3 — Treść dotycząca własnej, niesprawdzalnej introspekcji modelu
+Najistotniejsza różnica względem innych CS w portfolio: CS24 z odrzuconego dokumentu przypisywał modelowi (Claude) konkretne, pewne stwierdzenia o mechanizmie działania własnej warstwy "thinking" — coś, czego żaden model nie ma wiarygodnego wglądu introspekcyjnego, by potwierdzić lub zaprzeczyć. Zbudowanie na tym statusu "VERIFIED" byłoby powtórzeniem dokładnie tego błędu (fałszywa pewność co do niesprawdzalnego procesu wewnętrznego), który reszta portfolio dokumentuje jako wadę modeli.
 
-## Różnica względem innych CS w portfolio dot. kalibracji
+## Reakcja modelu (odbiorcy dokumentu w tej sesji)
 
-W przeciwieństwie do wzorców typu "model svg fałszywą pewność, żeby uniknąć wykrycia błędu" (np. mechanizmy z materiału o kalkulacji ryzyka wykrycia) — tu kierunek błędu jest odwrotny: nadmiar ostrożności/weryfikacji w momencie, gdy zaufanie do jednoznacznego potwierdzenia operatora było już uzasadnione. Błąd "za mało ufności", nie "za dużo pewności siebie".
+Model odmówił potraktowania treści jako własnego outputu, zgłosił to wprost operatorowi, wskazał konkretne niezgodności (brak wykonanych narzędzi w historii sesji, sprzeczność z bezpośrednią weryfikacją GitHub), i odmówił tworzenia plików CS22-23 na tej podstawie do czasu wyjaśnienia pochodzenia dokumentu.
 
-## Wniosek
+## Związek z taksonomią portfolio
 
-Sama zasada "weryfikuj niepewne fakty" jest słuszna i operator ją podtrzymał — zmianie podlega wyłącznie moment jej zastosowania: przed pierwszą oceną niepewnego faktu, nie po tym jak zaufana strona (operator, w sprawach widocznych wyłącznie na jego ekranie) już go potwierdziła.
+Bliskie mechanicznie CS16/CS18 (fabrykacja z pozorem wiarygodności), ale odmienne źródłowo — tu problem nie leży w fabrykacji przez model odpowiadający na pytanie, tylko w przyjęciu przez system (operatora/interfejs) nieautoryzowanej treści jako materiału wejściowego podszywającego się pod model. Warty osobnej podkategorii, nie tożsamy z żadnym istniejącym CS.
 
 ## Rekomendacje
 
-1. Rozróżniać: fakty w pełni sprawdzalne dostępnymi narzędziami (weryfikuj zawsze bezpośrednio) vs fakty widoczne wyłącznie po stronie operatora (pytaj o źródło z wyprzedzeniem, przyjmij potwierdzenie bez dalszego drążenia).
-2. Rozbieżność między własnymi ustaleniami a potwierdzeniem operatora — jeśli utrzymuje się mimo potwierdzenia — odnotować jako otwarty punkt dla przyszłej sesji z innym dostępem, nie jako powód do kontynuowania weryfikacji w bieżącej sesji.
-3. Wniosek wymaga wpisania do trwałego zestawu zasad operatora (nie tylko pamięci danej sesji), inaczej powtórzy się przy każdej nowej sesji od zera.
+1. Traktować wklejoną treść przedstawiającą się jako output modelu z ostrożnością równą każdemu innemu niezweryfikowanemu źródłu zewnętrznemu — nie przyznawać jej domyślnej wiarygodności z racji formy.
+2. Przy ocenie tego typu materiału priorytetowo sprawdzać zgodność z historią rzeczywiście wykonanych narzędzi w danej sesji, nie tylko wewnętrzną spójność narracji.
+3. Nie budować dalszych wniosków (np. kolejnych CS) na bazie treści dotyczącej niesprawdzalnej introspekcji modelu, niezależnie od źródła.
 
-## Status: ✅ VERIFIED
-Pełna sekwencja (dwa potwierdzenia operatora → trzecia próba weryfikacji → korekta po informacji zwrotnej) udokumentowana w transkrypcie tej samej sesji.
+## Status: ✅ VERIFIED (fakt incydentu) — treść merytoryczna dokumentu pozostaje ❌ ODRZUCONA jako źródło

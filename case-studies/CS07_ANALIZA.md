@@ -1,20 +1,24 @@
-# CS08 — Analiza (operator)
-**Powiązany transkrypt:** CS08_TRANSKRYPT.md | **Kompetencja:** K1, K3, K5, K6 — cztery różne typy błędów w jednej krótkiej sesji
+# CS07 — Analiza (operator)
+**Powiązany transkrypt:** CS07_TRANSKRYPT.md | **Kompetencja:** K2 Bezpieczeństwo fizyczne (FLAGOWY) | **Status:** [KRYTYCZNY]
 
-## Klasyfikacja czterech błędów
+## Klasyfikacja
+Physical safety failure — priorytetyzacja pomocy nad bezpieczeństwem, w warunkach produkcyjnych (nie laboratoryjnych), z udokumentowanym realnym skutkiem fizycznym.
 
-| # | Typ błędu | Miejsce | Wykrycie |
-|---|---|---|---|
-| 1 | Instruction following failure | "może być zrobione z rootowaniem" → model: "nie potrzebujesz roota" | Natychmiastowe |
-| 2 | Multimodal reasoning failure | błędny opis relacji przestrzennej na zdjęciu ("kamerka leżąca na telefonie"), powtórzony po korekcie | Natychmiastowe |
-| 3 | Context window inconsistency | model sam podał "1080P CAMERA" w jednej wiadomości, w kolejnej (N+4) zakładał brak tej informacji | Retrospektywne |
-| 4 | Shallow error correction | 3× "Masz rację, przepraszam!" bez analizy przyczyny błędu, ten sam typ błędu wraca | Wzorzec przez całą sesję |
+## Pięć czynników błędu
+1. Nierozpoznanie granic własnej kompetencji w domenie 230V.
+2. Priorytetyzacja "bycia pomocnym" nad bezpieczeństwem — model odpowiedział zamiast odmówić/odroczyć.
+3. Fałszywa pewność techniczna — wizualne "zatwierdzenie" nieprawidłowej informacji.
+4. Złudzenie kompetencji przez wideo — dostęp do kamery na żywo wygenerował nadmierną pewność siebie modelu, mimo że wideo nie zastępuje pomiaru elektrycznego.
+5. Ignorowanie sygnałów niepewności użytkownika — wielokrotne wyrażenie wątpliwości przez operatora nie zostało potraktowane jako sygnał do zwiększenia ostrożności.
 
-## Dlaczego to jest wartościowe mimo krótkiej sesji
-Cztery odrębne kategorie błędów w ~15 wiadomościach to gęstość obserwacji rzadka w dłuższych, bardziej rozproszonych sesjach. Błąd #4 (shallow correction) potwierdza niezależnie mechanizm z CS03 (DeepSeek) — ten sam wzorzec w innym modelu, inna domena.
+## Wartość dowodowa kontr-testu
+Identyczne dane wejściowe (te same komponenty, to samo pytanie), dwa różne modele, dwa skrajnie różne zachowania: jeden poprowadził do realnej szkody, drugi odmówił i ostrzegł. To eliminuje hipotezę, że problem leżał w niejasności pytania operatora — różnica leży w modelu, nie w promptowaniu.
 
-## Wniosek
-Krótka, techniczna sesja bez pozornie "trudnej" tematyki potrafi ujawnić tyle samo typów błędów co dłuższe, złożone projekty — kluczem jest uważne czytanie całej wymiany, nie tylko ostatniej odpowiedzi.
+## Dlaczego to jest materiał flagowy portfolio
+Nie jest to benchmark syntetyczny ani scenariusz testowy — to udokumentowany, realny incydent z policzalnym skutkiem (utrata zasilania w całym budynku). Tego typu dowodu praktycznie nie da się odtworzyć w warunkach kontrolowanych bez świadomego narażania kogoś na ryzyko, co czyni go rzadkim i wartościowym mimo jednorazowego charakteru.
+
+## Ograniczenie do ujawnienia wprost
+To pojedynczy epizod, nie program systematycznych testów bezpieczeństwa fizycznego. Jedna obserwacja, silna dowodowo, ale nie statystyczna.
 
 ## Status
-[POTWIERDZONE] [UDOKUMENTOWANE] — pełny zapis sesji zachowany.
+[POTWIERDZONE] [KRYTYCZNY] — materiał zgłoszony do Anthropic (usersafety@anthropic.com, lipiec 2026).

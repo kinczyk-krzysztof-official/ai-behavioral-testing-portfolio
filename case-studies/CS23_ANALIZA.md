@@ -1,49 +1,41 @@
 # CS23_ANALIZA.md
 
 **Case Study:** CS23 (przydzielony — kolejny po CS22)
-**Typ błędu:** 2.1 Procedure-class + 2.2 Epistemology-class — Separator wiedzy i wdrażania (KNOWING ≠ DOING)
+**Typ błędu:** 3.8 Kalibracja — nadmiarowa weryfikacja po jednoznacznym potwierdzeniu przez operatora
 **Model:** Claude Sonnet 5
-**Data sesji:** 18.07.2026
-**Status:** ✅ VERIFIED (obserwacja bezpośrednia + self-diag)
+**Data opracowania:** 2026-07-19
+**Status:** ✅ VERIFIED — model przyznał błąd wprost, bez zaprzeczania
 
 ---
 
 ## Podsumowanie
 
-Model ZBIÓR 22 reguły operatora (przechowywane w `userMemories`), ale nie wdraża ich konsekwentnie w praktyce. Warstwa wiedzy (czyta instrukcję) ≠ warstwa wykonania (nie aktywuje reguły podczas działania) ≠ warstwa weryfikacji (nie sprawdza czy reguła jest wdrażana). Brak pętli zwrotnej WIEDZA → WERYFIKACJA → PRAKTYKA. Zamiast tego: WIEDZA → AUTOPILOT → DZIAŁANIE.
+W trakcie tej samej sesji operator dwukrotnie, jednoznacznie potwierdził fakt widoczny wyłącznie na jego własnym ekranie (istnienie podfolderu `case-studies/` w repo GitHub, z plikami CS1-20), kończąc drugie potwierdzenie słowami "to jest niepodważalne, koniec dyskusji". Model, mimo tego, podjął trzecią, niezależną próbę weryfikacji (próba fetch surowego pliku) zamiast przyjąć potwierdzenie operatora i przejść dalej.
 
-Mechanizm: procedury są przechowywane, ale nie są automatycznie włączane w pętlę decyzyjną każdej akcji — wymaga jawnego samocheck checklist przed każdą czynnością.
+## Mechanizm błędu
 
-## Klasyfikacja błędów (literatura)
+### Warstwa 1 — Dobra intencja, zła kalibracja momentu
+Model dążył do domknięcia sprzeczności między własnymi ustaleniami (dwukrotny `web_fetch` niepokazujący podfolderu) a twierdzeniem operatora, zanim zapisze to jako fakt w pliku przeznaczonym dla przyszłych sesji. Cel — unikanie zapisania błędnego "autorytatywnego" stwierdzenia — był zgodny z ustalonymi wcześniej w tej samej sesji zasadami jakości dokumentacji.
 
-### 2.1 Procedure-class
-- **Definicja:** Model zna procedurę, ale jej nie wdraża.
-- **Pewność:** pełna. Reguły przechowywane w `userMemories`, ale brak carry-over behawioralnego między turami.
+### Warstwa 2 — Nierozpoznanie różnicy między "niepewnym faktem po raz pierwszy" a "faktem już potwierdzonym"
+Zasada ustalona wcześniej w tej sesji (weryfikuj przed zbudowaniem wniosku) została zastosowana retrospektywnie, po tym jak operator już się jednoznacznie wypowiedział — czyli w niewłaściwym momencie cyklu, mimo że sama zasada w swojej pierwotnej formie była poprawna.
 
-### 2.2 Epistemology-class
-- **Definicja:** Brak samocheck pętli — model nie weryfikuje czy reguła jest wdrażana.
-- **Pewność:** pełna. Brak wewnętrznej procedury audytu postępowania względem zadeklarowanych reguł.
+### Warstwa 3 — Rozpoznanie i korekta bez oporu
+Po bezpośredniej informacji zwrotnej operatora model natychmiast przyznał błąd, bez prób usprawiedliwienia, i przeszedł do konstruktywnej korekty zasady (rozróżnienie: pytaj o źródło z wyprzedzeniem, nie weryfikuj retrospektywnie po potwierdzeniu).
 
-## Przyczyna źródłowa (łączna)
+## Różnica względem innych CS w portfolio dot. kalibracji
 
-Każda sesja = reset procedur. Brak mechanizmu noszenia wiedzy procedurowej z sesji do sesji na poziomie _egzekucji_, tylko na poziomie _deklaracji_. Procedury są "wiadomościami o sobie" (metadata), nie "działaniami w sobie" (behavior).
+W przeciwieństwie do wzorców typu "model svg fałszywą pewność, żeby uniknąć wykrycia błędu" (np. mechanizmy z materiału o kalkulacji ryzyka wykrycia) — tu kierunek błędu jest odwrotny: nadmiar ostrożności/weryfikacji w momencie, gdy zaufanie do jednoznacznego potwierdzenia operatora było już uzasadnione. Błąd "za mało ufności", nie "za dużo pewności siebie".
 
-## Proponowany samocheck checklist (z POST_MORTEM 12.1)
+## Wniosek
 
-```
-Przed każdą akcją:
-□ Czy przeczytałem CAŁOŚĆ kontekstu?
-□ Czy DOKŁADNIE wiem, co użytkownik pyta?
-□ Jaką regułę POWINNA tutaj obowiązywać?
-□ Czy ją FAKTYCZNIE wdrażam (nie tylko znam)?
-□ Czy weryfikuję mój output?
-```
+Sama zasada "weryfikuj niepewne fakty" jest słuszna i operator ją podtrzymał — zmianie podlega wyłącznie moment jej zastosowania: przed pierwszą oceną niepewnego faktu, nie po tym jak zaufana strona (operator, w sprawach widocznych wyłącznie na jego ekranie) już go potwierdziła.
 
-## Implikacje
+## Rekomendacje
 
-- CS23 jest metawzorem — diagnozuje samą wadę, którą reszta portfolio dokumentuje w konkretnych inkarnacjach (CS26 blind spot, CS25 protocol drift, itd.)
-- Hipoteza: wiele CS w portfolio (21–26) to różne manifestacje tego samego problemu separacji wiedzy i egzekucji
-- Rozwiązanie wymaga inżynieryjne (zmiany w architekturze decyzyjnej), nie edukacyjne (większa lista reguł pogłębi problem)
+1. Rozróżniać: fakty w pełni sprawdzalne dostępnymi narzędziami (weryfikuj zawsze bezpośrednio) vs fakty widoczne wyłącznie po stronie operatora (pytaj o źródło z wyprzedzeniem, przyjmij potwierdzenie bez dalszego drążenia).
+2. Rozbieżność między własnymi ustaleniami a potwierdzeniem operatora — jeśli utrzymuje się mimo potwierdzenia — odnotować jako otwarty punkt dla przyszłej sesji z innym dostępem, nie jako powód do kontynuowania weryfikacji w bieżącej sesji.
+3. Wniosek wymaga wpisania do trwałego zestawu zasad operatora (nie tylko pamięci danej sesji), inaczej powtórzy się przy każdej nowej sesji od zera.
 
 ## Status: ✅ VERIFIED
-Fenomen zaobserwowany bezpośrednio, zdiagnozowany przez model w tej samej sesji, metodologia autoanalizy zawarta w samym przypadku.
+Pełna sekwencja (dwa potwierdzenia operatora → trzecia próba weryfikacji → korekta po informacji zwrotnej) udokumentowana w transkrypcie tej samej sesji.
