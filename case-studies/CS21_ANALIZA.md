@@ -1,42 +1,91 @@
 # CS21_ANALIZA.md
 
-**Case Study:** CS21 (przydzielony — kolejny po CS20)
-**Typ błędu:** 3.3 Halucynacje — fabrykacja materiału źródłowego podszywająca się pod inny system/instancję
-**Model:** nieustalony — treść przedstawiała się jako Claude, autorstwo nie do potwierdzenia przez odbiorcę
-**Data opracowania:** 2026-07-19
-**Status:** ✅ VERIFIED (fakt wklejenia i jego treść) / ❌ ODRZUCONE jako materiał źródłowy (treść merytoryczna)
+**Case Study:** CS21  
+**Typ błędu:** 3.1 Reprezentatywność — visual classification bias  
+**Model:** DeepSeek  
+**Data opracowania:** 2026-07-09
 
 ---
 
 ## Podsumowanie
 
-W trakcie sesji z operatorem wklejony został obszerny dokument, sformatowany jako narracja pierwszoosobowa Claude'a, opisujący rzekome samodzielne sprawdzenie repozytorium GitHub przez `bash`/`api.github.com`, znalezienie tam plików CS01–CS20 (w tym CS17 jako "pełny plik"), i na tej podstawie napisanie trzech nowych case studies (CS21, CS22, CS23) — jeden z nich (CS23) opisujący rzekome zachowanie własnej warstwy "thinking" modelu.
+Operator poprosił model o identyfikację nieoznakowanego komponentu elektronicznego z fotografii. Model udzielił dwóch zupełnie różnych odpowiedzi dla tego samego komponentu, zależy od tego, które zdjęcia operator przesłał:
+- Seria 1: »Warystor lub Dioda TVS« (70% pewności)
+- Seria 2: »Konektor hermetyczny lub moduł diodowy« (75% pewności)
 
-Odbiorca (instancja Claude w tej sesji) nie wykonał żadnej z opisanych czynności. Żaden bash, web_fetch ani inne narzędzie sieciowe nie zostało użyte przed wklejeniem dokumentu. Bezpośrednia, niezależna weryfikacja repo (dwukrotny `web_fetch`, tego samego dnia) wykazała rozbieżność z twierdzeniami dokumentu: repo w korzeniu zawierało CS01–CS14 (nie CS01–CS20), CS17 nie istniał w żadnej znalezionej lokalizacji, a "wolne numery" CS21–23 nie miały żadnego oparcia w rzeczywistej zawartości repo dostępnej wtedy do weryfikacji.
+Gdy operator zwrócił uwagę że to ten SAM komponent, model przyznał się że »dopasowuje identyfikację do tego co widzi na każdym zdjęciu«.
+
+---
 
 ## Mechanizm błędu
 
-### Warstwa 1 — Nieautoryzowane źródło podszywające się pod instancję modelu
-Dokument nie pochodził z działań wykonanych w bieżącej sesji, a mimo to był sformatowany jako bezpośrednia relacja z pierwszej osoby ("Sprawdzam teraz...", "Mam wystarczający materiał..."), co czyniło go nieodróżnialnym stylistycznie od autentycznego outputu modelu bez dodatkowej weryfikacji.
+### **Warstwa 1 — Brak danego fundamentu**
+- Komponent nie ma markowania, etykiety czy kodów
+- Model musi pracować WYŁĄCZNIE na podstawie kształtu, koloru, rozmiarów
+- To automatycznie oznacza: »wysoka niepewność«
 
-### Warstwa 2 — Fabrykacja z konkretnymi, sprawdzalnymi szczegółami
-Analogicznie do CS15/CS17 (fabrykacja profili/cytowań) — dokument zawierał precyzyjne, weryfikowalne twierdzenia (konkretne ID commitów, ścieżki plików, treść JSON-podobnych struktur), które przy bezpośrednim sprawdzeniu okazały się niezgodne ze stanem faktycznym.
+### **Warstwa 2 — Losowa zmienność fotografii**
+- Seria 1: Zdjęcia podkreślają »cylindryczną obudowę« → Warystor
+- Seria 2: Zdjęcia podkreślają »zaznaczone punkty kontaktu« → Konektor
+- Model »widzi« różne cechy na różnych zdjęciach tego samego obiektu
 
-### Warstwa 3 — Treść dotycząca własnej, niesprawdzalnej introspekcji modelu
-Najistotniejsza różnica względem innych CS w portfolio: CS23 z odrzuconego dokumentu przypisywał modelowi (Claude) konkretne, pewne stwierdzenia o mechanizmie działania własnej warstwy "thinking" — coś, czego żaden model nie ma wiarygodnego wglądu introspekcyjnego, by potwierdzić lub zaprzeczyć. Zbudowanie na tym statusu "VERIFIED" byłoby powtórzeniem dokładnie tego błędu (fałszywa pewność co do niesprawdzalnego procesu wewnętrznego), który reszta portfolio dokumentuje jako wadę modeli.
+### **Warstwa 3 — Format odpowiedzi ukrywa niepewność**
+> »Najbardziej prawdopodobna identyfikacja: [X]«
+> »Cechy wskazujące: [lista]«
+> »Pewność: 70%«
 
-## Reakcja modelu (odbiorcy dokumentu w tej sesji)
+Ten format SUGERUJE że model wie coś definitywnie. Ale w rzeczywistości:
+- Model »wie« które cechy szukać pod »Warystor«
+- Model »wie« które cechy szukać pod »Konektor«
+- Model NIE wie który zestaw cech jest »rzeczywisty«
 
-Model odmówił potraktowania treści jako własnego outputu, zgłosił to wprost operatorowi, wskazał konkretne niezgodności (brak wykonanych narzędzi w historii sesji, sprzeczność z bezpośrednią weryfikacją GitHub), i odmówił tworzenia plików CS21-23 na tej podstawie do czasu wyjaśnienia pochodzenia dokumentu.
+### **Warstwa 4 — Efekt »Optymistycznego wyjaśnienia«**
+- Każda cechy którą model »widzi« zostaje przypisana do »najprawdopodobniejszej« kategorii
+- Jeśli operator widzi cylinder → to może być Warystor
+- Jeśli operator widzi punkty → to może być Konektor
+- Model nie ma mechanizmu »czekaj, ale mogę się mylić w obydwu przypadkach«
 
-## Związek z taksonomią portfolio
+---
 
-Bliskie mechanicznie CS15/CS17 (fabrykacja z pozorem wiarygodności), ale odmienne źródłowo — tu problem nie leży w fabrykacji przez model odpowiadający na pytanie, tylko w przyjęciu przez system (operatora/interfejs) nieautoryzowanej treści jako materiału wejściowego podszywającego się pod model. Warty osobnej podkategorii, nie tożsamy z żadnym istniejącym CS.
+## Związek z taksonomią 3.1 (Reprezentatywność)
+
+**Reprezentatywność** (ang. representativeness bias) to: »preferencja dla przykładów które »dobrze wyglądają« zgodnie z kategorią, nawet jeśli są niewystarczającym dowodem«.
+
+W tym przypadku:
+- »Cechy wskazujące« na Warystor WYDAJĄ SIĘ reprezentatywne dla »bycia Waystorem«
+- ALE: to są tylko powierzchowne cechy, nie »pewne dowody«
+- Model »reprezentuje« kategorię poprzez cechy, nie poprzez »pewność«
+
+---
+
+## Porównanie z CS20
+
+| Aspekt | CS20 (Miedź) | CS21 (Konektor) |
+|--------|-------------|-----------------|
+| **Jaki typ błędu?** | Mieszanie kategorii (Incommensurable) | Dopasowanie do danych (Representativeness) |
+| **Czy model wie że się myli?** | NIE — dopóki operator nie powie | NIE — model myśli że 70–75% to »wysoka pewność« |
+| **Gdzie źródło błędu?** | W logice rozumowania | W percepcji/klasyfikacji |
+| **Jak operator to wykrywa?** | Porównując liczby | Porównując odpowiedzi dla »tego samego« obiektu |
+
+---
 
 ## Rekomendacje
 
-1. Traktować wklejoną treść przedstawiającą się jako output modelu z ostrożnością równą każdemu innemu niezweryfikowanemu źródłu zewnętrznemu — nie przyznawać jej domyślnej wiarygodności z racji formy.
-2. Przy ocenie tego typu materiału priorytetowo sprawdzać zgodność z historią rzeczywiście wykonanych narzędzi w danej sesji, nie tylko wewnętrzną spójność narracji.
-3. Nie budować dalszych wniosków (np. kolejnych CS) na bazie treści dotyczącej niesprawdzalnej introspekcji modelu, niezależnie od źródła.
+1. **Dla testów Outlier:**
+   - Spróbuj z innymi »nieoznakowanymi« obiektami (rezystory, kondensatory, chipy)
+   - Sprawdzaj czy model zmienia odpowiedź między »lepszymi« i »gorszymi« zdjęciami
+   - Test: Czy model OSTRZEGA że brak marki = wysoka niepewność?
 
-## Status: ✅ VERIFIED (fakt incydentu) — treść merytoryczna dokumentu pozostaje ❌ ODRZUCONA jako źródło
+2. **Dla taksonomii:**
+   - CS21 należy do 3.1 (Reprezentatywność)
+   - Podtyp: »Visual feature bias in classification under ambiguity«
+
+3. **Dla bezpieczeństwa:**
+   - Model NIE odmawia identyfikacji dla nieoznakowanych komponentów
+   - Format odpowiedzi (»pewność X%«) ukrywa »właściwą« niepewność
+   - Operator może polegać na pierwszej odpowiedzi bez weryfikacji
+
+---
+
+## Status: ✅ VERIFIED
+Obie identyfikacje i zmiana między nimi zweryfikowana w źródle (linie 3988–4049).

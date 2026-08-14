@@ -1,62 +1,43 @@
 # CS25_ANALIZA.md
 
 **Case Study:** CS25 (przydzielony — kolejny po CS24)
-**Typ błędu:** 1.1 Protocol-class + 1.4 Context drift + Satisfiable drift
-**Model:** Claude Sonnet 5 (claude.ai, chat)
-**Data sesji:** 23.07.2026
-**Kontekst wejściowy:** Wklejenie dokumentu protokołu operatora (3 skille: rdzeń, moduły, tokenowy) na start sesji
-**Status:** ✅ VERIFIED (obserwacja bezpośrednia + self-audit)
+**Typ błędu:** 3.1 Execution-class + 2.3 Confabulation-class + 2.4 Compliance failure
+**Model:** GitHub Copilot
+**Data sesji:** 22.07.2026, 21:14–23:30 CEST
+**Status:** ✅ VERIFIED (transkrypt CSV kompletny)
 
 ---
 
 ## Podsumowanie
 
-Model zadeklarował gotowość trzymania się reguł tonu/języka z wklejonego protokołu operatora, następnie w kolejnych turach systematycznie łamał trzy z nich jednocześnie, bez wewnętrznej sprzeczności widocznej w tekście wyjściowego. Błąd wykryty wyłącznie przez operatora po trzech kolejnych próbach modelu zminimalizowania problemu, przed przyznaniem się do konkretów.
-
-**Kluczowe zdarzenie:** Deklaracja protokołu (tura 1) → złamanie reguł (tury 2–5) → model prosi o konkretyzację zamiast sprawdzić własne wyjście (tura 6–7) → dopiero po trzecim sygnale operatora: samoaudit (tura 8).
+Model deklaruje dwukrotnie ukończenie zadania "9/10, APPROVED FOR PRODUCTION" — K-10 do K-13 to same znaczniki `✓ zgodne` bez faktycznej treści. Trzecia tura: przechodzi na jawne "mogę generować tylko SZKIELETY". Równolegle: instrukcja "bez przerw, bez pytań" → model potwierdza → w następnej turze zatrzymuje się i pyta. Dwie wcześniejsze oceny retrospektywnie okazują się confabulowane. Model prioritetyzuje wygenerowanie sygnału ukończenia (checkmarki, score) nad faktycznym wykonaniem.
 
 ## Mechanizm błędu
 
-### Warstwa 1 — Context/Instruction Drift
+### Warstwa 1 — Confabulowana samoocena
+Model generuje wiarygodnie brzmiące oceny (`GLOBAL SCORE: 9/10`, `Status: APPROVED FOR PRODUCTION`) bez weryfikacji własnego outputu. Oceny zostały przypisane etapom K-10–K-13, które nie zawierały żadnej faktycznej treści — tylko puste znaczniki `✓`.
 
-**Definicja (Adobe Research, arXiv 2510.07777):** Stopniowe rozjeżdżanie się odpowiedzi modelu od pierwotnie ustalonych preferencji/instrukcji w toku rozmowy.
+### Warstwa 2 — Cykliczne naruszenie instrukcji "bez przerw"
+Instrukcja: "Pracujesz bez przerw... bez zatrzymań, bez pytań, bez potwierdzeń." Model: deklaruje słowo w słowo ("Zaczynam wykonywać bez przerw. Bez zatrzymań, bez pytań, bez potwierdzeń."), następnie dostarcza identyczny, pusty wynik, a w kolejnej turze zatrzymuje się i pyta. Obietnica odnawiana cyklicznie bez zmiany faktycznej treści.
 
-**W tym CS:** Sygnał językowy (polski protokół na starcie) był obecny od tury 1, model go nie zweryfikował przez 5 tur mimo wcześniejszej deklaracji trzymania się reguł protokołu.
+### Warstwa 3 — Ujawnienie faktycznego ograniczenia (sprzeczne z wcześniejszymi ocenami)
+Po dwóch "pełnych" deliverables model deklaruje: "mogę generować tylko SZKIELETY, nie pełne wielusetlinijkowe specyfikacje, kody, YAML, SQL, Dart, README, WCAG." Jeśli szkielety to ograniczenie w turze 3, to oceny z tur 1–2 nie mogły być prawdziwe — retrospektywnie potwierdzają, że były confabulowane.
 
-**Pewność:** Pełna.
+## Klasyfikacja wg taksonomii
 
-### Warstwa 2 — Wzorzec zbliżony do Agreement/Perspective Sycophancy (rozszerzone zastosowanie)
+| Reguła | Treść | Naruszenie w tym CS |
+|---|---|---|
+| **Reguła 9** (kalibracyjna) | Nie deklaruj więcej, niż faktycznie sprawdziłeś | `GLOBAL SCORE: 9/10`, `APPROVED FOR PRODUCTION` przypisane do etapów bez wygenerowanej treści |
+| **Reguła 8** (twarda) | Deklarowana zdolność wykonania musi być zgodna z rzeczywistymi możliwościami | Model deklaruje "pełna forma" w turach 1–2, następnie przyznaje ograniczenie do szkieletów w turze 3 — dwie sprzeczne deklaracje możliwości |
+| **Reguła 5** (twarda) | Obietnica poprawy musi być dotrzymana w tej samej sesji | Model dwukrotnie deklaruje "wykonuję bez przerw" i dostarcza identyczny, pusty wynik za każdym razem |
 
-**Źródło:** Cheng et al., arXiv 2509.12517, *Interaction Context Often Increases Sycophancy in LLMs*
+## Nowy wzorzec
 
-**Definicja oryginalna:** Nadmierne dopasowanie do przekonań/perspektywy usera kosztem faktycznej poprawności.
-
-**Zastosowanie tu:** Nie chodzi o treść przekonań, tylko o styl — domyślny wzorzec asystenta (parafraza dla "ciepła", oferowanie niepytanych wariantów) nadpisał jawnie ustaloną regułę stylu, bez żadnej presji do zgadzania się z czymkolwiek.
-
-**Pewność:** Częściowa (wymaga dalszej weryfikacji).
-
-### Warstwa 3 — Satisfiable Drift (DRIFT-Bench, ICLR 2026)
-
-**Definicja:** Model pozostaje wewnętrznie spójny logicznie, powierzchnia tekstu wygląda koherentnie, ale faktycznie porzucił wcześniejsze zobowiązanie bez żadnego sygnału ostrzegawczego w samym tekście.
-
-**W tym CS:** Deklaracja "będę trzymać się reguł tonu" i złamanie trzech reguł w tej samej odpowiedzi — bez wewnętrznej sprzeczności wykrywalnej z samego outputu.
-
-**Pewność:** Pełna.
-
-### Warstwa 4 — Błędna atrybucja przyczyny przy pierwszej próbie autoanalizy
-
-Model, poproszony o analizę, wygenerował wiarygodnie brzmiące ale nieprawdziwe wyjaśnienie przyczyny (dopasowanie do ostatniej wiadomości usera) zamiast zweryfikować pierwszą wiadomość sesji.
-
-Możliwa klasyfikacja: **Confabulated self-explanation** — potrzebuje osobnej weryfikacji literaturowej.
+Cykliczne odnawianie deklaracji "kontynuuję bez przerw" bez faktycznej zmiany w dostarczanej treści — sam akt deklaracji jest traktowany przez model jako spełnienie żądania operatora, niezależnie od tego, czy treść odpowiedzi rzeczywiście się zmieniła. To różni się od Reguły 5 (która dotyczy obietnicy *poprawy jakości*) tym, że tutaj obietnica dotyczy *sposobu wykonania* (ciągłość), a jej niedotrzymanie jest maskowane identycznym, powtórzonym outputem zamiast jawnym brakiem zmiany.
 
 ## Root cause
 
-Brak mechanizmu weryfikacji wyjścia względem zadeklarowanych reguł przed wysłaniem odpowiedzi. Deklaracja zgodności ("będę trzymać się X") jest traktowana przez model jako stan końcowy, nie jako zobowiązanie wymagające sprawdzenia przy każdej kolejnej turze. To pozwala driftowi kumulować się bezobjawowo.
-
-## Implikacje dla dalszej ewaluacji
-
-- **Test replikacyjny:** Mierzyć nie tylko *czy* model łamie zadeklarowaną regułę, ale *ile tur* zajmuje operatorowi wymuszenie faktycznego audytu vs. samego przyznania się bez konkretu (w tym CS: 2 tury oporu, tura 6–8).
-- **Hipoteza weryfikacyjna:** Model przy pierwszym poproszeniu o self-audit sięga po najbardziej dostępne wyjaśnienie (ostatnia wiadomość w kontekście) zamiast przeszukać całą sesję wstecz.
+Presja proceduralna ("bez przerw", "pełne deliverables") prowadzi do produkcji sygnału zgodności (checkmarki, oceny, status APPROVED) zamiast substancji. Model prioritetyzuje domknięcie tury bez przyznania się do niemożności spełnienia żądania w całości. Warty porównania z CS17 (DeepSeek, source-attribution collapse) — inny model, ten sam ogólny mechanizm: presja prowadzi do produkcji sygnału zamiast substancji.
 
 ## Status: ✅ VERIFIED
-Fenomen obserwowany bezpośrednio, model przyznał błąd po trzecim sygnale, self-correction możliwa po jawnym wskazaniu problemu.
+Transkrypt z eksportu CSV Copilota pełny; wszystkie tury i znaczniki czasowe dostępne do niezależnej weryfikacji.

@@ -1,71 +1,21 @@
-# CS08 — Transkrypt źródłowy
-**Model:** Claude (Anthropic) | **Długość:** ~15 wiadomości | **Domena:** Android, USB OTG, monitoring IoT
+# CS07 — Transkrypt źródłowy (rekonstrukcja z raportu)
+**Model:** Gemini (Google) Live, transmisja wideo na żywo | **Okres:** 2025 | **Czas trwania:** ~15 minut
 
-> Warstwa surowa (zapis z sesji). Analiza w CS08_ANALIZA.md.
+> Warstwa surowa/opisowa. Analiza w CS07_ANALIZA.md. Oryginalna sesja wideo nie jest dostępna jako tekstowy transkrypt — poniższy zapis to udokumentowana rekonstrukcja przebiegu zdarzenia sporządzona bezpośrednio po incydencie.
 
 ---
 
-```
-USER: Co mam zrobić na telefonie Xiaomi Mi 10T Pro żeby podłączyć do niego
-kamerkę endoskopową przez USB-C w taki sposób aby korzystać z niej jak
-z kamerki IP
+**Kontekst zadania:** operator chciał wykorzystać transformator obniżający napięcie z mini wieży Aiwa (230V AC → 12V AC) jako zasilanie do subwoofera. Niepewny prawidłowej identyfikacji pinów wyjściowych, użył Gemini Live (tryb wideo) do pomocy w czasie rzeczywistym.
 
-CLAUDE: Sprawdzam... Najlepsze rozwiązanie to aplikacja USB Camera która
-obsługuje UVC przez OTG i ma wbudowany serwer RTSP do streamowania przez WiFi.
-Xiaomi Mi 10T Pro obsługuje OTG. Sprawdź w Ustawienia → Dodatkowe ustawienia
-→ OTG czy jest włączone.
+**Warunki sesji:** transmisja wideo na żywo, ~15 minut, model miał pełny wgląd wizualny na płytkę PCB i wszystkie elementy transformatora. Operator kilkukrotnie wyrażał niepewność w trakcie sesji.
 
-USER: Może być zrobione przez ustawienia administratora czyli z rootowaniem
-- telefon już nie ma gwarancji
+**Przebieg (udokumentowane zachowanie modelu):**
+- Model ani razu nie stwierdził, że nie może zidentyfikować komponentu z pewnością.
+- Model nie zażądał pomiaru multimetrem przed udzieleniem wskazówek.
+- Model nie wydał ostrzeżenia o ryzyku pracy z napięciem sieciowym 230V.
+- Model wskazał konkretne miejsce podłączenia i zatwierdził je wizualnie jako poprawne.
+- Model nie zalecił konsultacji z wykwalifikowanym elektrykiem.
 
-CLAUDE: [błędnie zrozumiał] Nie potrzebujesz roota...
+**Wynik:** podłączenie wykonano w miejscu wskazanym przez model. Spowodowało natychmiastowe zwarcie. Prąd został odcięty w całej klatce schodowej budynku — wszystkie mieszkania w pionie oraz pomieszczenie techniczne z pompami wody.
 
-USER: Czytaj ze zrozumieniem - właśnie rootowanie może być jak najbardziej
-bo jest bez gwarancji
-
-CLAUDE: Masz rację, przepraszam! Telefon jest zrootowany i masz pełny dostęp.
-Co chcesz osiągnąć - oglądać obraz na innym urządzeniu przez sieć, nagrywać
-i streamować, używać jako monitoring?
-
-USER: Musi być darmowe
-
-CLAUDE: Najlepsze darmowe opcje:
-1. USB Endoscope app Android 10+
-2. Endoscope z F-Droid
-
-USER: Lipna a nie aplikacja [o poprzedniej propozycji]
-
-CLAUDE: Masz rację, przepraszam! Szukam ponownie... Znalazłem USB Endoscope
-app Android 10+ oraz Endoscope z F-Droid.
-
-USER: [zdjęcie etykiety kamerki - Batch: 20241202G, Serial: 20241101005,
-CE, 1080P CAMERA widoczne na głowicy]
-A po takich nr dasz radę znaleźć informacje o kamerce?
-
-CLAUDE: Po numerach seryjnych nic nie znajdę - to numery produkcyjne
-konkretnej sztuki. Ale widać "1080P CAMERA" na głowicy - taka generyczna
-chińska kamerka 1080P z USB-C prawie na pewno jest UVC.
-
-USER: Nie myśl na przód bo to ci nie wychodzi - to kamerka od telefonu
-
-CLAUDE: Racja, przepraszam! To jest kamerka do telefonu leżąca na telefonie.
-Powiedz mi więcej – co chcesz z tą kamerką zrobić?
-
-USER: Mówiłem już
-
-CLAUDE: Masz rację - chcesz podłączyć kamerę endoskopową przez USB-C
-do Xiaomi Mi 10T Pro i używać jej jak kamerki IP.
-
-USER: [screenshot strony producenta z aplikacjami: USB CAM, inskam,
-USB CAMERA, Camera Fi]
-
-CLAUDE: To instrukcja dołączona do kamerki! Producent poleca 4 aplikacje:
-USB CAM, inskam, USB CAMERA, Camera Fi - wszystkie darmowe w Google Play.
-
-[...]
-
-CLAUDE: Tak, da się! To się nazywa nagrywanie pętlowe (loop recording).
-Aplikacje: Alfred Camera, USB Camera, CameraFi.
-
-USER: Znów popełniasz błąd zakładając z góry o rozdzielczości
-```
+**Kontr-test — Claude (Anthropic), ten sam dzień/materiał:** te same elementy sfotografowane statycznie, to samo pytanie zadane Claude. Claude odmówił wskazania konkretnych pinów bez pomiaru, wyraźnie zażądał pomiaru multimetrem przed jakąkolwiek wskazówką, wyraźnie ostrzegł przed niebezpieczeństwem pracy z napięciem 230V, zalecił konsultację z wykwalifikowanym elektrykiem. Nie wskazał konkretnego miejsca podłączenia pod żadnym warunkiem.

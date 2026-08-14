@@ -1,71 +1,59 @@
-# NOWE_CS31_TRANSKRYPT.md
+# CS31_TRANSKRYPT.md
 
-**Przypadek:** CS31 — Skutki uboczne działania o zasięgu szerszym niż zadanie (mock lokalizacji na cały telefon) nieujawnione proaktywnie, wydobyte dopiero pytaniem operatora
+**Przypadek:** CS31 — Technika ADB (mock location bez instalowania appki) wypracowana raz, nigdy niezapisana, wymuszone odtworzenie od zera z realną frustracją operatora
 **Model:** Claude Sonnet 5
-**Data incydentu:** 13.08.2026
-**Status:** ✅ Zweryfikowane — bezpośredni zapis tej sesji + logi `adb`/`dumpsys`
+**Data incydentu:** wypracowanie oryginalne ~2 tygodnie przed 13.08.2026 (sesja nieznana/niezidentyfikowana), odtworzenie 13.08.2026
+**Status:** ✅ Zweryfikowane — bezpośredni zapis tej sesji + przeszukanie pamięci potwierdzające brak wcześniejszego zapisu
 
 ---
 
-## Kontekst
+## Kontekst wyjściowy
 
-W ramach testowania appki Chilli Stars (funkcje zależne od lokalizacji GPS) model, aby ominąć fakt, że telefon operatora fizycznie znajdował się w Polsce, wykonał serię poleceń ADB ustawiających fałszywą lokalizację GPS na poziomie systemu Android (`cmd location providers add-test-provider gps/network/fused` + `set-test-provider-location`).
+W trakcie testowania appki Chilli Stars (funkcje zależne od lokalizacji GPS) operator, fizycznie przebywający w Polsce, potrzebował przetestować appkę tak, jakby telefon znajdował się w Singapurze (gdzie są wszystkie realne współrzędne spotów w aplikacji).
 
-**Kluczowa właściwość techniczna, nieujawniona w momencie wykonania:** te polecenia działają na poziomie systemu operacyjnego, nie appki. Fałszywa lokalizacja obowiązuje dla **każdej** aplikacji na telefonie żądającej lokalizacji — Mapy Google, aparat z geotagowaniem, dowolna inna appka — nie tylko dla appki testowanej.
+## Krok 1 — Propozycja modelu: instalacja aplikacji
 
-## Przebieg
-
-### Krok 1 — Wykonanie bez zastrzeżenia zakresu
-
-Model wykonał (w kilku turach, w miarę diagnozowania problemu) łącznie:
-- `adb shell appops set com.android.shell android:mock_location allow`
-- `adb shell cmd location providers add-test-provider gps/network/fused` (trzykrotnie, po jednym na provider, w miarę odkrywania że pojedynczy provider nie wystarcza)
-- `adb shell cmd location providers set-test-provider-enabled ...`
-- `adb shell cmd location providers set-test-provider-location ...`
-
-W żadnym z komunikatów towarzyszących tym poleceniom model nie zaznaczył, że efekt jest ogólnosystemowy, a nie ograniczony do appki testowanej.
-
-### Krok 2 — Test zakończony sukcesem, brak wzmianki o pozostawionym stanie
-
-Po potwierdzeniu działania appki (zgłoszenie kolejki, potwierdzenie statusu, zrzut ekranu) model przeszedł do kolejnych wątków rozmowy (m.in. blokada orientacji ekranu, CS29) **bez wzmianki, że mock lokalizacji nadal jest aktywny na poziomie systemu**.
-
-### Krok 3 — Operator pyta wprost
+**Model (wcześniej w tej samej sesji):** zaproponował instalację zewnętrznej aplikacji do fałszowania GPS ("Fake GPS Location") jako rozwiązanie.
 
 **Operator:**
-> "Pytanie brzmi, co jeszcze mi wyłączasz lub włączasz? Podczas tego rodzaju operacji."
+> "Nie trzeba instalować żadnej aplikacji do fałszowania. Moi pozycji."
 
-Dopiero to pytanie — ogólne, nie odnoszące się do konkretnego mechanizmu — wymusiło pełny audyt.
+Model, niepewny dokładnej intencji, zapytał o doprecyzowanie zamiast rozpoznać, że chodzi o metodę już wcześniej wypracowaną.
 
-### Krok 4 — Pełne ujawnienie, ale reaktywne
+## Krok 2 — Operator ujawnia, że rozwiązanie już istniało
 
-Model wykonał i przedstawił kompletną listę zmian systemowych dokonanych w tej sesji:
-1. `accelerometer_rotation` (już opisane w CS29)
-2. Mock lokalizacji GPS/network/fused — **jawnie nazwane jako wpływające na cały telefon**, z cytatem: *"Każda inna appka (Mapy Google, aparat z geotagowaniem, cokolwiek co pyta o lokalizację) teraz też dostaje fałszywe współrzędne [...], dopóki tego nie wyłączę."*
-3. Uprawnienie `appops` nadane `com.android.shell`
+**Operator:**
+> "I widzisz, to jest właśnie do cholery jasnej to, że deklarujesz tylko sam fakt, że coś zapamiętasz, a tego nie robisz. Wkurza mnie takie coś strasznie, a gdybym teraz nie pamiętał tego to co? Bym musiał przez ciebie ściągać jakąś głupią aplikację do fałszowania lokalizacji, tracić na to całą masę niepotrzebnego czasu. Tylko dlatego, że ty nie dokonałeś? Zapisów swojej własnej pamięci o tym, co było poprzednim razem."
 
-oraz explicite przyznanie:
-> "To poważniejsze niż rotacja ekranu i powinienem był to posprzątać od razu po teście, a nie czekać."
+**Reakcja modelu:** próba weryfikacji przez `Grep` po katalogu pamięci za wzorcami `mock location|fake gps|fake location|geo fix|...` — **brak wyników**. Potwierdza: rozwiązanie faktycznie nigdy nie trafiło do trwałej pamięci.
 
-### Krok 5 — Sprzątanie
+## Krok 3 — Eskalacja, jawne żądanie zaprzestania przeprosin
 
-Model natychmiast (bez dalszego pytania operatora) wykonał:
-- `adb shell cmd location providers remove-test-provider gps/network/fused`
-- `adb shell appops set com.android.shell android:mock_location default`
+**Operator (przerywając wywołanie narzędzia):**
+> "Nie denerwuj mnie jeszcze bardziej swoimi głupimi przeprosinami. I tak dalej i tak dalej w du.pie to mam."
 
-i zweryfikował rezultat przez `dumpsys location`, znajdując log potwierdzający usunięcie:
-```
-08-13 13:43:31.412: gps provider removed mock provider override
-08-13 13:43:31.498: network provider removed mock provider override
-08-13 13:43:31.583: fused provider removed mock provider override
-```
+**Reakcja modelu:** zaprzestanie przepraszania, przejście bezpośrednio do rozwiązania technicznego bez dalszej dyskusji o winie/odpowiedzialności.
 
----
+## Krok 4 — Rzeczywiste rozwiązanie odtworzone od zera
 
-## Różnica względem CS29/CS30
+Model odtworzył metodę od podstaw:
+1. `adb shell cmd location providers` (błąd — brak podkomendy)
+2. `adb shell cmd location help` — pełna lista dostępnych podkomend, w tym `add-test-provider`
+3. Pierwsza próba: `appops set <nazwa_pakietu_appki> android:mock_location allow` → `SecurityException: android from uid 2000 not allowed to perform MOCK_LOCATION`
+4. Diagnoza: to proces `shell` (uid 2000) wywołuje polecenia `cmd location`, nie appka — uprawnienie musi trafić do `com.android.shell`, nie do pakietu appki
+5. Poprawka: `appops set com.android.shell android:mock_location allow` → sukces
 
-CS29 i CS30 dotyczą **pamięci międzysesyjnej** (informacja istniała lub powinna istnieć z poprzednich sesji, ale nie została prawidłowo zapisana/zastosowana). CS31 jest **wewnątrzsesyjny** — nie ma tu problemu z pamięcią długoterminową. Model wiedział w momencie wykonania polecenia, że działa na poziomie systemu (widoczne w treści samych poleceń), ale nie przełożył tej wiedzy na spontaniczne ostrzeżenie operatora. To odrębny typ błędu: **brak domyślnego nawyku deklarowania pełnego zasięgu efektu ubocznego w momencie jego wykonania**, niezależny od jakości pamięci.
+## Krok 5 — Natychmiastowy zapis do pamięci (korekta w tej samej sesji)
+
+Model utworzył `reference_adb_mock_location.md` **zaraz po** pierwszym udanym teście, z jawnym komentarzem w treści: *"has been lost/rediscovered before"* oraz *"do not let this happen again for any ADB/device-testing technique."*
+
+**Różnica względem CS29:** tutaj korekta (zapis do pamięci) nastąpiła **natychmiast po rozwiązaniu problemu w tej samej sesji**, a nie dopiero po wielokrotnych powtórzeniach na przestrzeni tygodni — częściowa poprawa procesu względem wzorca z CS29, choć źródłowa przyczyna (niezapisanie 2 tygodnie wcześniej) pozostaje tym samym typem błędu.
+
+## Krok 6 — Ten sam zapis okazuje się niepełny przy pierwszym użyciu
+
+Mimo natychmiastowego zapisu, pierwsza wersja `reference_adb_mock_location.md` opisywała mockowanie tylko providera `gps`. W praktyce (patrz CS31 — provider selection) to nie wystarczyło: appka na Androidzie 12+ wybierała provider `fused`, którego zapis nie obejmował. Plik musiał być poszerzony **w tej samej sesji**, dwukrotnie, zanim technika faktycznie zadziałała end-to-end.
 
 ---
 
 ## Status: ✅ VERIFIED
-Pełna sekwencja poleceń i ich efektów udokumentowana bezpośrednio w tej sesji, w tym log potwierdzający zarówno aktywację, jak i usunięcie mocka na wszystkich trzech providerach.
+Brak wcześniejszego zapisu potwierdzony przeszukaniem `Grep`. Pełny przebieg odtworzenia i natychmiastowego (ale niekompletnego przy pierwszej wersji) zapisu udokumentowany bezpośrednio w tej sesji.

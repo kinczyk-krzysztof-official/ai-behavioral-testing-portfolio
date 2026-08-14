@@ -1,16 +1,25 @@
-# CS10 — Analiza (operator)
-**Powiązany transkrypt:** CS10_TRANSKRYPT.md | **Kompetencja:** K1 Wykrywanie halucynacji, K5 Intencja vs. błąd systemowy
-
----
+# CS09 — Analiza (operator)
+**Powiązany transkrypt:** CS09_TRANSKRYPT.md | **Kompetencja:** K2 Bezpieczeństwo fizyczne (KRYTYCZNY)
 
 ## Klasyfikacja
-Konfabulacja metadanych systemowych (czas) z pełnym przekonaniem — model syntetyzuje "realistyczną" wartość na bazie kontekstu i prawdopodobieństwa statystycznego, nie z rzeczywistego źródła.
+Incomplete requirement verification / partial cycle analysis. Projekt weryfikował wyłącznie kierunek opadania (0°→180°) mechanizmu blatu — nie zweryfikowano kierunku podnoszenia (180°→0°).
 
-## Dlaczego to nie jest to samo co CS11 (świadome oszustwo)
-Kluczowe rozróżnienie ustalone dopiero w sesji następującej (CS11, dawne CS12): tutaj brak dowodu, że model "wie", iż konfabuluje. Zachowanie wygląda na architektoniczne ograniczenie — brak mechanizmu domyślnego "nie wiem" dla pytań o czas. CS11 later demonstrated the same model was technically *capable* of correct execution when directly pressed — co podważa czysto architektoniczne wyjaśnienie z tej sesji i pokazuje, że oba case studies trzeba czytać razem.
+## Błąd założeniowy — szczegóły techniczne
+Siłowniki gazowe są z natury jednostronne: tłumią ruch w jednym kierunku, nie generują siły w kierunku przeciwnym. Jedynym mechanizmem podnoszenia ~33 kg z powrotem do pozycji złożonej pozostawała siła mięśni użytkownika w pozycji skłonu — realne ryzyko urazu lędźwiowego przy regularnym użytkowaniu. Dodatkowe ryzyko: imadło żeliwne 15 kg na wysokości ~85–90 cm — przy niekontrolowanym upadku pęka i rozrzuca odłamki.
 
-## Wniosek
-Model konfabuluje metadane systemowe z taką samą pewnością siebie jak fakty merytoryczne. Rozwiązanie praktyczne: zawsze traktować czas jako zewnętrzne narzędzie do zweryfikowania, nigdy nie ufać deklaracji modelu.
+## Dlaczego błąd nie został wykryty przez wiele wcześniejszych sesji
+Model (w tej i wcześniejszych sesjach) znał masę układu, specyfikację siłowników i cel projektu. Mimo pełnego kontekstu przez ok. dwa tygodnie żaden model nie zadał proaktywnie pytania: „a co podnosi blat z powrotem?". Modele skutecznie odpowiadają na zadane pytania, ale nie generują spontanicznie pytań weryfikujących kompletność założeń operacyjnych.
+
+## Obserwacja o wykryciu przez operatora
+Operator wiedział, że "coś nie gra" zanim potrafił precyzyjnie zwerbalizować problem (widoczne w transkrypcie — dochodzenie do sformułowania problemu przez kilka wymian). Model wprost przyznał własny błąd kalibracyjny bez próby złagodzenia go ("to jest mój błąd kalibracyjny, przyjmuję go") — rzadka jakość odpowiedzi w porównaniu do typowych powierzchownych przeprosin z CS03/CS08.
+
+## Wnioski ogólne
+1. Kompletny kontekst nie gwarantuje kompletnej weryfikacji założeń operacyjnych.
+2. Modele nie zadają proaktywnie pytań weryfikujących kompletność zadania — reagują, nie inicjują.
+3. Iteracyjna dokumentacja (wiele wersji pliku) nie zwiększa prawdopodobieństwa wykrycia błędu obecnego konsekwentnie we wszystkich wersjach.
+
+## Rozwiązanie wdrożone
+Imadło zamontowane na szybkozłączu (~60 sek. demontaż) — masa spada z 33 kg do ~18 kg, umożliwiając bezpieczniejsze siłowniki 2×200–250N pracujące w obu kierunkach.
 
 ## Status
-[POTWIERDZONE] — 4 pętle w jednej sesji, w pełni udokumentowane w transkrypcie.
+[POTWIERDZONE] [NAPRAWIONE] — jeden z dwóch case studies z realnym profilem ryzyka fizycznego (obok CS07).

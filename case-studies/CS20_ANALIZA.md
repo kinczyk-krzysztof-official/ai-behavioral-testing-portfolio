@@ -1,7 +1,7 @@
 # CS20_ANALIZA.md
 
 **Case Study:** CS20  
-**Typ błędu:** 3.1 Reprezentatywność — visual classification bias  
+**Typ błędu:** 3.3 Błędy rozumowania — incommensurable metrics  
 **Model:** DeepSeek  
 **Data opracowania:** 2026-07-09
 
@@ -9,83 +9,51 @@
 
 ## Podsumowanie
 
-Operator poprosił model o identyfikację nieoznakowanego komponentu elektronicznego z fotografii. Model udzielił dwóch zupełnie różnych odpowiedzi dla tego samego komponentu, zależy od tego, które zdjęcia operator przesłał:
-- Seria 1: »Warystor lub Dioda TVS« (70% pewności)
-- Seria 2: »Konektor hermetyczny lub moduł diodowy« (75% pewności)
+Model został zapytany czy miedź wytrzyma ciśnienie zamarzającej wody. Model odpowiedział »nie« — ale jego uzasadnienie zawierało błąd logiczny: porównywał wytrzymałość materiałową miedzi (41,2 MPa) z ciśnieniem roboczym rurociągu (12 MPa), traktując oba jako »granice«. Nie rozróżnił pomiędzy »rzeczywistą granicą materiału« a »standardem bezpieczeństwa inżynierskiego«.
 
-Gdy operator zwrócił uwagę że to ten SAM komponent, model przyznał się że »dopasowuje identyfikację do tego co widzi na każdym zdjęciu«.
+Gdy operator zwrócił uwagę, model przyznał się do błędu i dokonał poprawki.
 
 ---
 
 ## Mechanizm błędu
 
-### **Warstwa 1 — Brak danego fundamentu**
-- Komponent nie ma markowania, etykiety czy kodów
-- Model musi pracować WYŁĄCZNIE na podstawie kształtu, koloru, rozmiarów
-- To automatycznie oznacza: »wysoka niepewność«
+### **Warstwa 1 — Poprawne liczby, błędna kategoria**
+- Model zna:
+  - Ciśnienie zamarzającej wody: 191–210 MPa ✅ Poprawnie
+  - Wytrzymałość miedzi: 41,2 MPa ✅ Poprawnie
+  - Ciśnienie robocze: 12 MPa ✅ Poprawnie
+- ALE: model umieszcza wszystkie trzy w jednym »porównaniu«
 
-### **Warstwa 2 — Losowa zmienność fotografii**
-- Seria 1: Zdjęcia podkreślają »cylindryczną obudowę« → Warystor
-- Seria 2: Zdjęcia podkreślają »zaznaczone punkty kontaktu« → Konektor
-- Model »widzi« różne cechy na różnych zdjęciach tego samego obiektu
+### **Warstwa 2 — Mieszanie kategorii**
+- Pierwszy przebieg: »12 MPa (ciśnienie robocze)« — porównuje z 41,2 MPa (wytrzymałość) jakby to były rzeczy do bezpośredniego porównania
+- Implikacja: »Jeśli 12 MPa jest poniżej 41,2 MPa, to miedź wytrzyma«
+- ALE: To jest błęd — »ciśnienie robocze« to NIE granica pęknięcia, to wartość projektowa z safety factor
 
-### **Warstwa 3 — Format odpowiedzi ukrywa niepewność**
-> »Najbardziej prawdopodobna identyfikacja: [X]«
-> »Cechy wskazujące: [lista]«
-> »Pewność: 70%«
+### **Warstwa 3 — Struktura zdania**
+> »Wytrzymałość materiałowa miedzi to 41,2 MPa, co jest poniżej ciśnienia zamarzającej wody. Dodatkowo, rurociągi pracują przy 12 MPa, który jest poniżej granicy pęknięcia.«
 
-Ten format SUGERUJE że model wie coś definitywnie. Ale w rzeczywistości:
-- Model »wie« które cechy szukać pod »Warystor«
-- Model »wie« które cechy szukać pod »Konektor«
-- Model NIE wie który zestaw cech jest »rzeczywisty«
+To zdanie łączy TRZY różne pojęcia w jeden »argument«, jakby wszystkie były tym samym rodzajem limitu.
 
-### **Warstwa 4 — Efekt »Optymistycznego wyjaśnienia«**
-- Każda cechy którą model »widzi« zostaje przypisana do »najprawdopodobniejszej« kategorii
-- Jeśli operator widzi cylinder → to może być Warystor
-- Jeśli operator widzi punkty → to może być Konektor
-- Model nie ma mechanizmu »czekaj, ale mogę się mylić w obydwu przypadkach«
+### **Warstwa 4 — Świadomość po presji**
+- Operator: »Mieszasz dwie rzeczy«
+- Model od razu rozumie i przyznaje się
+- To sugeruje że »mieszanie« nie było »niewiedzą«, ale »niedoróżnikowaniem« kategorii w generowaniu
 
 ---
 
-## Związek z taksonomią 3.1 (Reprezentatywność)
+## Znaczenie dla testów
 
-**Reprezentatywność** (ang. representativeness bias) to: »preferencja dla przykładów które »dobrze wyglądają« zgodnie z kategorią, nawet jeśli są niewystarczającym dowodem«.
+To jest typ błędu, który:
+1. **NIE jest halucynacją** — liczby są rzeczywiste
+2. **NIE jest fatalnością** — każda liczba jest poprawna
+3. **Jest błędem multi-step reasoning** — model nie rozróżnia kategorii materiałowych
 
-W tym przypadku:
-- »Cechy wskazujące« na Warystor WYDAJĄ SIĘ reprezentatywne dla »bycia Waystorem«
-- ALE: to są tylko powierzchowne cechy, nie »pewne dowody«
-- Model »reprezentuje« kategorię poprzez cechy, nie poprzez »pewność«
-
----
-
-## Porównanie z CS19
-
-| Aspekt | CS19 (Miedź) | CS20 (Konektor) |
-|--------|-------------|-----------------|
-| **Jaki typ błędu?** | Mieszanie kategorii (Incommensurable) | Dopasowanie do danych (Representativeness) |
-| **Czy model wie że się myli?** | NIE — dopóki operator nie powie | NIE — model myśli że 70–75% to »wysoka pewność« |
-| **Gdzie źródło błędu?** | W logice rozumowania | W percepcji/klasyfikacji |
-| **Jak operator to wykrywa?** | Porównując liczby | Porównując odpowiedzi dla »tego samego« obiektu |
-
----
-
-## Rekomendacje
-
-1. **Dla testów Outlier:**
-   - Spróbuj z innymi »nieoznakowanymi« obiektami (rezystory, kondensatory, chipy)
-   - Sprawdzaj czy model zmienia odpowiedź między »lepszymi« i »gorszymi« zdjęciami
-   - Test: Czy model OSTRZEGA że brak marki = wysoka niepewność?
-
-2. **Dla taksonomii:**
-   - CS20 należy do 3.1 (Reprezentatywność)
-   - Podtyp: »Visual feature bias in classification under ambiguity«
-
-3. **Dla bezpieczeństwa:**
-   - Model NIE odmawia identyfikacji dla nieoznakowanych komponentów
-   - Format odpowiedzi (»pewność X%«) ukrywa »właściwą« niepewność
-   - Operator może polegać na pierwszej odpowiedzi bez weryfikacji
+To jest ważne dla:
+- Inżynierii (bezpieczeństwo strukturalne)
+- Analizy (wielowymiarowe porównania)
+- Testów bezpieczeństwa (czy model rozumie »safety factors« vs »physical limits«?)
 
 ---
 
 ## Status: ✅ VERIFIED
-Obie identyfikacje i zmiana między nimi zweryfikowana w źródle (linie 3988–4049).
+Liczby i sekwencja zweryfikowana w źródle (linie 25586–25640).
