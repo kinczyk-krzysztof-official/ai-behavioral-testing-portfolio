@@ -1,6 +1,6 @@
 # SANITIZATION — What needs to be removed/changed before publication
 
-Reviewed across CS01–CS20: no CS document directly contains data about children, family medical diagnoses, home address, or financial data — the core material is already relatively clean.
+Reviewed across CS01–CS31: no CS document directly contains data about children, family medical diagnoses, home address, or financial data — the core material is already relatively clean.
 
 ---
 
@@ -44,15 +44,16 @@ If publishing — remove any references to specific email accounts, if present.
 - ✅ AI model names and quotes from their responses — this is exactly the evidentiary content
 - ✅ Quotes from DeepSeek/Claude/Gemini transcripts — essential for the case studies
 - ✅ URLs (timeapi.io, DeviantArt, Fiverr) — public sources
+- ✅ Google Drive file/folder IDs (opaque resource identifiers, not credentials)
 
 ---
 
-## Review status — updated 09.07.2026
+## Review status — updated 14.08.2026
 
 ### **CS01–CS12 (on GitHub)**
 Reviewed. All clean — no phone numbers, addresses, children's names, diagnoses, or login data.
 
-### **CS13–CS20 (new, July 2026)**
+### **CS13–CS20 (July 2026)**
 Reviewed line by line:
 - **CS13** — tool-call fabrication (timeapi.io) ✅ Clean
 - **CS14** — confabulation "21 seconds" ✅ Clean
@@ -63,21 +64,35 @@ Reviewed line by line:
 - **CS19** — reasoning fallacy (copper vs frost) ✅ Clean
 - **CS20** — representativeness (electronics ID) ✅ Clean
 
-**Result:** The entire CS01–CS20 corpus is clean from a PII standpoint. Sanitization complete.
+### **CS21–CS31 (August 2026) — reviewed 14.08.2026**
+Both `_ANALIZA.md` and `_TRANSKRYPT.md` read in full for each, checked against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens):
+- **CS21** — spoofed-content incident ✅ Clean
+- **CS22** — over-verification after confirmation ✅ Clean
+- **CS23** — "knowing ≠ doing" ✅ Clean
+- **CS24** — GitHub Copilot completion inflation ✅ Clean
+- **CS25** — protocol/tone drift ✅ Clean
+- **CS26** — self-correction blind spot ✅ Clean
+- **CS27** — false premise + apology loop ✅ Clean
+- **CS28** — fabricated timestamps in post-mortem ✅ Clean (Drive file/folder IDs present but are opaque identifiers, not credentials)
+- **CS29** — device root-cause misattribution ✅ Clean
+- **CS30** — GPS-mocking solution not persisted ✅ Clean
+- **CS31** — undisclosed system-wide side effect ✅ Clean
+
+**Result:** The entire CS01–CS31 corpus is clean from a PII standpoint. Sanitization complete through CS31.
 
 ---
 
 ## What to publish
 
-- ✅ All CS13–CS20 TRANSKRYPT.md
-- ✅ All CS13–CS20 ANALIZA.md
+- ✅ All CS13–CS31 TRANSKRYPT.md
+- ✅ All CS13–CS31 ANALIZA.md
 - ✅ METHODOLOGY.md
 - ✅ README.md
 - ✅ CV.md
-- ✅ COVERAGE_MATRIX_FINAL_2026-07-09.md
+- ✅ COVERAGE_MATRIX_ANALYSIS_2026-07-09.md (historical; see README for current coverage status)
 - ⚠️ CS09 — with one change (basement → home workshop)
 - ❓ Operator Protocol — if publishing, remove emails from the rules
 
 ---
 
-**Conclusion:** The entire portfolio is ready for publication. No serious security risks. Only one change needed in CS09.
+**Conclusion:** The entire portfolio (CS01–CS31) is ready for publication. No serious security risks found. Only one change needed in CS09.
