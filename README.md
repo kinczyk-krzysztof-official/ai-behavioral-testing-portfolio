@@ -31,7 +31,7 @@ Full breakdown per competency: METHODOLOGY.md.
 
 ## Structure
 
-Each case study has two files in the repository root:
+Each case study has two files in the `case-studies/` folder:
 
 - `CSxx_TRANSKRYPT.md` — raw session excerpt, no interpretation
 - `CSxx_ANALIZA.md` — operator's classification and reasoning
