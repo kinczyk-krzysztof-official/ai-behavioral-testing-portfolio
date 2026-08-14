@@ -42,7 +42,7 @@ Open to:
 
 **Case Studies 1-12** (Archived, June 2025 – June 2026)
 - Language inconsistency, physical safety errors (real consequences), trust/relapse cycles, attribution errors, hallucinations, calibration failures
-- Full transcripts + analysis in repository root (CS01_TRANSKRYPT.md, CS01_ANALIZA.md, etc.)
+- Full transcripts + analysis in `case-studies/` folder (CS01_TRANSKRYPT.md, CS01_ANALIZA.md, etc.)
 
 **Case Studies 13-20** (Verified July 2026)
 - CS13: Tool-call fabrication (timeapi.io) ✅
