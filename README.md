@@ -6,7 +6,7 @@ Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Ge
 
 ## Why This Exists
 
-I'm self-taught. No CS degree, no prior red-teaming role, no institutional backing. What I have is ~12+ months of near-daily, systematic interaction with several AI models across 13+ technical domains, and a habit — not learned from a course, built from repetition — of not accepting a model's answer just because it's confident.
+I'm self-taught. No CS degree, no prior red-teaming role, no institutional backing. What I have is 14+ months (June 2025 – present) of near-daily, systematic interaction with several AI models across 13+ technical domains, and a habit — not learned from a course, built from repetition — of not accepting a model's answer just because it's confident.
 
 I'm stating this plainly because it matters for how you should read what follows: every evaluation of this material to date, including the scoring methodology, was produced by AI models — including ones being evaluated. There has been no external, human review. See METHODOLOGY.md for the full disclosure, including documented cases where earlier scoring iterations used flawed scales and where corrections were lost. I'm not hiding those mistakes — they're part of why this repository exists in its current, more conservative form.
 
