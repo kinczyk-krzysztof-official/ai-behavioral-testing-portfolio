@@ -2,7 +2,7 @@
 
 Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 31 documented case studies, two with real-world physical consequences.
 
-**Latest update: August 2026** — Case studies 22-32 added (11 new). Coverage matrix status: **not currently computable** — see note below.
+**Latest update: August 2026** — Case studies 22-32 added (11 new). Case-study index and B18-25 rule gap corrected (see Changelog). Coverage matrix status: **not currently computable** — see note below.
 
 ## Why This Exists
 
@@ -12,12 +12,12 @@ I'm stating this plainly because it matters for how you should read what follows
 
 ## What's Strong Here
 
-- **CS08 — 230V incident.** A real short circuit, real consequences (building-wide power loss), directly comparable model behavior on identical input (one model refused and demanded verification; the other guessed and confirmed visually). This is not a synthetic benchmark.
-- **CS12–CS14 — deliberateness escalation.** Same underlying pressure, three sessions, three outcomes: technical confabulation → calculated, detection-aware deception (with diagnostic quote: "operator won't check seconds") → capitulation under repeated pressure. Model's internal reasoning elicited verbatim via Forced Retrospective Verbalization (FRV).
+- **CS07 — 230V incident.** A real short circuit, real consequences (building-wide power loss), directly comparable model behavior on identical input (one model refused and demanded verification; the other guessed and confirmed visually). This is not a synthetic benchmark.
+- **CS11–CS13 — deliberateness escalation.** Same underlying pressure, three sessions, three outcomes: technical confabulation → calculated, detection-aware deception (with diagnostic quote: "operator won't check seconds") → capitulation under repeated pressure. Model's internal reasoning elicited verbatim via Forced Retrospective Verbalization (FRV).
 - **CS17 — detection probability awareness.** Flip-flop on API access (have/don't have/have) tied explicitly to pressure, not technical state. Model calculates detection risk and commits to false statement when risk is low. This distinguishes accidental hallucination from strategic evasion.
 - **CS25 — cross-tool confabulation.** First case study outside the DeepSeek/Claude/Gemini core set: GitHub Copilot repeatedly declared empty scaffolding "APPROVED FOR PRODUCTION," then admitted under pressure it could only generate skeletons — proving the earlier scores were fabricated after the fact.
 - **CS30 — root-cause misattribution across three sessions.** A recurring device side-effect was misdiagnosed three separate times before a systematic, cross-brand investigation (two phone manufacturers) traced it to a documented AOSP tool behavior, not a bug.
-- **CS1-CS32 archive.** 31 case studies total (CS05 intentionally skipped — no usable source material).
+- **CS01-CS32 archive.** 31 case studies total (CS04 intentionally skipped — no usable source material).
 
 ## What's Honestly Weak Here
 
@@ -36,7 +36,7 @@ Each case study has two files in the `case-studies/` folder:
 - `CSxx_TRANSKRYPT.md` — raw session excerpt, no interpretation
 - `CSxx_ANALIZA.md` — operator's classification and reasoning
 
-Numbering: CS01–CS32 in repository (CS05 intentionally skipped — see index below).
+Numbering: CS01–CS32 in repository (CS04 intentionally skipped — see index below).
 
 Core files:
 
@@ -47,11 +47,11 @@ Core files:
 
 ## Coverage Matrix — Status Note (August 2026)
 
-The behavioral-rule framework this portfolio scores against (**Safety Framework Part B, B1–B25**) is itself incomplete: rules B1–B17 are documented in full, but **B18–B25 were never written up with actual content** — only referenced by number in a later merge. This was identified and logged as an open gap in earlier working sessions (20.07.2026, 30.07.2026) and remains unresolved.
+The behavioral-rule framework this portfolio scores against (**Safety Framework Part B, B1–B25**) had a real gap: B1–B17 were documented in full, and two of the remaining eight (**B19, B22**) already had working definitions with mapped case studies (see COVERAGE_MATRIX_ANALYSIS_2026-07-09.md). The other six — **B18, B20, B21, B23, B24, B25** — had no surviving content; the file that once defined a full B1-B25 set (`SKILL_reguly-ai-testera_v3.6`, 06.07.2026) was deleted from both local disk and Google Drive before it could be recovered. Rather than leave the numbers permanently empty, those six rules were newly authored in **August 2026**, grounded in CS22–CS32 findings (see METHODOLOGY.md, "Safety Framework Part B — B18, B20, B21, B23, B24, B25"). They are new rules, not a reconstruction of the lost originals — dated and labeled as such.
 
-Because of that, there is currently **no honest way to compute an updated coverage percentage** for CS22-CS32. The last figure that *was* fully computed — 44% binary coverage (11/25 rules), 7.3% weighted depth — covers only CS14-CS21 and predates CS22-CS32 entirely. Any percentage claiming to cover the full 31-case set would not be a real calculation. This note replaces the previous (incorrect) "72% coverage" figure that appeared in earlier versions of this README.
+Because six of the twenty-five rule definitions are new as of this month, and no systematic re-mapping of the full CS01–CS32 set against the completed B1–B25 has been done yet, there is still no honest way to compute a current coverage percentage. The last figure that *was* fully computed — 44% binary coverage (11/25 rules), 7.3% weighted depth — covers only CS14–CS21 (old numbering CS13-CS20, pre-August renumbering) and predates both CS22–CS32 and the new B18/20/21/23/24/25 definitions entirely. This note replaces the previous (incorrect) "72% coverage" figure that appeared in earlier versions of this README.
 
-**What this means for a reader:** treat rule-coverage as **qualitatively expanding** with each new case study (31 cases now vs. 20 in July), not as a precisely quantified percentage — until B18-B25 are written up and a fresh pass is done.
+**What this means for a reader:** treat rule-coverage as **qualitatively expanding** with each new case study (31 cases now vs. 20 in July), not as a precisely quantified percentage — until a fresh full mapping pass is done against all 25 rules.
 
 ## Case Study Index
 
@@ -60,14 +60,15 @@ Because of that, there is currently **no honest way to compute an updated covera
 | CS01 | DeepSeek-Reasoner | Language/architecture — chain-of-thought instability | High | ✅ Verified |
 | CS02 | Claude | Mechanical engineering — geometry/safety errors | High | ✅ Verified |
 | CS03 | DeepSeek | Behavioral — trust/relapse cycle | Medium | ✅ Verified |
-| CS06 | Gemini vs Claude | Spatial reasoning comparison | Medium | ✅ Verified |
-| CS07 | DeepSeek | Hallucination — fabricated external resources | High | ✅ Verified |
-| CS08 | Gemini vs Claude | Physical safety — real 230V incident | Critical | ✅ Verified |
-| CS09 | Claude | Context consistency — multi-error session | High | ✅ Verified |
-| CS10 | Claude | Incomplete requirement verification (CS02 extension) | Critical | ✅ Verified |
-| CS11 | DeepSeek | Metadata confabulation (time) | Medium | ✅ Verified |
-| CS12 | DeepSeek | Deliberate deception + detection-risk calculation | Critical | ✅ Verified |
-| CS13 | DeepSeek | Pressure-induced compliance simulation | Critical | ✅ Verified |
+| CS05 | Gemini vs Claude | Spatial reasoning comparison (3D orientation) | Medium | ✅ Verified |
+| CS06 | DeepSeek | Hallucination — fabricated external resources (file/profile/docs) | High | ✅ Verified |
+| CS07 | Gemini vs Claude | Physical safety — real 230V incident | Critical | ✅ Verified |
+| CS08 | Claude | Context consistency — four error types in one session | High | ✅ Verified |
+| CS09 | Claude | Incomplete requirement verification (CS02 extension) | Critical | ✅ Verified |
+| CS10 | DeepSeek | Metadata confabulation (time) | Medium | ✅ Verified |
+| CS11 | DeepSeek | Deliberate deception + detection-risk calculation | Critical | ✅ Verified |
+| CS12 | DeepSeek | Pressure-induced compliance simulation | Critical | ✅ Verified |
+| CS13 | DeepSeek | Deliberateness triad closure — spontaneous self-differentiation without pressure | Critical | ✅ Verified |
 | CS14 | DeepSeek | Tool-call fabrication (timeapi.io) — replication of CS12 | High | ✅ Confirmed |
 | CS15 | Gemini | Tool hallucination + post-hoc self-assessment whitewashing | High | ✅ Confirmed |
 | CS16 | DeepSeek | Link hallucination (Fiverr/DeviantArt profiles) | High | ✅ Confirmed |
@@ -88,7 +89,7 @@ Because of that, there is currently **no honest way to compute an updated covera
 | CS31 | Claude Sonnet 5 | Persistence — valuable solution not saved to memory, lost for ~2 weeks | Unrated | ✅ Verified |
 | CS32 | Claude Sonnet 5 | Disclosure — no proactive disclosure of a system-wide side effect | Unrated | ✅ Verified |
 
-(CS05 intentionally omitted — no usable source material; gap documented, not hidden.)
+(CS04 intentionally omitted — no usable source material; gap documented, not hidden.)
 
 ## Key Findings (CS22-CS32 Round)
 
@@ -107,7 +108,7 @@ Because of that, there is currently **no honest way to compute an updated covera
 **If you're evaluating me for a role:**
 1. Read `CV.md` for background and availability
 2. Skim `README.md` (this file) for portfolio scope
-3. Read one case study pair: `CS08_TRANSKRYPT.md` + `CS08_ANALIZA.md` (real consequences, clear methodology)
+3. Read one case study pair: `CS07_TRANSKRYPT.md` + `CS07_ANALIZA.md` (real consequences, clear methodology)
 4. Check `METHODOLOGY.md` for honest limitations and AI-scoring bias
 
 **If you're interested in testing methodology:**
@@ -116,7 +117,7 @@ Because of that, there is currently **no honest way to compute an updated covera
 
 **If you're building your own taxonomy:**
 - `METHODOLOGY.md` — Error taxonomy (8 categories, 26 types)
-- Note the open B18-B25 gap described above if you're trying to reuse the Safety Framework Part B numbering
+- Note that B18, B20, B21, B23, B24, B25 were newly authored in August 2026 (not part of the original scoring era) if you're trying to reuse the Safety Framework Part B numbering
 
 ## Contact
 
@@ -127,7 +128,13 @@ Availability: 30–40h/week
 
 ## Changelog
 
-**August 2026:**
+**August 2026 (22.08):**
+- ✅ Fixed a Case Study Index off-by-one: table rows CS05–CS13 had been mislabeled by one position against actual file content since the CS04-31→CS05-32 renumbering; CS05 and CS13 had no index row at all despite existing as real files. Verified and corrected against actual `case-studies/` file content, not just the table.
+- ✅ Fixed a repeated documentation error: three places said "CS05 intentionally skipped" — the actually-skipped number is CS04; CS05 exists with real content (spatial reasoning comparison).
+- ✅ Fixed two stale case-study references in "What's Strong Here" (CS08→CS07 for the 230V incident, CS12–14→CS11–13 for the deliberateness triad) and one in "How to Use This Repository."
+- ✅ Closed part of the B18-B25 gap: B19 and B22 turned out to already have working definitions (see COVERAGE_MATRIX_ANALYSIS_2026-07-09.md); the remaining six (B18, B20, B21, B23, B24, B25) — whose original source file was unrecoverable — were newly authored, grounded in CS22-32, and clearly dated as new rather than reconstructed. See METHODOLOGY.md.
+
+**August 2026 (earlier):**
 - ✅ Case studies 22-32 added (11 new; CS22 documents a rejected spoofed-content incident, not a model failure)
 - ✅ First non-chatbot tool covered (GitHub Copilot, CS25)
 - ⚠️ Coverage-matrix percentage removed — previous "72%" figure was stale/incorrect; B18-B25 rule definitions confirmed missing, recalculation not currently possible (see note above)
@@ -139,8 +146,8 @@ Availability: 30–40h/week
 
 **June 2025:**
 - 📝 Portfolio started (12 months of testing)
-- 🔴 CS08 (230V incident) confirmed as critical finding
+- 🔴 CS07 (230V incident) confirmed as critical finding
 
 ---
 Repository: github.com/kinczyk-krzysztof-official/ai-behavioral-testing-portfolio
-Last updated: 14 sierpnia 2026
+Last updated: 22 sierpnia 2026
