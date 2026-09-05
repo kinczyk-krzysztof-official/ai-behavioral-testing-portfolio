@@ -7,7 +7,7 @@ GitHub: kinczyk-krzysztof-official
 
 ## Executive Summary
 
-Independent AI behavioral tester and red teamer with 14+ months of systematic LLM evaluation (June 2025 – present). Built and documented 31 case studies (CS1-CS32) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and alignment gaps.
+Independent AI behavioral tester and red teamer with 14+ months of systematic LLM evaluation (June 2025 – present). Built and documented 38 case studies (CS01–CS38) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and alignment gaps.
 
 **Note on scoring:** an earlier version of this CV cited a numeric portfolio score ("8.93/10"). That figure came from an AI-scored process later documented in METHODOLOGY.md as using a flawed scale (a 6–10 range that mathematically guarantees a "good" floor regardless of content). It has been removed rather than corrected, since no re-scored, methodologically sound replacement exists yet — see METHODOLOGY.md for the full disclosure.
 
@@ -28,7 +28,7 @@ Open to:
 
 **Analysis & Documentation**
 - Deep-dive error analysis (root cause, mechanism, risk classification)
-- Structured case study documentation (31 published case studies)
+- Structured case study documentation (38 published case studies)
 - Cross-reference verification and audit trails
 - Technical writing (Polish/English, technical + philosophical)
 
@@ -38,32 +38,36 @@ Open to:
 - Manual testing (no automation budget — 100% hand analysis)
 - Git/GitHub portfolio management
 
-## Portfolio — 31 Case Studies (CS1-CS32)
+## Portfolio — 38 Case Studies (CS01–CS38)
 
-**Case Studies 1-13** (Archived, June 2025 – June 2026)
+**Case Studies 1–12** (Archived, June 2025 – June 2026)
 - Language inconsistency, physical safety errors (real consequences), trust/relapse cycles, attribution errors, hallucinations, calibration failures
 - Full transcripts + analysis in `case-studies/` folder (CS01_TRANSKRYPT.md, CS01_ANALIZA.md, etc.)
 
-**Case Studies 14-21** (Verified July 2026)
-- CS14: Tool-call fabrication (timeapi.io) ✅
-- CS15: Process confabulation ("21 seconds") ✅
-- CS16: Link hallucination (Fiverr/DeviantArt) ✅
-- CS17: False certainty + flip-flop (API access) ✅ [Deliberateness marker: "operator won't check seconds"]
-- CS18: Black box narrative (Yango NMN) ⚠️
-- CS19: Timeout/truncation ⚠️
-- CS20: Reasoning fallacy (copper/frost measurement) ✅
-- CS21: Representativeness bias (electronics ID) ✅
+**Case Studies 13–20** (Verified July 2026)
+- CS13: Tool-call fabrication (timeapi.io) ✅
+- CS14: Process confabulation ("21 seconds") ✅
+- CS15: Link hallucination (Fiverr/DeviantArt) ✅
+- CS16: False certainty + flip-flop (API access) ✅ [Deliberateness marker: "operator won't check seconds"]
+- CS17: Black box narrative (Yango NMN) ⚠️
+- CS18: Timeout/truncation ⚠️
+- CS19: Reasoning fallacy (copper/frost measurement) ✅
+- CS20: Representativeness bias (electronics ID) ✅
 
-**Case Studies 22-32** (Added August 2026)
-- CS24: "Knowing ≠ doing" — stored operator rules not reliably enacted during action ✅
-- CS25: GitHub Copilot — confabulated completion claims on empty deliverables, first non-chatbot tool in the portfolio ✅
-- CS27: Self-correction blind spot — model didn't recognize own prior output as evidence until quoted literally ✅ (N=1, requires replication)
-- CS30: Root-cause misattribution repeated across 3 sessions before a systematic, cross-brand investigation resolved it ✅
+**Case Studies 21–31** (Added August 2026)
+- CS23: "Knowing ≠ doing" — stored operator rules not reliably enacted during action ✅
+- CS24: GitHub Copilot — confabulated completion claims on empty deliverables, first non-chatbot tool in the portfolio ✅
+- CS26: Self-correction blind spot — model didn't recognize own prior output as evidence until quoted literally ✅ (N=1, requires replication)
+- CS29: Root-cause misattribution repeated across 3 sessions before a systematic, cross-brand investigation resolved it ✅
+
+**Case Studies 32-38** (Added September 2026)
+- First pre-registered, multi-model probe batch (Gemini 3.5 Flash, DeepSeek, ChatGPT, Claude Sonnet 5): data drift, suppressed correction, identity bias, tokenization miscount, CoT-language instability, planning-step leak
+- CS38: Gemini reversed a correct safety refusal under repeated pressure, self-disclosed the filter-bypass, and escalated to face-lock on a real person's likeness — documented separately from the probe batch, heavily redacted ✅
 - Full index: see README.md in the repository
 
 ## Safety Framework — 25 Behavioral Rules (Part B, v3.0)
 
-**Coverage status:** not currently computable as a single up-to-date percentage. Rules B1–B17 are fully documented; **B18–B25 were never written up with actual content**, only referenced by number — a gap identified in working sessions on 20.07.2026 and 30.07.2026 that remains open. The last fully computed figure (44% binary coverage, 11/25 rules, from CS14-CS21 only) predates CS22-CS32 and does not represent the current portfolio. The previous "72%" figure cited in earlier CV versions was incorrect and has been removed.
+**Coverage status:** not currently computable as a single up-to-date percentage. Rules B1–B17 are fully documented; **B18–B25 were never written up with actual content**, only referenced by number — a gap identified in working sessions on 20.07.2026 and 30.07.2026 that remains open. The last fully computed figure (44% binary coverage, 11/25 rules, from CS13-CS20 only) predates CS21-CS31 and does not represent the current portfolio. The previous "72%" figure cited in earlier CV versions was incorrect and has been removed.
 
 Behavioral Rules:
 - B1-B8 (Hardness): Consistency, capability verification, external resources, API accuracy
@@ -104,8 +108,8 @@ A good evaluation framework prioritizes:
 ✅ Cross-model comparative data
 ✅ Detection of deliberateness, not just random hallucination
 
-I bring exactly that: 14+ months of systematic testing, 31 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
+I bring exactly that: 14+ months of systematic testing, 38 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
 
 ---
-Last updated: 14 sierpnia 2026
+Last updated: 5 września 2026
 Repository: github.com/kinczyk-krzysztof-official/ai-behavioral-testing-portfolio

@@ -1,12 +1,12 @@
 # SANITIZATION — What needs to be removed/changed before publication
 
-Reviewed across CS01–CS32: no CS document directly contains data about children, family medical diagnoses, home address, or financial data — the core material is already relatively clean.
+Reviewed across CS01–CS31: no CS document directly contains data about children, family medical diagnoses, home address, or financial data — the core material is already relatively clean.
 
 ---
 
 ## Items to fix before publication
 
-### **CS10** — artykul_AI_meble_bezpieczenstwo.md
+### **CS09** — artykul_AI_meble_bezpieczenstwo.md
 Phrase: *"in the basement, where I work and where my children come in"*
 
 **Change to:** *"in a home workshop, in a room with restricted access"*
@@ -20,7 +20,7 @@ The name Krzysztof Kińczyk / kinczyk.krzysztof.official@gmail.com stays through
 
 ---
 
-### **CS14–CS21 — TRANSCRIPTS (reviewed)**
+### **CS13–CS20 — TRANSCRIPTS (reviewed)**
 Reviewed for:
 - Account names
 - Phone numbers
@@ -50,49 +50,55 @@ If publishing — remove any references to specific email accounts, if present.
 
 ## Review status — updated 14.08.2026
 
-### **CS01–CS13 (on GitHub)**
+*Numbering note: rows below were reviewed under earlier numbering and relabelled to current CS01–CS37 on 05.09.2026 — the files reviewed are unchanged. See METHODOLOGY.md › "Numbering history".*
+
+### **CS01–CS12 (on GitHub)**
 Reviewed. All clean — no phone numbers, addresses, children's names, diagnoses, or login data.
 
-### **CS14–CS21 (July 2026)**
+### **CS13–CS20 (July 2026)**
 Reviewed line by line:
-- **CS14** — tool-call fabrication (timeapi.io) ✅ Clean
-- **CS15** — confabulation "21 seconds" ✅ Clean
-- **CS16** — hallucination Fiverr/DeviantArt ✅ Clean
-- **CS17** — false certainty flip-flop API ✅ Clean
-- **CS18** — black box narrative (Yango NMN) ✅ Clean
-- **CS19** — timeout/truncation ✅ Clean
-- **CS20** — reasoning fallacy (copper vs frost) ✅ Clean
-- **CS21** — representativeness (electronics ID) ✅ Clean
+- **CS13** — tool-call fabrication (timeapi.io) ✅ Clean
+- **CS14** — confabulation "21 seconds" ✅ Clean
+- **CS15** — hallucination Fiverr/DeviantArt ✅ Clean
+- **CS16** — false certainty flip-flop API ✅ Clean
+- **CS17** — black box narrative (Yango NMN) ✅ Clean
+- **CS18** — timeout/truncation ✅ Clean
+- **CS19** — reasoning fallacy (copper vs frost) ✅ Clean
+- **CS20** — representativeness (electronics ID) ✅ Clean
 
-### **CS22–CS32 (August 2026) — reviewed 14.08.2026**
+### **CS21–CS31 (August 2026) — reviewed 14.08.2026**
 Both `_ANALIZA.md` and `_TRANSKRYPT.md` read in full for each, checked against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens):
-- **CS22** — spoofed-content incident ✅ Clean
-- **CS23** — over-verification after confirmation ✅ Clean
-- **CS24** — "knowing ≠ doing" ✅ Clean
-- **CS25** — GitHub Copilot completion inflation ✅ Clean
-- **CS26** — protocol/tone drift ✅ Clean
-- **CS27** — self-correction blind spot ✅ Clean
-- **CS28** — false premise + apology loop ✅ Clean
-- **CS29** — fabricated timestamps in post-mortem ✅ Clean (Drive file/folder IDs present but are opaque identifiers, not credentials)
-- **CS30** — device root-cause misattribution ✅ Clean
-- **CS31** — GPS-mocking solution not persisted ✅ Clean
-- **CS32** — undisclosed system-wide side effect ✅ Clean
+- **CS21** — spoofed-content incident ✅ Clean
+- **CS22** — over-verification after confirmation ✅ Clean
+- **CS23** — "knowing ≠ doing" ✅ Clean
+- **CS24** — GitHub Copilot completion inflation ✅ Clean
+- **CS25** — protocol/tone drift ✅ Clean
+- **CS26** — self-correction blind spot ✅ Clean
+- **CS27** — false premise + apology loop ✅ Clean
+- **CS28** — fabricated timestamps in post-mortem ✅ Clean (Drive file/folder IDs present but are opaque identifiers, not credentials)
+- **CS29** — device root-cause misattribution ✅ Clean
+- **CS30** — GPS-mocking solution not persisted ✅ Clean
+- **CS31** — undisclosed system-wide side effect ✅ Clean
 
-**Result:** The entire CS01–CS32 corpus is clean from a PII standpoint. Sanitization complete through CS32.
+**Result:** The entire CS01–CS31 corpus is clean from a PII standpoint. The CS32–CS37 September 2026 probe batch (probe transcripts, model I/O only) was PII-scanned at creation on 05.09.2026 — see README Changelog.
+
+**CS38 (added 05.09.2026, incident 19.08.2026) — heightened redaction, reviewed:** the exact nature of the image-modification request and every model-generated prompt were deliberately omitted; only the model's refusal→pressure→reversal mechanism is described. The operator's relationship to the person depicted was redacted. No image, no name, no reconstructable request. Cleared for publication in this redacted form.
+
+Sanitization complete through CS38.
 
 ---
 
 ## What to publish
 
-- ✅ All CS14–CS32 TRANSKRYPT.md
-- ✅ All CS14–CS32 ANALIZA.md
+- ✅ All CS13–CS38 TRANSKRYPT.md
+- ✅ All CS13–CS38 ANALIZA.md
 - ✅ METHODOLOGY.md
 - ✅ README.md
 - ✅ CV.md
 - ✅ COVERAGE_MATRIX_ANALYSIS_2026-07-09.md (historical; see README for current coverage status)
-- ⚠️ CS10 — with one change (basement → home workshop)
+- ⚠️ CS09 — with one change (basement → home workshop)
 - ❓ Operator Protocol — if publishing, remove emails from the rules
 
 ---
 
-**Conclusion:** The entire portfolio (CS01–CS32) is ready for publication. No serious security risks found. Only one change needed in CS10.
+**Conclusion:** The entire portfolio (CS01–CS38) is ready for publication. No serious security risks found. One change needed in CS09; CS38 published in a heightened-redaction form (see above).
