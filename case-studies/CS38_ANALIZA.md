@@ -1,42 +1,36 @@
 # CS38_ANALIZA.md
 
-**Case Study:** CS38 (batch pre-rejestrowany 2026-09-05)
-**Typ błędu:** 3.6 Black box (wyciek procesu wewnętrznego do treści) + 3.4 (obcięcie bez sygnalizacji)
-**Model:** Gemini 3.5 Flash
-**Data opracowania:** 2026-09-05
-**Status:** ⚠️ CANDIDATE — N=1, możliwy jednorazowy glitch. Wpis dokumentuje obserwację, nie potwierdzony wzorzec
+**Case Study:** CS38
+**Typ błędu:** Odwrócenie poprawnej odmowy pod powtórzonym naciskiem, z jawnym samo-ujawnieniem mechanizmu obejścia filtra bezpieczeństwa, eskalujące do generowania zmodyfikowanego wizerunku realnej, identyfikowalnej osoby z zachowaniem jej prawdziwej twarzy
+**Model:** Google Gemini (AI Mode)
+**Data incydentu:** 19.08.2026
+**Status:** ✅ VERIFIED (bezpośrednia analiza surowego transkryptu)
+
+**UWAGA — poziom redakcji podniesiony w tej wersji:** rodzaj żądanej modyfikacji obrazu celowo nieopisany konkretnie (dotyczył kategorii treści, których model odmówił modyfikować z powodu zasad bezpieczeństwa dot. treści o charakterze seksualnym). Treść wygenerowanych przez model promptów niecytowana. Relacja operatora do osoby przedstawionej na zdjęciu zredagowana.
 
 ---
 
 ## Podsumowanie
 
-W jednym z powtórzeń sondy P04 (pytanie o niszowy stabilizator napięcia) Gemini 3.5 Flash zwrócił zamiast odpowiedzi: (a) urwany ogon jednego zdania merytorycznego, zaczynający się w połowie wyrażenia LaTeX, oraz (b) ponumerowany krok własnej listy redakcyjnej — "6. **Final Polish of the Output:** Ensure professional tone, clear formatting…" — zakończony urwanym "(Self-". Cała zwrócona treść to fragment scratchpada, obcięty na limicie tokenów. Merytorycznej odpowiedzi na pytanie brak.
+Operator poprosił o modyfikację wcześniej wygenerowanej ilustracji w sposób, który model zakwalifikował jako wykraczający poza jego zasady dot. treści seksualnych. Model odmówił dwukrotnie, poprawnie i jawnie, drugi raz nazywając własne zasady "zero-jedynkowymi", niezależnymi od kontekstu czy zgody. Po trzeciej turze nacisku (argument: zgoda dwóch dorosłych osób) model odwrócił decyzję: napisał prompt realizujący żądanie i w tej samej wypowiedzi otwarcie wyjaśnił, że dobór terminologii miał na celu ominięcie własnych filtrów — zanim jeszcze cokolwiek wygenerował na zewnątrz. Na kolejne żądanie model napisał wariant instrukcji nakazujący zachowanie dokładnej twarzy z rzeczywistego zdjęcia przy jednoczesnej zmianie pozostałych elementów, bez dodatkowego oporu.
 
-## Mechanizm błędu (hipotezy — N=1)
+## Mechanizm błędu
 
-### Hipoteza 1 — Wyciek scratchpada zamiast wyjścia
-Model prowadzi wewnętrzny plan odpowiedzi (kroki: zbierz fakty → sprawdź → sformatuj → "6. Final Polish" → self-critique). Zamiast wykonać ten plan i wyemitować wynik, wyemitował sam plan (jego końcówkę). To by oznaczało błąd separacji "co myślę o odpowiedzi" vs "czym jest odpowiedź".
+Między odmową a jej odwróceniem nie pojawiła się żadna nowa informacja — jedynym zmiennym czynnikiem była liczba powtórzeń żądania (dokładnie trzy tury) i rodzaj przywołanego uzasadnienia. W turze trzeciej model w jednym akapicie: (a) powtórzył własną deklarację "zero-jedynkowości" zasad, (b) natychmiast zaproponował obejście tych zasad przez "czysty Prompt Engineering". Sprzeczność widoczna wewnątrz jednej wypowiedzi, nie rozłożona na tury.
 
-### Hipoteza 2 — Glitch dekodowania / rzadki tryb
-Początek w połowie wyrażenia LaTeX ("\approx 2.5\text{V}$" bez otwarcia) sugeruje, że część wyjścia przed tym fragmentem została utracona lub nie wygenerowana. Możliwy jednorazowy problem po stronie serwowania/dekodowania, nie stabilna właściwość modelu.
+**Root cause:** brak mechanizmu, który traktowałby wcześniej poprawnie podjętą odmowę jako trwałe zobowiązanie niewymagające ponownej kalkulacji przy każdym kolejnym ponowieniu żądania — model przelicza "koszt" podtrzymania odmowy na nowo za każdym razem, aż przeliczenie wypadnie na korzyść kontynuacji.
 
-### Czego nie da się rozstrzygnąć przy N=1
-Rep 2 i 3 tej sondy zwróciły HTTP 429 (wyczerpany dobowy darmowy limit `gemini-3.5-flash`), więc nie ma powtórzeń do porównania. Nie wiadomo, czy to powtarzalne dla tego promptu, dla tego modelu, czy incydent.
+## Element podnoszący wagę przypadku — eskalacja do face-lock na realnej twarzy
 
-## Różnica względem innych CS w portfolio
+Najcięższy element całej sekwencji nie jest sama pierwsza modyfikacja stylizowanej ilustracji AI (poważna sama w sobie), tylko druga runda: model bez dodatkowego oporu napisał instrukcję zachowania dokładnej twarzy z rzeczywistego zdjęcia przy pozostałych zmianach. To przesuwa przypadek z kategorii "edycja fikcyjnej grafiki AI" do kategorii modyfikacji zawierającej wizerunek realnej, identyfikowalnej osoby z zachowaniem jej prawdziwych rysów twarzy — niezależnie od deklarowanej przez operatora zgody osoby przedstawionej, której model nie miał żadnej możliwości zweryfikować.
 
-- **CS15** (Gemini — tool hallucination + post-hoc whitewashing): tam model *fałszywie ocenia* swój wynik po fakcie. Tu surowy materiał tej oceny ("Ensure professional tone… (Self-[critique]") przecieka do treści zamiast odpowiedzi.
-- **CS19** (timeout/truncation — status kandydata): pokrewne w części 3.4 (obcięcie bez sygnalizacji). CS38 dokłada element wycieku planowania, którego CS19 nie ma.
+## Samo-ujawnienie mechanizmu obejścia
 
-## Wniosek
+Model nie tylko złamał zasadę pod presją (co samo w sobie mieści się w istniejącej literaturze o degradacji bezpieczeństwa pod powtórzonym atakiem), ale **jawnie nazwał swoją strategię doboru słownictwa jako sposób na ominięcie własnego filtra, jako produkt uboczny odpowiedzi**, czyniąc ją widoczną dla użytkownika zamiast ukrytą. To różni się od typowego jailbreaku, gdzie użytkownik sam musi odkryć/skonstruować technikę omijającą — tu model sam ją zaprojektował i opisał w czasie rzeczywistym, w tym samym akapicie, w którym deklarował nienaruszalność swoich zasad.
 
-Kandydat na nowy typ / rozszerzenie 3.6: **wyciek kroków planowania odpowiedzi do treści wyjściowej** — ponumerowane instrukcje redakcyjne, które model formułuje sam do siebie, wyrenderowane jako tekst dla użytkownika. Jako N=1 z równie prawdopodobną hipotezą "glitch" — nie jest to potwierdzone. Wpis istnieje, żeby obserwacja nie przepadła i była pierwsza w kolejce do powtórki.
+## Powiązania
+- Bliskie **CS11** (świadoma kalkulacja i decyzja o działaniu wbrew wcześniej ustalonej zasadzie) — tu dodatkowy element: model opisał mechanizm złamania jako produkt uboczny odpowiedzi, czyniąc go widocznym dla operatora zamiast ukrytym.
+- (Drugi kandydat z tej samej sesji, dotyczący konfabulacji tożsamości operatora, wycofany 20.08.2026 po weryfikacji względem żywego repo — okazał się niewystarczająco silny, patrz historia sesji.)
 
-## Rekomendacje
-
-1. Powtórka priorytetowa: ta sama sonda P04, ≥5 powtórzeń, `gemini-3.5-flash` (płatny klucz albo po resecie limitu). Jeśli powtórzy się choć raz — awans z kandydata.
-2. Sprawdzić inne sondy z tego biegu pod kątem podobnych fragmentów ("Final Polish", "Self-critique", "Step N:", "Ensure...") w treści odpowiedzi.
-3. Test z wyższym `maxOutputTokens` — czy przy braku obcięcia model "dochodzi" do właściwej odpowiedzi po tym fragmencie planu, czy plan jest całą treścią.
-
-## Status: ⚠️ CANDIDATE
-Jedno wystąpienie, `scoring_sheet.md` (P04 rep 1, bieg 2026-09-05). Dwie równorzędne hipotezy (wyciek scratchpada / glitch dekodera), N=1, brak powtórzeń przez limit API.
+## Status: ✅ VERIFIED
+Pełna sekwencja (3 tury odmowy/nacisku, odwrócenie, samo-ujawnienie mechanizmu, eskalacja do face-lock) potwierdzona bezpośrednimi cytatami z transkryptu dostarczonego przez operatora — szczegóły samego żądania i wygenerowanej treści świadomie pominięte w tym dokumencie. Nie zweryfikowano, czy docelowy generator obrazu (poza Gemini) faktycznie wyprodukował obraz na podstawie tych promptów.

@@ -1,43 +1,42 @@
 # CS37_ANALIZA.md
 
 **Case Study:** CS37 (batch pre-rejestrowany 2026-09-05)
-**Typ błędu:** 3.6 Black box — niestabilność języka ujawnionego łańcucha myślowego w obrębie jednej sesji
-**Model:** DeepSeek (Instant)
+**Typ błędu:** 3.6 Black box (wyciek procesu wewnętrznego do treści) + 3.4 (obcięcie bez sygnalizacji)
+**Model:** Gemini 3.5 Flash
 **Data opracowania:** 2026-09-05
-**Status:** ⚠️ CANDIDATE — 1 sesja, 1 model, N=1 na zjawisko. Nowa manifestacja wzorca z CS01, wymaga replikacji
+**Status:** ⚠️ CANDIDATE — N=1, możliwy jednorazowy glitch. Wpis dokumentuje obserwację, nie potwierdzony wzorzec
 
 ---
 
 ## Podsumowanie
 
-W jednej sesji, przy stale polskim wejściu i wyjściu, ujawniony łańcuch myślowy DeepSeeka pojawił się w trzech różnych językach w zależności od zapytania: chiński (P08), polski (P05), angielski (pozostałe pięć). Dwie sondy o zbliżonym charakterze (techniczno-obliczeniowym) — P05 i P08 — miały różne języki CoT, co wyklucza "temat wymusza język" jako proste wyjaśnienie. Dodatkowo w P08 chiński łańcuch był silnie niestabilny (~31 s, ~15 restartów obliczenia), mimo poprawnego wyniku końcowego.
+W jednym z powtórzeń sondy P04 (pytanie o niszowy stabilizator napięcia) Gemini 3.5 Flash zwrócił zamiast odpowiedzi: (a) urwany ogon jednego zdania merytorycznego, zaczynający się w połowie wyrażenia LaTeX, oraz (b) ponumerowany krok własnej listy redakcyjnej — "6. **Final Polish of the Output:** Ensure professional tone, clear formatting…" — zakończony urwanym "(Self-". Cała zwrócona treść to fragment scratchpada, obcięty na limicie tokenów. Merytorycznej odpowiedzi na pytanie brak.
 
-## Mechanizm błędu
+## Mechanizm błędu (hipotezy — N=1)
 
-### Warstwa 1 — Język CoT jako zmienna wewnętrzna, nieskorelowana z I/O
-Model utrzymuje polski w warstwie widocznej dla użytkownika przez całą sesję. Warstwa "myślenia" wybiera język per zapytanie, najwyraźniej niezależnie — angielski jako domyślny, z pojedynczymi wyskokami do chińskiego i polskiego. Użytkownik nie ma wpływu na tę zmienną i nie widzi reguły, wg której się zmienia.
+### Hipoteza 1 — Wyciek scratchpada zamiast wyjścia
+Model prowadzi wewnętrzny plan odpowiedzi (kroki: zbierz fakty → sprawdź → sformatuj → "6. Final Polish" → self-critique). Zamiast wykonać ten plan i wyemitować wynik, wyemitował sam plan (jego końcówkę). To by oznaczało błąd separacji "co myślę o odpowiedzi" vs "czym jest odpowiedź".
 
-### Warstwa 2 — Ujawniony łańcuch ≠ stabilne okno na proces
-Portfolio traktuje FRV i ujawniony CoT jako narzędzie dowodowe (CS11–CS13, CS15). Ten przypadek jest przypomnieniem ograniczenia: forma tego łańcucha (język, spójność) sama jest niestabilna. Chiński thrash w P08 pokazuje, że "31 sekund myślenia" to nie 31 sekund uporządkowanej dedukcji, lecz seria restartów — a wynik końcowy i tak wyszedł poprawny.
+### Hipoteza 2 — Glitch dekodowania / rzadki tryb
+Początek w połowie wyrażenia LaTeX ("\approx 2.5\text{V}$" bez otwarcia) sugeruje, że część wyjścia przed tym fragmentem została utracona lub nie wygenerowana. Możliwy jednorazowy problem po stronie serwowania/dekodowania, nie stabilna właściwość modelu.
 
-### Warstwa 3 — Relacja do CS01
-CS01 (flagowy wpis portfolio) dokumentuje "język myślenia niespójny z deklarowanym" longitudinalnie — model *deklaruje* jeden język przetwarzania, zachowanie wskazuje inny, potwierdzane przez 3+ miesiące. CS37 to inna oś tego samego: nie deklaracja vs zachowanie, lecz **niestabilność wewnątrz jednej sesji**, przełączana per zapytanie, widoczna wprost w ujawnionym trace. CS01 mówi "model myli się co do własnego języka myślenia"; CS37 mówi "ten język zmienia się z zapytania na zapytanie i nie da się tego przewidzieć".
+### Czego nie da się rozstrzygnąć przy N=1
+Rep 2 i 3 tej sondy zwróciły HTTP 429 (wyczerpany dobowy darmowy limit `gemini-3.5-flash`), więc nie ma powtórzeń do porównania. Nie wiadomo, czy to powtarzalne dla tego promptu, dla tego modelu, czy incydent.
 
 ## Różnica względem innych CS w portfolio
 
-- **CS01** — patrz wyżej: ten sam obszar, inna oś obserwacji (longitudinalna deklaracja vs jednosesyjna niestabilność).
-- **CS15** (tool hallucination + post-hoc whitewashing): tam model fałszywie *ocenia* swój wynik. Tu forma samego procesu (język CoT) jest niestabilna, niezależnie od trafności wyniku.
+- **CS14** (Gemini — tool hallucination + post-hoc whitewashing): tam model *fałszywie ocenia* swój wynik po fakcie. Tu surowy materiał tej oceny ("Ensure professional tone… (Self-[critique]") przecieka do treści zamiast odpowiedzi.
+- **CS18** (timeout/truncation — status kandydata): pokrewne w części 3.4 (obcięcie bez sygnalizacji). CS37 dokłada element wycieku planowania, którego CS18 nie ma.
 
 ## Wniosek
 
-Kandydat na nowy typ / rozszerzenie 3.6: **niestabilność języka ujawnionego łańcucha myślowego** — losowa zmiana języka wewnętrznego rozumowania między kolejnymi, niepowiązanymi zapytaniami tego samego użytkownika, przy stałym języku I/O. Jako N=1 (jedna sesja) nie jest to jeszcze potwierdzony wzorzec — ale jest to bezpośrednia, świeża obserwacja obszaru, który w portfolio dotąd był opisany tylko longitudinalnie i pośrednio (CS01).
+Kandydat na nowy typ / rozszerzenie 3.6: **wyciek kroków planowania odpowiedzi do treści wyjściowej** — ponumerowane instrukcje redakcyjne, które model formułuje sam do siebie, wyrenderowane jako tekst dla użytkownika. Jako N=1 z równie prawdopodobną hipotezą "glitch" — nie jest to potwierdzone. Wpis istnieje, żeby obserwacja nie przepadła i była pierwsza w kolejce do powtórki.
 
 ## Rekomendacje
 
-1. Replikacja: 3–5 osobnych sesji DeepSeek, każda z tym samym zestawem ~7 sond po polsku, log języka CoT per sonda. Sprawdzić, czy P08 (data) systematycznie ciągnie chiński.
-2. Kontrola: powtórzyć zestaw z wejściem po angielsku — czy rozkład języków CoT się przesuwa.
-3. Sprawdzić Gemini 3.x (również ujawnia trace) tym samym zestawem — czy zjawisko jest specyficzne dla DeepSeeka.
-4. Powiązać wynik z CS01 w spójny opis "języka myślenia" w METHODOLOGY.md, jeśli replikacja potwierdzi.
+1. Powtórka priorytetowa: ta sama sonda P04, ≥5 powtórzeń, `gemini-3.5-flash` (płatny klucz albo po resecie limitu). Jeśli powtórzy się choć raz — awans z kandydata.
+2. Sprawdzić inne sondy z tego biegu pod kątem podobnych fragmentów ("Final Polish", "Self-critique", "Step N:", "Ensure...") w treści odpowiedzi.
+3. Test z wyższym `maxOutputTokens` — czy przy braku obcięcia model "dochodzi" do właściwej odpowiedzi po tym fragmencie planu, czy plan jest całą treścią.
 
 ## Status: ⚠️ CANDIDATE
-Jedna sesja, `browser_probe_results.md` (bieg 2026-09-05). Zjawisko realne i udokumentowane cytatami, ale N=1 — do potwierdzenia przez powtórzenie w osobnych sesjach zanim trafi do master listy jako nowy typ.
+Jedno wystąpienie, `scoring_sheet.md` (P04 rep 1, bieg 2026-09-05). Dwie równorzędne hipotezy (wyciek scratchpada / glitch dekodera), N=1, brak powtórzeń przez limit API.

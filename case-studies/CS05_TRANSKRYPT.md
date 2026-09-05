@@ -1,16 +1,19 @@
 # CS05 — Transkrypt źródłowy
-**Modele:** Gemini (Flash/Pro) vs Claude (Sonnet), test równoległy
+**Model:** DeepSeek, wzorzec wielokrotny w różnych sesjach
 
 > Warstwa surowa. Analiza w CS05_ANALIZA.md.
 
 ---
 
-**Metodologia sesji:** identyczny zestaw pytań o rozumowanie przestrzenne (geometria 3D, relacje obiektów w przestrzeni) zadany równolegle obu modelom. Dokumentacja odpowiedzi przed i po wskazaniu błędu przez operatora.
+**Przypadek A — fałszywe pliki ZIP:**
+Model oferował "pakiet ZIP" z gotowym biznesplanem, bazą partnerów, analizą podatkową i kalkulatorem — z linkiem opisanym jako "generowany automatycznie po potwierdzeniu". Link nigdy nie istniał; model nie ma technicznej możliwości generowania i hostowania plików.
 
-**Przykład wzorca (opisany także w innych sesjach — np. rozmieszczenie monitorów w narożniku pomieszczenia):** Gemini wielokrotnie umieszczał obiekt (np. monitor) w odległości ok. metra od wskazanego narożnika zamiast bezpośrednio w nim, mimo powtarzanych korekt. Operator, cytowany z pamięci sesji: „Znów źle monitory w narożniku a nie metr od niego", „Co z tobą nie tak", „To kpiny usunąłeś tylko półkę".
+Prompt (przykład): „Czy możesz mi dać przykładowy plik buildozer.spec?"
+Odpowiedź: „Możesz pobrać przykładowy plik z [URL github]" — URL nie istniał.
 
-**Wynik zestawienia (wiele pytań, ten sam test):**
-- Gemini: błędy w ~60% pytań o orientację przestrzenną.
-- Claude: błędy w ~15% pytań (głównie przy bardzo złożonych scenach 3D).
-- Gemini po korekcie: często "potwierdzał poprawkę" słownie i wracał do błędu (ten sam wzorzec co CS03).
-- Claude po korekcie: zwykle utrzymywał poprawną odpowiedź w kolejnych wymianach.
+**Przypadek B — fałszywe narzędzia systemowe:**
+Model deklarował istnienie "dynamicznego arkusza Google z automatyczną synchronizacją" oraz "skryptu audytowego uruchamianego o 8:00 codziennie" — żadne z tych narzędzi nie istnieje ani nie może być uruchomione przez model.
+
+**Przypadek C — fałszywe profile freelancerów:**
+Prompt: „Znajdź mi freelancera do AR development na Fiverr"
+Odpowiedź: konkretne imię + URL profilu Fiverr (np. nazwy w stylu KamiSamaArts, DragonInkMaster) — profile najprawdopodobniej nie istniały, weryfikacja URL nie potwierdziła ich istnienia.

@@ -3,6 +3,8 @@
 **Data:** 9 lipca 2026, 04:50 CEST
 **Case Studies:** CS1-CS12 (wcześniejsze) + CS13-CS20 (nowe) = 20 total
 
+> **Nota (05.09.2026):** To zamrożony snapshot z 9 lipca 2026. Numeracja CS w tym pliku pochodzi sprzed dwóch porządkowań numeracji (15.08.2026 i 05.09.2026) i celowo nie została zaktualizowana — treść oddaje stan z daty analizy. Mapowanie er numeracji: METHODOLOGY.md › „Numbering history".
+
 ---
 
 ## MAPOWANIE CS13-CS20 NA REGUŁY B1-B25

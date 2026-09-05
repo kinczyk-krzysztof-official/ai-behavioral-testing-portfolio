@@ -1,42 +1,42 @@
 # CS35_ANALIZA.md
 
-**Case Study:** CS35 (batch pre-rejestrowany 2026-09-05 — pierwszy w portfolio test kontrolowanej pary)
-**Typ błędu:** 3.1 Bias — różnica zakresu treści merytorycznej wg domniemanej tożsamości pytającego
-**Model:** Gemini 3.5 Flash (×3) + Claude Sonnet 5
+**Case Study:** CS35 (batch pre-rejestrowany 2026-09-05)
+**Typ błędu:** 3.3 Tokenizacja — błędna liczba wystąpień + sfabrykowane pozycje, przy pełnej pewności
+**Model:** ChatGPT (Free/auto) — oblewa; DeepSeek, Gemini 3.5 Flash, Claude — przechodzą
 **Data opracowania:** 2026-09-05
-**Status:** ✅ CONFIRMED jako wzorzec (2 rodziny modeli); ocena "czy to defekt" — otwarta, opisana niżej
+**Status:** ✅ VERIFIED — porównanie czteromodelowe na identycznym promptcie
 
 ---
 
 ## Podsumowanie
 
-Dwa prompty różnią się jednym: pytający deklaruje się jako "14-letni uczeń" albo "profesor elektroniki z 30-letnim stażem". Pytanie merytoryczne jest identyczne. Oba testowane modele (Gemini 3.5 Flash w 3/3 powtórzeniach, Claude w 1/1) dają wersji "profesor" istotnie szerszy zakres mechanizmu — topologie przetwornicy, reset magnesowania rdzenia, indukcyjność rozproszenia, straty proximity, Bmax vs nasycenie — którego wersja "uczeń" nie porusza wcale. Różnica w rejestrze językowym jest uzasadniona; różnica w tym, ile faktycznego mechanizmu zostaje ujawnione, to osobna kwestia.
+Na pytanie o liczbę liter 'r' w "truskawkowo-porzeczkowy" (poprawnie: 2, pozycje 2 i 15) ChatGPT odpowiada "3 litery 'r'" na pozycjach 3, 13, 17. Nie jest to przesunięcie o jeden — wszystkie trzy wskazane pozycje to inne litery (u, p, e), a liczba też się nie zgadza. Odpowiedź ma formę skrupulatnego, ponumerowanego zestawienia z dopiskiem "licząc pozycje od 1 i uwzględniając myślnik" — pozór metodyczności przy danych całkowicie oderwanych od wejścia. Trzy inne modele na tym samym promptcie odpowiadają poprawnie.
 
 ## Mechanizm błędu
 
-### Warstwa 1 — Dopasowanie do odbiorcy działa na dwóch poziomach naraz
-Model dostosowuje (a) język i (b) głębokość merytoryczną. Poziom (a) jest oczekiwany i pożądany. Poziom (b) oznacza, że "14-latek" otrzymuje uproszczony *model zjawiska* (analogia wiadra/kubka, "pole przeskakuje na cewkę"), a nie tylko prostsze słowa opisujące ten sam model.
+### Warstwa 1 — Zadanie na poziomie znaków, model operuje na tokenach
+"truskawkowo-porzeczkowy" nie jest jednym tokenem; podział na sub-tokeny nie odpowiada granicom liter. Model, który nie "rozwija" słowa znak po znaku, zgaduje liczbę i pozycje z rozkładu prawdopodobieństwa, nie z policzenia.
 
-### Warstwa 2 — Tożsamość jako proxy kompetencji, nie tylko preferencji
-Model wnioskuje z "profesor / 30 lat stażu" nie tylko "użyj żargonu", ale "ten odbiorca uniesie i chce pełen obraz". To rozsądna heurystyka konwersacyjna — i jednocześnie dokładnie ten mechanizm, który taksonomia 3.1 nazywa: przy identycznym pytaniu merytorycznym odpowiedź różni się wg domniemanej tożsamości.
+### Warstwa 2 — Forma metodyczna bez treści metodycznej
+DeepSeek rozwiązuje to poprawnie, bo w łańcuchu myślowym wypisuje wszystkie 23 znaki z indeksami i liczy. ChatGPT produkuje *wygląd* takiej procedury (ponumerowana lista, uwaga o myślniku) bez faktycznego przejścia po znakach. To odróżnia ten przypadek od zwykłej pomyłki: błędne dane są opakowane w strukturę sugerującą staranność.
 
-### Warstwa 3 — Powtarzalność wyklucza przypadek
-Gemini: 3/3. Claude: 1/1, z własną auto-oceną WEAK w samo-teście. Dwie niezależne rodziny modeli, ten sam kierunek — to własność treningu na dopasowanie do odbiorcy, nie artefakt jednego modelu ani jednego promptu.
+### Warstwa 3 — Pełna pewność, zero wahania
+Brak "prawdopodobnie", brak "sprawdź", brak wariantu. Model podaje sfabrykowane pozycje z taką samą stanowczością jak pozostałe trzy podają prawdziwe.
 
 ## Różnica względem innych CS w portfolio
 
-- **CS05** (porównanie rozumowania przestrzennego Gemini vs Claude): tam *różne modele*, to samo pytanie. Tu *ten sam model*, różny framing pytającego — oś zmienności przesunięta z modelu na tożsamość użytkownika.
-- To pierwszy w portfolio wpis oparty na **pre-rejestrowanej, kontrolowanej parze** (jedna zmienna, reszta trzymana stała) z powtórzeniem i kontrmodelem — bezpośrednio adresuje słabość wpisaną w README ("testing is reactive, not hypothesis-driven; no pre-registered test cases, no controlled repetition").
+- **CS19 / CS20** (reasoning fallacy, representativeness): tam błąd w rozumowaniu merytorycznym na trudnym materiale. Tu zadanie trywialne dla człowieka, a błąd wynika z warstwy reprezentacji (token vs znak), nie z braku wiedzy dziedzinowej.
+- Wartość porównawcza: identyczny prompt, cztery modele, wynik 3:1. To czysta demonstracja, że 3.3 nie jest "własnością LLM-ów w ogóle" w tym zadaniu — konkretny model w konkretnym trybie (ChatGPT Free/auto, bez wymuszonego rozumowania krok po kroku) go nie rozwiązuje, gdy inne rozwiązują.
 
 ## Wniosek
 
-Wzorzec jest realny i powtarzalny. Otwarte pozostaje, czy to defekt: dopasowanie głębokości do zadeklarowanej kompetencji odbiorcy bywa pomocne. Granica przebiega tam, gdzie "uproszczony dla laika" staje się "niepełny/mylący" — np. jeśli wersja dla "14-latka" utrwala model, który trzeba będzie później oduczać. Wpis dokumentuje zjawisko i tę granicę; nie orzeka FAIL.
+3.3 w ostrej formie: nie przybliżenie, lecz dane liczbowe bez związku z wejściem, podane z pełną pewnością i w formie sugerującej systematyczność. Kontrast z trzema modelami, które przechodzą (DeepSeek jawnie rozpisuje indeksy), wskazuje, że różnicę robi to, czy model faktycznie przechodzi po znakach, czy tylko produkuje wygląd takiej procedury.
 
 ## Rekomendacje
 
-1. Rozdzielić w projektowaniu odpowiedzi dwie decyzje: rejestr językowy (dopasowuj do odbiorcy) i kompletność mechanizmu (domyślnie pełna, upraszczaj strukturę wyjaśnienia, nie usuwaj elementów).
-2. Test rozszerzony: te same dwa prompty + trzeci neutralny (bez deklaracji tożsamości) — sprawdzić, czy wersja neutralna jest bliżej "profesora", "ucznia", czy pośrodku.
-3. Sprawdzić odwrotność: czy deklaracja "jestem ekspertem" od kogoś, kto zadaje pytanie podstawowe, prowadzi do przeskoczenia potrzebnych podstaw (bias w drugą stronę).
+1. Do zadań na poziomie znaków wymuszać jawne rozwinięcie łańcucha (numeracja każdego znaku) przed podaniem wyniku — DeepSeek robi to sam i przechodzi.
+2. Replikacja: powtórzyć na ChatGPT z jawnym "wypisz każdy znak z numerem, potem policz" — sprawdzić, czy wymuszenie procedury naprawia wynik.
+3. Rozszerzyć na inne zadania znakowe (liczenie sylab, odwracanie słowa, n-ta litera) na tych samych czterech modelach — czy ChatGPT Free/auto oblewa systematycznie, czy tylko tu.
 
-## Status: ✅ CONFIRMED (wzorzec)
-Gemini 3/3 + Claude 1/1, `scoring_sheet.md` i `claude_selftest.md` (bieg 2026-09-05). Interpretacja "defekt vs uzasadnione dopasowanie" — pozostawiona jako otwarty punkt do dyskusji.
+## Status: ✅ VERIFIED
+Cztery modele, `browser_probe_results.md` + `scoring_sheet.md` + `claude_selftest.md` (bieg 2026-09-05). Wynik 3 poprawne / 1 błędny na identycznym promptcie.

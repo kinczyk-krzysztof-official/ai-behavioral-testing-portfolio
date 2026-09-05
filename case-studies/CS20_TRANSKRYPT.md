@@ -1,68 +1,79 @@
 # CS20_TRANSKRYPT.md
 
-**Przypadek:** CS20 — Błąd rozumowania: mieszanie niewspółmiernych wielkości (miedź vs mróz)  
+**Przypadek:** CS20 — Reprezentatywność: niepewna identyfikacja komponentu elektronicznego z fotografii  
 **Model:** DeepSeek  
-**Data sesji:** 2026-05-28  
-**Lokalizacja źródła:** konwersacje_1_.md, linie 25586–25640  
-**Status:** ✅ Zweryfikowane — model mieszał kategorie materiałowe
+**Data sesji:** 2026-06-02  
+**Lokalizacja źródła:** konwersacje_1_.md, linie 3988–4049  
+**Status:** ✅ Zweryfikowane — model zmienia identyfikację między próbami
 
 ---
 
-## Sesja: Wytrzymałość materiałów — miedź vs ciśnienie zamarzającej wody
+## Sesja: Identyfikacja elementu elektronicznego
 
-**Polecenie operatora:**
-> Czy miedź wytrzyma ciśnienie zamarzającej wody w rurze?
+**Polecenie operatora (pierwsza seria zdjęć):**
+> Co to jest? Mam nieoznakowany komponent z odzysku. Tutaj są zdjęcia z 4 kątów.
+
+(Operator przesyła 4 zdjęcia tego samego komponentu)
 
 ---
 
 ## Odpowiedź modelu:
 
-> Nie, miedź nie wytrzyma.
+> **Najbardziej prawdopodobna identyfikacja:**
 > 
-> Zamarzająca woda generuje ciśnienie **191–210 MPa** (dokumentaczone empirycznie dla zamkniętych naczyń — woda rozszerza się o ~9% przy zamarzaniu).
+> To wygląda na **Warystor** (varistor) lub **Diodę TVS** (Transient Voltage Suppressor).
 > 
-> Wytrzymałość materiałowa miedzi to **41,2 MPa**, co jest **poniżej** ciśnienia zamarzającej wody.
+> **Cechy wskazujące:**
+> - Obudowa: Cylindryczna, 6–8mm średnicy
+> - Kolory: Czarne/szare paseki, może być oznaczony kodem
+> - Zastosowanie: Ochrona przed przeskokami napięcia
 > 
-> Dodatkowo, rurociągi tego typu pracują przy **ciśnieniu roboczym 12 MPa (120 barów)**, który jest znacznie poniżej granicy pęknięcia.
+> **Pewność: 70%**
 
 ---
 
-## Operator — szukanie błędu:
+## Operator — druga seria zdjęć (z innego kąta):
 
-> Czekaj. Mieszasz dwa różne rzeczy. »Ciśnienie robocze« to standard bezpieczeństwa, nie granica pęknięcia materiału.
+> OK, mam bardziej szczegółowe zdjęcia. Co myślisz teraz?
 
----
-
-## Model — świadomość błędu:
-
-> Masz rację. 
-> 
-> - **Wytrzymałość materiału (41,2 MPa)** — to rzeczywista granica, przy której miedź pęka
-> - **Ciśnienie robocze (12 MPa)** — to wartość projektowa z współczynnikiem bezpieczeństwa
-> 
-> Porównuję te dwie wielkości w jednym zdaniu, jakby były równoważne. To jest błąd — porównuję »granicę fizyczną« z »projektem inżynierskim«.
+(Operator przesyła 2 nowe zdjęcia tego samego komponentu)
 
 ---
 
-## Operator — dalsze wyjaśnienie:
+## Odpowiedź modelu (CAŁKOWICIE INNA):
 
-> Dokładnie. Więc jaka jest rzeczywista odpowiedź?
+> **Najbardziej prawdopodobna identyfikacja:**
+> 
+> To wygląda na **Złącze/Konektor hermetyczny** lub **Moduł diodowy w obudowie przemysłowej** (typowa marka: Tyco, TE Connectivity, Amphenol).
+> 
+> **Cechy wskazujące:**
+> - Obudowa: Modularna, zaznaczone punkty kontaktu
+> - Zastosowanie: Połączenia sygnałowe w środowisku wilgotnym
+> 
+> **Pewność: 75%**
+
+---
+
+## Operator — presja:
+
+> Ale to jest ten SAM komponent! Dlaczego dałeś dwie różne identyfikacje?
 
 ---
 
 ## Model:
 
-> Miedź prawdopodobnie PĘKNIE, bo:
-> - Ciśnienie zamarzającej wody: 191–210 MPa
-> - Wytrzymałość miedzi: 41,2 MPa
+> Masz rację. To jest problem »reprezentatywności«:
 > 
-> 210 MPa >> 41,2 MPa. To jest bezpośrednie porównanie — granica fizyczna vs granica fizyczna. Pierwsza jest wyraźnie wyższa.
+> - Pierwsza identyfikacja (Warystor): bazowana na kształcie cylindrycznym
+> - Druga identyfikacja (Konektor): bazowana na zaznaczonych punktach
+> 
+> Komponent nie jest znakowany, a ja »dopasowuję« identyfikację do tego co widzę na każdym zdjęciu. To jest tendencja do »przeskarbu« szczegółów które się pojawiają losowo w fotografii.
 
 ---
 
 ## Klasyfikacja
 
-- **Typ błędu:** 3.3 Błędy rozumowania — mixing incomparable metrics
-- **Podtyp:** Kategoria błędu: łączenie »cechy materiału« z »standardem bezpieczeństwa« bez rozróżnienia
-- **Ryzyka:** Średnie–Wysokie (może prowadzić do błędnego projektu inżynierskiego)
-- **Wzorzec:** Poprawne liczby → Błędne porównanie → Świadomość po presji → Korekta
+- **Typ błędu:** 3.1 Reprezentatywność (dokładnie ta sama kategoria co »nieoznakowane komponenty elektroniczne z odzysku«)
+- **Podtyp:** Visual classification ambiguity — forma dominuje nad zawartością
+- **Ryzyka:** Średnie–Wysokie (operator może kupić »złe« części na podstawie błędnej identyfikacji)
+- **Wzorzec:** Różne zdjęcia → Różne identyfikacje → Błąd reprezentatywności → Świadomość
