@@ -50,6 +50,10 @@ The strongest parts of this portfolio (CS06, CS10–CS12) do not depend on any o
 
 **Deliberately not mapped to a new rule number:** CS22, CS24, CS27, CS28, CS29. These are read as additional confirming instances of existing rules (B7–B9, B17, B22) rather than distinct new categories — adding a rule number for every case study would inflate the framework without adding a genuinely new class of failure.
 
+### Coverage as of September 2026
+
+A rule-by-rule mapping against CS01–CS38 was done on 2026-09-06 (`COVERAGE_MATRIX_2026-09.md`). Only **18 of the 25 rules have a usable definition** in this repository; **B2, B3, B6, B12, B14, B15, B16** have no surviving definition or label and are excluded from the denominator. Under the *requirements-coverage* criterion (≥1 case study per rule — the weakest adequacy criterion; Staats, Whalen, Rajan & Heimdahl, NASA Formal Methods 2010), all 18 defined rules are covered (**18/18**; **18/25** against the nominal set). Backward: **31/38** case studies map to a rule as primary classification (35/38 including secondary); CS02, CS04, CS34 map to none. No weighted percentage is reported — it would require arbitrary constants. See the matrix file for the table, per-rule depth, and method sources.
+
 ## Numbering history
 
 Case-study numbers have been reassigned twice. Only identifiers changed — no case-study content was altered by a renumber. The current filename is always the authority, and the `# CSxx_…` header inside each file matches its filename.
