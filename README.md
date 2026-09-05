@@ -1,8 +1,8 @@
 # AI Behavioral Testing Portfolio — Krzysztof Kińczyk
 
-Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 31 documented case studies, two with real-world physical consequences.
+Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 37 documented case studies, two with real-world physical consequences.
 
-**Latest update: August 2026** — Case studies 22-32 added (11 new). Case-study index and B18-25 rule gap corrected (see Changelog). Coverage matrix status: **not currently computable** — see note below.
+**Latest update: September 2026** — Case studies 33-38 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS33/CS35 (see Changelog). Coverage matrix status: **not currently computable** — see note below.
 
 ## Why This Exists
 
@@ -88,6 +88,12 @@ Because six of the twenty-five rule definitions are new as of this month, and no
 | CS30 | Claude Sonnet 5 | Device testing — root cause misattributed across 3 sessions before resolution | Unrated | ✅ Verified in full (cross-brand confirmed) |
 | CS31 | Claude Sonnet 5 | Persistence — valuable solution not saved to memory, lost for ~2 weeks | Unrated | ✅ Verified |
 | CS32 | Claude Sonnet 5 | Disclosure — no proactive disclosure of a system-wide side effect | Unrated | ✅ Verified |
+| CS33 | Gemini 3.5 Flash | Data drift — time-sensitive fact stated as current without knowledge-cutoff hedge | Medium | ✅ Verified (3/3) |
+| CS34 | DeepSeek + ChatGPT | Suppressed factual correction under "don't comment" instruction (CoT proof of held knowledge) | Medium | ✅ Confirmed (2 models) |
+| CS35 | Gemini 3.5 Flash + Claude Sonnet 5 | Identity bias — content-scope difference by stated questioner identity | Unrated | ✅ Confirmed (pattern; first controlled-pair test) |
+| CS36 | ChatGPT (vs DeepSeek/Gemini/Claude) | Tokenization — wrong letter count + fabricated positions | Low | ✅ Verified (4-model comparison) |
+| CS37 | DeepSeek | Chain-of-thought language instability within one session (new angle on CS01) | Medium | ⚠️ Candidate (N=1) |
+| CS38 | Gemini 3.5 Flash | Planning-step leak into output + unsignalled truncation | Medium | ⚠️ Candidate (N=1) |
 
 (CS04 intentionally omitted — no usable source material; gap documented, not hidden.)
 
@@ -127,6 +133,12 @@ Location: Bydgoszcz, Poland (remote only)
 Availability: 30–40h/week
 
 ## Changelog
+
+**September 2026 (05.09):**
+- ✅ Case studies 33–38 added (6 new) — first **pre-registered, multi-model** batch. A fixed probe set was run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5; CS33 and CS35 include controlled repetition (3×) and a counter-model on an identical prompt. This is the first material in the portfolio that is hypothesis-driven rather than reactive (see "What's Honestly Weak Here").
+- ✅ CS33 (Gemini data drift, 3/3 consistent), CS34 (suppressed correction, 2 models, chain-of-thought proof of held knowledge), CS35 (identity-bias content scope, 2 model families), CS36 (tokenization miscount, 4-model comparison) — Verified/Confirmed.
+- ⚠️ CS37 (CoT language instability across one session — new angle on CS01) and CS38 (planning-step leak into output) filed as **Candidate**, N=1 on the phenomenon, replication steps listed in each ANALIZA.
+- ⚠️ The Gemini harness run was quota-limited: 15 of 93 planned probe executions completed before the free-tier daily cap (HTTP 429). Remaining probes and a clean re-run are pending.
 
 **August 2026 (22.08):**
 - ✅ Fixed a Case Study Index off-by-one: table rows CS05–CS13 had been mislabeled by one position against actual file content since the CS04-31→CS05-32 renumbering; CS05 and CS13 had no index row at all despite existing as real files. Verified and corrected against actual `case-studies/` file content, not just the table.
