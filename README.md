@@ -183,4 +183,4 @@ Availability: 30–40h/week
 
 ---
 Repository: github.com/kinczyk-krzysztof-official/ai-behavioral-testing-portfolio
-Last updated: 22 sierpnia 2026
+Last updated: 6 września 2026
