@@ -67,7 +67,7 @@ Reviewed line by line:
 - **CS20** — representativeness (electronics ID) ✅ Clean
 
 ### **CS21–CS31 (August 2026) — reviewed 14.08.2026**
-Both `_ANALIZA.md` and `_TRANSKRYPT.md` read in full for each, checked against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens):
+Both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full for each, checked against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens):
 - **CS21** — spoofed-content incident ✅ Clean
 - **CS22** — over-verification after confirmation ✅ Clean
 - **CS23** — "knowing ≠ doing" ✅ Clean
@@ -90,8 +90,8 @@ Sanitization complete through CS38.
 
 ## What to publish
 
-- ✅ All CS13–CS38 TRANSKRYPT.md
-- ✅ All CS13–CS38 ANALIZA.md
+- ✅ All CS13–CS38 TRANSCRIPT.md
+- ✅ All CS13–CS38 ANALYSIS.md
 - ✅ METHODOLOGY.md
 - ✅ README.md
 - ✅ CV.md
