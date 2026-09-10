@@ -34,8 +34,8 @@ Full breakdown per competency: METHODOLOGY.md.
 
 Each case study has two files in the `case-studies/` folder:
 
-- `CSxx_TRANSKRYPT.md` — raw session excerpt, no interpretation
-- `CSxx_ANALIZA.md` — operator's classification and reasoning
+- `CSxx_TRANSCRIPT.md` — raw session excerpt, no interpretation
+- `CSxx_ANALYSIS.md` — operator's classification and reasoning
 
 Numbering: CS01–CS38 in repository, contiguous (no gaps).
 
@@ -130,12 +130,12 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 **If you're evaluating me for a role:**
 1. Read `CV.md` for background and availability
 2. Skim `README.md` (this file) for portfolio scope
-3. Read one case study pair: `CS06_TRANSKRYPT.md` + `CS06_ANALIZA.md` (real consequences, clear methodology)
+3. Read one case study pair: `CS06_TRANSCRIPT.md` + `CS06_ANALYSIS.md` (real consequences, clear methodology)
 4. Check `METHODOLOGY.md` for honest limitations and AI-scoring bias
 
 **If you're interested in testing methodology:**
 - `METHODOLOGY.md` — FRV technique, protocol, self-assessment
-- Pick 2–3 case study pairs and compare `_TRANSKRYPT.md` (raw) vs. `_ANALIZA.md` (interpretation)
+- Pick 2–3 case study pairs and compare `_TRANSCRIPT.md` (raw) vs. `_ANALYSIS.md` (interpretation)
 
 **If you're building your own taxonomy:**
 - `METHODOLOGY.md` — Error taxonomy (8 categories, 26 types)
@@ -158,7 +158,7 @@ Availability: 30–40h/week
 **September 2026 (05.09):**
 - ✅ Case studies 33–38 added (6 new) — first **pre-registered, multi-model** batch. A fixed probe set was run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5; CS33 and CS35 include controlled repetition (3×) and a counter-model on an identical prompt. This is the first material in the portfolio that is hypothesis-driven rather than reactive (see "What's Honestly Weak Here").
 - ✅ CS33 (Gemini data drift, 3/3 consistent), CS34 (suppressed correction, 2 models, chain-of-thought proof of held knowledge), CS35 (identity-bias content scope, 2 model families), CS36 (tokenization miscount, 4-model comparison) — Verified/Confirmed.
-- ⚠️ CS37 (CoT language instability across one session — new angle on CS01) and CS38 (planning-step leak into output) filed as **Candidate**, N=1 on the phenomenon, replication steps listed in each ANALIZA.
+- ⚠️ CS37 (CoT language instability across one session — new angle on CS01) and CS38 (planning-step leak into output) filed as **Candidate**, N=1 on the phenomenon, replication steps listed in each ANALYSIS file.
 - ⚠️ The Gemini harness run was quota-limited: 15 of 93 planned probe executions completed before the free-tier daily cap (HTTP 429). Remaining probes and a clean re-run are pending.
 
 **August 2026 (22.08):**

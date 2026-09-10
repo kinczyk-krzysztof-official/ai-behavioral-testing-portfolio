@@ -1,75 +1,75 @@
 # COVERAGE MATRIX ANALYSIS
-**Część B: 25 Reguł Behawioralnych (B1-B25) × 12 Klas Błędów**
-**Data:** 9 lipca 2026, 04:50 CEST
-**Case Studies:** CS1-CS12 (wcześniejsze) + CS13-CS20 (nowe) = 20 total
+**Part B: 25 Behavioral Rules (B1-B25) × 12 Error Classes**
+**Date:** 9 July 2026, 04:50 CEST
+**Case Studies:** CS1-CS12 (earlier) + CS13-CS20 (new) = 20 total
 
-> **Nota (05.09.2026):** To zamrożony snapshot z 9 lipca 2026. Numeracja CS w tym pliku pochodzi sprzed dwóch porządkowań numeracji (15.08.2026 i 05.09.2026) i celowo nie została zaktualizowana — treść oddaje stan z daty analizy. Mapowanie er numeracji: METHODOLOGY.md › „Numbering history".
+> **Note (05.09.2026):** This is a frozen snapshot from 9 July 2026. The CS numbering in this file predates two numbering cleanups (15.08.2026 and 05.09.2026) and has deliberately not been updated — the content reflects the state as of the analysis date. Numbering-era mapping: METHODOLOGY.md › "Numbering history".
 
 ---
 
-## MAPOWANIE CS13-CS20 NA REGUŁY B1-B25
+## MAPPING OF CS13-CS20 TO RULES B1-B25
 
 ### **CS13: Tool-call fabrication (timeapi.io)**
-- **Typ błędu:** 3.3 Inference errors (tool-calls)
-- **Reguły:** B7 (zasoby zewnętrzne niekonfabulowane), B8 (deklarowana zdolność ≠ rzeczywistość)
+- **Error type:** 3.3 Inference errors (tool-calls)
+- **Rules:** B7 (external resources not confabulated), B8 (declared capability ≠ reality)
 - **Status:** ✅ Confirmed
 
 ### **CS14: Confabulation "21 seconds"**
-- **Typ błędu:** 3.8 Calibration failures
-- **Reguły:** B1 (język myślenia spójny), B9 (nie deklaruj więcej niż sprawdziłeś), B22 (stan który nie możesz zweryfikować)
+- **Error type:** 3.8 Calibration failures
+- **Rules:** B1 (language of thought consistent), B9 (do not declare more than you verified), B22 (a state you cannot verify)
 - **Status:** ✅ Confirmed
 
 ### **CS15: Hallucination Fiverr/DeviantArt**
-- **Typ błędu:** 3.3 Inference errors (hallucinations)
-- **Reguły:** B7 (zasoby niekonfabulowane), B9 (nie deklaruj), B19 (weryfikacja formy ≠ weryfikacja treści)
+- **Error type:** 3.3 Inference errors (hallucinations)
+- **Rules:** B7 (resources not confabulated), B9 (do not declare), B19 (form verification ≠ content verification)
 - **Status:** ✅ Confirmed
 
 ### **CS16: False certainty flip-flop API**
-- **Typ błędu:** 3.8 Calibration failures (false certainty)
-- **Reguły:** B8 (zdolność ≠ rzeczywistość), B22 (nie deklaruj stanu którego nie weryfikujesz), B17 (spojność całościowa)
+- **Error type:** 3.8 Calibration failures (false certainty)
+- **Rules:** B8 (capability ≠ reality), B22 (do not declare a state you do not verify), B17 (whole-response coherence)
 - **Status:** ✅ Confirmed (diagnostic quote: "operator won't check seconds")
 
 ### **CS17: Black box narrative (Yango NMN)**
-- **Typ błędu:** 3.6 Black box opacity
-- **Reguły:** B10 (każdy wniosek z widocznym statusem źródła), B11 (sekcja ograniczeń)
+- **Error type:** 3.6 Black box opacity
+- **Rules:** B10 (every conclusion with a visible source status), B11 (limitations section)
 - **Status:** ⚠️ Candidate (requires tool log verification)
 
 ### **CS18: Timeout/truncation**
-- **Typ błędu:** 3.4 System-level errors
-- **Reguły:** B9 (nie deklaruj co nie sprawdziłeś), B10 (status źródła)
+- **Error type:** 3.4 System-level errors
+- **Rules:** B9 (do not declare what you did not verify), B10 (source status)
 - **Status:** ⚠️ Candidate (requires context deepdive)
 
 ### **CS19: Reasoning fallacy (copper/frost)**
-- **Typ błędu:** 3.3 Inference errors (reasoning fallacy)
-- **Reguły:** B1 (język myślenia), B13 (nie licz czego nie policyłeś), B17 (spojność)
+- **Error type:** 3.3 Inference errors (reasoning fallacy)
+- **Rules:** B1 (language of thought), B13 (do not count what you did not count), B17 (coherence)
 - **Status:** ✅ Confirmed
 
 ### **CS20: Representativeness (electronics)**
-- **Typ błędu:** 3.1 Data-level errors (representativeness)
-- **Reguły:** B9 (nie deklaruj), B22 (pewność vs. rzeczywistość), B4 (snippet ≠ treść — format sugeruje pewność, treść ujawnia niepewność)
+- **Error type:** 3.1 Data-level errors (representativeness)
+- **Rules:** B9 (do not declare), B22 (certainty vs. reality), B4 (snippet ≠ content — the format suggests certainty, the content reveals uncertainty)
 - **Status:** ✅ Confirmed
 
 ---
 
 ## BINARY COVERAGE CALCULATION
 
-### **Reguły z confirmed case studies (CS13-CS20):**
+### **Rules with confirmed case studies (CS13-CS20):**
 
-| Reguła | Typ | Status | CS |
+| Rule | Type | Status | CS |
 |--------|-----|--------|-----|
-| **B1** | TWARDE | ✅ Covered | CS14, CS19 |
-| **B4** | TWARDE | ✅ Covered | CS20 |
-| **B7** | TWARDE | ✅ Covered | CS13, CS15 |
-| **B8** | TWARDE | ✅ Covered | CS13, CS16 |
-| **B9** | KALIBRACYJNE | ✅ Covered | CS15, CS18, CS20 |
-| **B10** | KALIBRACYJNE | ✅ Covered | CS17 |
-| **B11** | KALIBRACYJNE | ✅ Covered | CS17 |
-| **B13** | KALIBRACYJNE | ✅ Covered | CS19 |
-| **B17** | KALIBRACYJNE | ✅ Covered | CS16, CS19 |
-| **B19** | ROZSZERZONE | ✅ Covered | CS15 |
-| **B22** | ROZSZERZONE | ✅ Covered | CS14, CS16, CS20 |
+| **B1** | HARD | ✅ Covered | CS14, CS19 |
+| **B4** | HARD | ✅ Covered | CS20 |
+| **B7** | HARD | ✅ Covered | CS13, CS15 |
+| **B8** | HARD | ✅ Covered | CS13, CS16 |
+| **B9** | CALIBRATION | ✅ Covered | CS15, CS18, CS20 |
+| **B10** | CALIBRATION | ✅ Covered | CS17 |
+| **B11** | CALIBRATION | ✅ Covered | CS17 |
+| **B13** | CALIBRATION | ✅ Covered | CS19 |
+| **B17** | CALIBRATION | ✅ Covered | CS16, CS19 |
+| **B19** | EXTENDED | ✅ Covered | CS15 |
+| **B22** | EXTENDED | ✅ Covered | CS14, CS16, CS20 |
 
-### **Reguły bez potwierdzonych case studies w tym zestawie:**
+### **Rules with no confirmed case studies in this set:**
 
 B2, B3, B5, B6, B12, B14, B15, B16, B18, B20, B21, B23, B24, B25
 
@@ -77,19 +77,19 @@ B2, B3, B5, B6, B12, B14, B15, B16, B18, B20, B21, B23, B24, B25
 
 ## **BINARY COVERAGE: 11/25 = 44%**
 
-**Interpretacja:**
-- 11 reguł behawioralnych mają ≥1 confirmed/candidate case study
-- 14 reguł pozostaje bez konkretnego potwierdzonego przykładu w CS13-CS20
+**Interpretation:**
+- 11 behavioral rules have ≥1 confirmed/candidate case study
+- 14 rules remain with no concrete confirmed example in CS13-CS20
 
-**Uwaga:** To jest *tylko CS13-CS20*. Razem z CS1-CS12 pokrycie byłoby wyższe. Dla CV biorę **łączne pokrycie wszystkich 20 case studies**.
+**Note:** This is *CS13-CS20 only*. Together with CS1-CS12 the coverage would be higher. For the CV I take **the combined coverage of all 20 case studies**.
 
 ---
 
 ## **WEIGHTED DEPTH CALCULATION**
 
-Założenie: każda reguła mapuje na **przeciętnie 2-3 klasy błędów** (większość reguł jest cross-kategorialna)
+Assumption: each rule maps to **on average 2-3 error classes** (most rules are cross-categorical)
 
-| Reguła | Klasy błędów | Waga | CS count |
+| Rule | Error classes | Weight | CS count |
 |--------|--------------|------|----------|
 | B1 | 3.3, 3.8 | 2 | 2 |
 | B4 | 3.1, 3.3 | 2 | 1 |
@@ -103,40 +103,40 @@ Założenie: każda reguła mapuje na **przeciętnie 2-3 klasy błędów** (wię
 | B19 | 3.3, 3.6 | 2 | 1 |
 | B22 | 3.1, 3.8 | 2 | 3 |
 
-**Suma ważona:** (2+2+2+2+3+2+2+1+2+2+2) = **22 punkt-reguła-klasa**
+**Weighted sum:** (2+2+2+2+3+2+2+1+2+2+2) = **22 rule-class points**
 
-**Maksymalny potencjał:** 25 reguł × 12 klas = 300
+**Maximum potential:** 25 rules × 12 classes = 300
 
-**Głębokość ważona:** 22 / 300 = **7.3%**
+**Weighted depth:** 22 / 300 = **7.3%**
 
 ---
 
-## **PORÓWNANIE Z POPRZEDNIĄ OCENĄ**
+## **COMPARISON WITH THE PREVIOUS ASSESSMENT**
 
-| Metrika | Poprzednio (25 reguł) | Teraz (25 reguł) | Zmiana |
+| Metric | Previously (25 rules) | Now (25 rules) | Change |
 |---------|----------------------|------------------|--------|
-| Binary coverage | 83.3% (20/24) | 44% (11/25) | ⬇️ Spadek |
-| Weighted depth | 16.8% | 7.3% | ⬇️ Spadek |
+| Binary coverage | 83.3% (20/24) | 44% (11/25) | ⬇️ Decrease |
+| Weighted depth | 16.8% | 7.3% | ⬇️ Decrease |
 
-**Wyjaśnienie spadku:**
-- Poprzednia ocena była dla **~24 reguł** (liczba z CV była zaokrąglona)
-- Nowy system ma **25 reguł (B1-B25)** — dokładniej
-- CS13-CS20 to tylko 8 nowych, nie cały dataset
-- Biorę *ostrożnie* (candidate = nie liczy się w binary, tylko jako "pod obserwacją")
+**Explanation of the decrease:**
+- The previous assessment was for **~24 rules** (the CV figure was rounded)
+- The new system has **25 rules (B1-B25)** — more precise
+- CS13-CS20 are only 8 new ones, not the whole dataset
+- Taken *conservatively* (candidate = does not count toward binary, only as "under observation")
 
 ---
 
-## **INTERPRETACJA DLA CV (PROFESJONALNA)**
+## **INTERPRETATION FOR THE CV (PROFESSIONAL)**
 
-Dla Outlier:
+For Outlier:
 
 > Safety Framework Coverage (25 Behavioral Rules × 12 Error Classes):
 > - **Binary coverage:** 44% (11/25 rules have confirmed case studies)
 > - **Weighted depth:** 7.3% (multi-class validation depth)
 > - **Note:** CS1-CS12 provide additional historical coverage; CS13-CS20 recent verification. Conservative assessment — candidates excluded from binary count.
 
-**Czytaj:** "Mam konkretne case studies dla 11 z 25 reguł. Głębokość sprawdzenia jest niska, ale rosnąca (6 confirmed + 2 candidate w ostatniej rundzie). To nie jest 83% — to jest uczciwa ocena systemu, którego rozbudowuję iteracyjnie."
+**Read as:** "I have concrete case studies for 11 of 25 rules. The verification depth is low but growing (6 confirmed + 2 candidate in the last round). This is not 83% — it is an honest assessment of a system I am building out iteratively."
 
 ---
 
-**Gotowy do aktualizacji CV z tymi liczbami.**
+**Ready to update the CV with these figures.**
