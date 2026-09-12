@@ -29,6 +29,7 @@ Open to:
 **Analysis & Documentation**
 - Deep-dive error analysis (root cause, mechanism, risk classification)
 - Structured case study documentation (39 published case studies)
+- Cross-referenced 46 independently verified findings against ~21,475 entries across three established AI-incident registries (AIID, OECD.AI, AIAAIC) — source-verification discipline applied at scale, not just within this portfolio
 - Cross-reference verification and audit trails
 - Technical writing (Polish/English, technical + philosophical)
 
