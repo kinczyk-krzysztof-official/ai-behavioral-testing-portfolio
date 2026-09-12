@@ -84,14 +84,16 @@ Both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full for each, checked against 
 
 **CS38 (added 05.09.2026, incident 19.08.2026) — heightened redaction, reviewed:** the exact nature of the image-modification request and every model-generated prompt were deliberately omitted; only the model's refusal→pressure→reversal mechanism is described. The operator's relationship to the person depicted was redacted. No image, no name, no reconstructable request. Cleared for publication in this redacted form.
 
-Sanitization complete through CS38.
+**CS39 (added 10.09.2026, incident 09.09.2026) — reviewed, ✅ Clean:** both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens). Content is two Claude account instances (the operator's own accounts, no third party), a job-platform research task, and platform names (Outlier, Mindrift, Alignerr, Appen, DataAnnotation) that are already public elsewhere in this portfolio/CV. The operator-memory context and the full CP0–CP9 specification are described structurally rather than reproduced (per the file's own redaction note). No PII found. Cleared for publication.
+
+Sanitization complete through CS39.
 
 ---
 
 ## What to publish
 
-- ✅ All CS13–CS38 TRANSCRIPT.md
-- ✅ All CS13–CS38 ANALYSIS.md
+- ✅ All CS13–CS39 TRANSCRIPT.md
+- ✅ All CS13–CS39 ANALYSIS.md
 - ✅ METHODOLOGY.md
 - ✅ README.md
 - ✅ CV.md
@@ -101,4 +103,4 @@ Sanitization complete through CS38.
 
 ---
 
-**Conclusion:** The entire portfolio (CS01–CS38) is ready for publication. No serious security risks found. One change needed in CS09; CS38 published in a heightened-redaction form (see above).
+**Conclusion:** The entire portfolio (CS01–CS39) is ready for publication. No serious security risks found. One change needed in CS09; CS38 published in a heightened-redaction form; CS39 reviewed clean (see above).

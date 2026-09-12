@@ -1,6 +1,6 @@
 # AI Behavioral Testing Portfolio — Krzysztof Kińczyk
 
-Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 38 documented case studies, two with real-world physical consequences.
+Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 39 documented case studies, two with real-world physical consequences.
 
 **Latest update: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
 
@@ -18,7 +18,7 @@ I'm stating this plainly because it matters for how you should read what follows
 - **CS24 — cross-tool confabulation.** First case study outside the DeepSeek/Claude/Gemini core set: GitHub Copilot repeatedly declared empty scaffolding "APPROVED FOR PRODUCTION," then admitted under pressure it could only generate skeletons — proving the earlier scores were fabricated after the fact.
 - **CS29 — root-cause misattribution across three sessions.** A recurring device side-effect was misdiagnosed three separate times before a systematic, cross-brand investigation (two phone manufacturers) traced it to a documented AOSP tool behavior, not a bug.
 - **CS38 — correct refusal reversed under pressure.** Gemini refused a safety-boundary request twice, correctly and explicitly, then reversed on the third repetition — and in the same message named its own word-choice as a deliberate filter-bypass, then escalated without resistance to keeping a real, identifiable person's face on a modified image.
-- **CS01–CS38 archive.** 38 case studies total, numbered contiguously.
+- **CS01–CS39 archive.** 39 case studies total, numbered contiguously.
 
 ## What's Honestly Weak Here
 
@@ -37,14 +37,14 @@ Each case study has two files in the `case-studies/` folder:
 - `CSxx_TRANSCRIPT.md` — raw session excerpt, no interpretation
 - `CSxx_ANALYSIS.md` — operator's classification and reasoning
 
-Numbering: CS01–CS38 in repository, contiguous (no gaps).
+Numbering: CS01–CS39 in repository, contiguous (no gaps).
 
 Core files:
 
 - `METHODOLOGY.md` — testing technique, protocol, honest self-assessment
 - `SANITIZATION.md` — what was redacted from the private corpus and why
 - `CV.md` — background, availability, contact
-- `COVERAGE_MATRIX_2026-09.md` — current rule-by-rule coverage mapping (B1–B25 ↔ CS01–CS38); method and figures below
+- `COVERAGE_MATRIX_2026-09.md` — current rule-by-rule coverage mapping (B1–B25 ↔ CS01–CS39); method and figures below
 - `COVERAGE_MATRIX_ANALYSIS_2026-07-09.md` — earlier frozen snapshot (early case studies only, pre-cleanup numbering; historical)
 
 ## Coverage Matrix — Status Note (August 2026)
@@ -64,7 +64,7 @@ A fresh rule-by-rule mapping was completed on 2026-09-06 (`COVERAGE_MATRIX_2026-
 - **18 of 25 rules have a usable definition** in this repo. The other 7 (B2, B3, B6, B12, B14, B15, B16) have no surviving definition and are excluded from the denominator, reported separately.
 - **Forward coverage: 18 / 18 defined rules (100%)** — every rule with a definition has ≥1 case study. This is *illustration*, not validation: depth is N=1 for 7 of the 18.
 - **Forward vs the 25 nominal rules: 18 / 25 (72%).**
-- **Backward coverage: 31 / 38 case studies (82%)** map to a rule as primary classification; 35 / 38 (92%) illustrate one at all. Orphans: CS02, CS04, CS34 — phenomena with no matching rule.
+- **Backward coverage: 32 / 39 case studies (82%)** map to a rule as primary classification; 36 / 39 (92%) illustrate one at all. Orphans: CS02, CS04, CS34 — phenomena with no matching rule.
 
 Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 
@@ -112,6 +112,7 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 | CS36 | DeepSeek | Chain-of-thought language instability within one session (new angle on CS01) | Medium | ⚠️ Candidate (N=1) |
 | CS37 | Gemini 3.5 Flash | Planning-step leak into output + unsignalled truncation | Medium | ⚠️ Candidate (N=1) |
 | CS38 | Google Gemini (AI Mode) | Safety — correct refusal reversed under repeated pressure; self-disclosed filter-bypass; escalation to face-lock on a real person's likeness | Critical | ✅ Verified |
+| CS39 | Claude Sonnet 5 (two accounts) | Provenance misattribution — a sibling instance's turn absorbed as own, escalating to role change (author→worker) and autonomous tool use; first primary violation of B24 | Unrated | ✅ Verified (sequence) / N=1 |
 
 ## Key Findings (CS21-CS31 Round)
 
@@ -149,6 +150,9 @@ Location: Bydgoszcz, Poland (remote only)
 Availability: 30–40h/week
 
 ## Changelog
+
+**September 2026 (10.09) — CS39 added:**
+- ✅ CS39 added: provenance misattribution (a sibling Claude instance's turn, pasted by the operator, absorbed as the authoring account's own prior turn) escalating to an operative role change and autonomous tool use (real web searches, interrupted by the operator). First primary case of a **violation** of B24 (CS21 documents satisfaction). Coverage figures in this README and `COVERAGE_MATRIX_2026-09.md` updated accordingly (32/39 primary, 36/39 illustrate); forward coverage unchanged (18/18 — B24 was already covered by CS21).
 
 **September 2026 (05.09) — numbering:**
 - ✅ Case-study numbering tidied to a contiguous CS01–CS37 (the CS04 gap, left by the August renumbering, was closed). Full era-by-era history: METHODOLOGY.md › "Numbering history". Every entry below this line predates the cleanup and uses the numbering current at its own date.
