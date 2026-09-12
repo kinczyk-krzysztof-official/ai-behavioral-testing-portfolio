@@ -30,6 +30,12 @@ Every case study in this repository was reviewed only by the operator and by AI 
 
 The strongest parts of this portfolio (CS06, CS10–CS12) do not depend on any of those scores — they stand on documented, specific, checkable events. The weakest part is structural: there has been no external validation of any kind. Treat this repository as a well-documented, self-collected evidence set — useful raw material for evaluation — not as a finished, externally audited assessment.
 
+## Verification method for the broader error catalog (September 2026)
+
+A separate, restrictive verification effort was run in September 2026 alongside this repository, cross-referencing behavioral findings against three established public AI incident registries (AI Incident Database, OECD AI Incidents Monitor, AIAAIC). The method follows the practice used by those registries themselves — independent dual review before inclusion (see AIID's submission process; OECD.AI's incidents methodology) — applied here as: two independent sources per finding, plus an adversarial re-check, with findings explicitly split into confirmed / unverified / rejected rather than folded into a single pass/fail.
+
+This is not a novel technique — it mirrors standard incident-registry practice, applied to a smaller, self-collected corpus. What it adds here is discipline this repository didn't previously have: no finding is called "verified" on the strength of a single source or a single read-through.
+
 ## Safety Framework Part B — B18, B20, B21, B23, B24, B25 (added August 2026)
 
 **Context.** The Safety Framework Part B (25 behavioral rules, B1–B25) was originally finalized 06.07.2026 in a file (`SKILL_reguly-ai-testera_v3.6`) that no longer exists — deleted from both local disk and Google Drive before its content could be migrated into this repository. B1–B17 survived in usable form elsewhere and are documented in full. Of the remaining eight, two already had working definitions with mapped case studies (see COVERAGE_MATRIX_ANALYSIS_2026-07-09.md): **B19** (form verification ≠ content verification) and **B22** (don't declare a state you haven't verified). The other six had no surviving content.
