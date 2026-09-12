@@ -77,3 +77,5 @@ Deliberately **not** rewritten to current numbering (each records a specific pas
 - External source filenames cited in transcripts (`SESSION_CL_*`) — real files that keep their original names.
 
 Note: "CS38" denotes different case studies before and after 05.09.2026 — pre-cleanup CS38 (planning-step leak) is now CS37; the current CS38 is the Gemini refusal-reversal case.
+
+Note (September 2026): CS40–CS42 mark the first instances in this corpus verified by a separate Claude instance reading directly from a session log, rather than from the operator's own account — including one self-correction made mid-verification. Not published in this repository.
