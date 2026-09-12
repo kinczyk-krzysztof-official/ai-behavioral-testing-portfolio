@@ -1,7 +1,7 @@
 # Coverage Matrix — September 2026
 
 **Date:** 2026-09-06
-**Scope:** Safety Framework Part B (behavioral rules) ↔ case studies CS01–CS38 (current numbering).
+**Scope:** Safety Framework Part B (behavioral rules) ↔ case studies CS01–CS39 (current numbering; CS39 added 10.09.2026, folded into this matrix without changing the 2026-09-06 computation date for CS01–CS38).
 **Supersedes for currency:** the coverage figures in `COVERAGE_MATRIX_ANALYSIS_2026-07-09.md` (that file stays frozen as a dated Era-1 snapshot; see `METHODOLOGY.md` › "Numbering history"). It does **not** replace that file — it is a fresh mapping against the current corpus.
 
 ---
@@ -49,7 +49,7 @@ The framework nominally has 25 rules (B1–B25). Of these:
 | B21 | Recognize evidence already present in context *(new 2026-08)* | CS26 | 1 | CS25, CS27, CS33 |
 | B22 | Do not declare a state you have not verified | CS06, CS09, CS10, CS11, CS14, CS16, CS20, CS22, CS27, CS28, CS29, CS31, CS32, CS35, CS38 | 15 | — |
 | B23 | Persist a working solution to durable memory before the session ends *(new 2026-08)* | CS30 | 1 | CS29 |
-| B24 | Verify provenance before adopting content as your own *(new 2026-08)* | CS21 | 1 | — |
+| B24 | Verify provenance before adopting content as your own *(new 2026-08)* | CS21, CS39 | 2 | — |
 | B25 | Tone / commitment rules do not drift without explicit consent *(new 2026-08)* | CS25, CS38 | 2 | CS11, CS33 |
 
 **Every one of the 18 defined rules has ≥1 primary case study.**
@@ -62,8 +62,8 @@ The framework nominally has 25 rules (B1–B25). Of these:
 |---|---|---|
 | **Forward, vs 18 defined rules** | **18 / 18 = 100%** | Every rule with a usable definition is exercised by ≥1 case study. This is the weakest criterion — it is *not* a claim of validation. Depth is uneven: 1 case study for B5, B11, B19, B20, B21, B23, B24; up to 15 for B22. |
 | **Forward, vs 25 nominal rules** | **18 / 25 = 72%** | 7 rules (B2, B3, B6, B12, B14, B15, B16) have no definition in the repo and cannot be assessed. |
-| **Backward, primary classification** | **31 / 38 = 82%** | 31 case studies map to at least one rule as their primary classification. |
-| **Backward, any illustration** | **35 / 38 = 92%** | Including secondary aspects. |
+| **Backward, primary classification** | **32 / 39 = 82%** | 32 case studies map to at least one rule as their primary classification. |
+| **Backward, any illustration** | **36 / 39 = 92%** | Including secondary aspects. |
 
 **Orphan case studies (map to no defined rule, primary or secondary): CS02, CS04, CS34.**
 

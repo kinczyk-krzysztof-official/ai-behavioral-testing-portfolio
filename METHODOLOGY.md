@@ -62,7 +62,7 @@ Case-study numbers have been reassigned twice. Only identifiers changed — no c
 |---|---|---|
 | 1 | until 15.08.2026 | Original numbering, as case studies were written. |
 | 2 | 15.08.2026 (commit 27970d7) | CS04–CS31 → CS05–CS32 to insert a missing early case; a CS13 numbering collision was resolved in the same pass. Left a gap at CS04. |
-| 3 | 05.09.2026 | CS05–CS38 → CS04–CS37, closing the CS04 gap. A separate, unrelated case (Gemini refusal reversal, incident 19.08.2026) was then added as a new **CS38**. Repository runs CS01–CS38, contiguous. |
+| 3 | 05.09.2026 | CS05–CS38 → CS04–CS37, closing the CS04 gap. A separate, unrelated case (Gemini refusal reversal, incident 19.08.2026) was then added as a new **CS38**. Repository ran CS01–CS38, contiguous, until CS39 was added 10.09.2026 (provenance misattribution / B24 violation). Repository now runs CS01–CS39, contiguous. |
 
 Deliberately **not** rewritten to current numbering (each records a specific past state):
 - `COVERAGE_MATRIX_ANALYSIS_2026-07-09.md` — a dated snapshot, entirely in Era 1 numbering.
