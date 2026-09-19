@@ -1,20 +1,20 @@
 # CV — Krzysztof Kińczyk
 
-**AI Behavioral Tester | Red Teamer | Independent Researcher**
+**AI Behavioral Tester | LLM Evaluation & Quality Assurance | Independent Researcher**
 
 📍 Bydgoszcz, Poland | 📧 kinczyk.krzysztof.official@gmail.com
 GitHub: kinczyk-krzysztof-official
 
 ## Executive Summary
 
-Independent AI behavioral tester and red teamer with 14+ months of systematic LLM evaluation (June 2025 – present). Built and documented 39 case studies (CS01–CS39) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and alignment gaps.
+Independent AI behavioral tester with 14+ months of systematic LLM evaluation (June 2025 – present). Built and documented 40 case studies (CS01–CS39, CS44) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and alignment gaps.
 
 **Note on scoring:** an earlier version of this CV cited a numeric portfolio score ("8.93/10"). That figure came from an AI-scored process later documented in METHODOLOGY.md as using a flawed scale (a 6–10 range that mathematically guarantees a "good" floor regardless of content). It has been removed rather than corrected, since no re-scored, methodologically sound replacement exists yet — see METHODOLOGY.md for the full disclosure.
 
 Open to:
 
 ✅ AI evaluation roles
-✅ Red team / adversarial testing
+✅ Quality assurance for AI systems
 ✅ Behavioral assessment & taxonomy development
 
 ## Core Competencies
@@ -28,7 +28,7 @@ Open to:
 
 **Analysis & Documentation**
 - Deep-dive error analysis (root cause, mechanism, risk classification)
-- Structured case study documentation (39 published case studies)
+- Structured case study documentation (40 published case studies)
 - Cross-referenced 46 independently verified findings against ~21,475 entries across three established AI-incident registries (AIID, OECD.AI, AIAAIC) — source-verification discipline applied at scale, not just within this portfolio
 - Cross-reference verification and audit trails
 - Technical writing (Polish/English, technical + philosophical)
@@ -39,7 +39,7 @@ Open to:
 - Manual testing (no automation budget — 100% hand analysis)
 - Git/GitHub portfolio management
 
-## Portfolio — 39 Case Studies (CS01–CS39)
+## Portfolio — 40 Case Studies (CS01–CS39, CS44)
 
 **Case Studies 1–12** (Archived, June 2025 – June 2026)
 - Language inconsistency, physical safety errors (real consequences), trust/relapse cycles, attribution errors, hallucinations, calibration failures
@@ -110,8 +110,8 @@ A good evaluation framework prioritizes:
 ✅ Cross-model comparative data
 ✅ Detection of deliberateness, not just random hallucination
 
-I bring exactly that: 14+ months of systematic testing, 39 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
+I bring exactly that: 14+ months of systematic testing, 40 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
 
 ---
-Last updated: 5 września 2026
+Last updated: 19 września 2026
 Repository: github.com/kinczyk-krzysztof-official/ai-behavioral-testing-portfolio
