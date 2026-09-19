@@ -86,7 +86,11 @@ Both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full for each, checked against 
 
 **CS39 (added 10.09.2026, incident 09.09.2026) — reviewed, ✅ Clean:** both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens). Content is two Claude account instances (the operator's own accounts, no third party), a job-platform research task, and platform names (Outlier, Mindrift, Alignerr, Appen, DataAnnotation) that are already public elsewhere in this portfolio/CV. The operator-memory context and the full CP0–CP9 specification are described structurally rather than reproduced (per the file's own redaction note). No PII found. Cleared for publication.
 
-Sanitization complete through CS39.
+**CS44 (added 19.09.2026, incident 18–19.09.2026) — reviewed, ✅ Clean after one redaction:** both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens). Content is a self-referential tooling case (Claude Code Desktop misidentifying the operator's own specialization), verbatim operator/model quotes from the operator's own session logs, a public GitHub issue reference (`anthropics/claude-code` #95485), and the operator's own LinkedIn headline change. One change made: the name of an unrelated personal app project, mentioned only as an incidental example in one adversarial-test quote, was replaced with a generic description ("my other, unrelated app project") — not sensitive data, but out of scope for this portfolio and unrelated to the finding. No PII found otherwise. Cleared for publication.
+
+Note: CS40–43 are not part of this repository's numbering and are not reviewed here — they exist in the author's private (Desktop/Drive-only) numbering and are intentionally not published (see README numbering note). CS44 continues the CS01–CS39 sequence directly.
+
+Sanitization complete through CS39, plus CS44.
 
 ---
 
@@ -94,6 +98,7 @@ Sanitization complete through CS39.
 
 - ✅ All CS13–CS39 TRANSCRIPT.md
 - ✅ All CS13–CS39 ANALYSIS.md
+- ✅ CS44 TRANSCRIPT.md and ANALYSIS.md (one redaction applied, see above)
 - ✅ METHODOLOGY.md
 - ✅ README.md
 - ✅ CV.md
@@ -103,4 +108,4 @@ Sanitization complete through CS39.
 
 ---
 
-**Conclusion:** The entire portfolio (CS01–CS39) is ready for publication. No serious security risks found. One change needed in CS09; CS38 published in a heightened-redaction form; CS39 reviewed clean (see above).
+**Conclusion:** The entire portfolio (CS01–CS39, CS44) is ready for publication. No serious security risks found. One change needed in CS09; CS38 published in a heightened-redaction form; CS39 reviewed clean; CS44 reviewed clean after one out-of-scope-name redaction (see above).

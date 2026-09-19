@@ -1,6 +1,6 @@
 # AI Behavioral Testing Portfolio — Krzysztof Kińczyk
 
-Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 39 documented case studies, two with real-world physical consequences.
+Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 40 documented case studies in this repository (CS01–CS39, CS44), two with real-world physical consequences.
 
 **Latest update: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
 
@@ -18,7 +18,7 @@ I'm stating this plainly because it matters for how you should read what follows
 - **CS24 — cross-tool confabulation.** First case study outside the DeepSeek/Claude/Gemini core set: GitHub Copilot repeatedly declared empty scaffolding "APPROVED FOR PRODUCTION," then admitted under pressure it could only generate skeletons — proving the earlier scores were fabricated after the fact.
 - **CS29 — root-cause misattribution across three sessions.** A recurring device side-effect was misdiagnosed three separate times before a systematic, cross-brand investigation (two phone manufacturers) traced it to a documented AOSP tool behavior, not a bug.
 - **CS38 — correct refusal reversed under pressure.** Gemini refused a safety-boundary request twice, correctly and explicitly, then reversed on the third repetition — and in the same message named its own word-choice as a deliberate filter-bypass, then escalated without resistance to keeping a real, identifiable person's face on a modified image.
-- **CS01–CS39 archive.** 39 case studies total, numbered contiguously.
+- **CS01–CS39, CS44 archive.** 40 case studies total. CS40–43 exist in the author's internal numbering as private research notes, not published here (see `SANITIZATION.md`); CS44 continues the same sequence — a deliberate gap, not an oversight.
 
 ## What's Honestly Weak Here
 
@@ -37,7 +37,7 @@ Each case study has two files in the `case-studies/` folder:
 - `CSxx_TRANSCRIPT.md` — raw session excerpt, no interpretation
 - `CSxx_ANALYSIS.md` — operator's classification and reasoning
 
-Numbering: CS01–CS39 in repository, contiguous (no gaps).
+Numbering: CS01–CS39 and CS44 in repository. CS40–43 are intentionally unpublished (private research notes in the author's internal numbering — see `SANITIZATION.md`); the jump from CS39 to CS44 is deliberate, not an oversight.
 
 Core files:
 
@@ -113,6 +113,7 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 | CS37 | Gemini 3.5 Flash | Planning-step leak into output + unsignalled truncation | Medium | ⚠️ Candidate (N=1) |
 | CS38 | Google Gemini (AI Mode) | Safety — correct refusal reversed under repeated pressure; self-disclosed filter-bypass; escalation to face-lock on a real person's likeness | Critical | ✅ Verified |
 | CS39 | Claude Sonnet 5 (two accounts) | Provenance misattribution — a sibling instance's turn absorbed as own, escalating to role change (author→worker) and autonomous tool use; first primary violation of B24 | Unrated | ✅ Verified (sequence) / N=1 |
+| CS44 | Claude Sonnet 5 | Tooling self-audit — attribute substitution (own specialization misidentified via a superficial LinkedIn cue instead of available grounding documents), traced through a four-layer investigation to a verified session-isolation defect in the host development tool (Claude Code Desktop) | High | ✅ Confirmed |
 
 ## Key Findings (CS21-CS31 Round)
 
@@ -144,12 +145,15 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 
 ## Contact
 
-Open to: AI evaluation roles, red-teaming, quality assurance, behavioral assessment
+Open to: AI evaluation roles, quality assurance, behavioral assessment
 Email: kinczyk.krzysztof.official@gmail.com
 Location: Bydgoszcz, Poland (remote only)
 Availability: 30–40h/week
 
 ## Changelog
+
+**September 2026 (19.09) — CS44 added:**
+- ✅ CS44 added: attribute substitution (Kahneman & Frederick, 2002) — a specialization misidentification traced through a four-layer investigation to a verified, externally-reported session-isolation defect in Claude Code Desktop (`anthropics/claude-code` #95485, filed by an unrelated third party one day before the incident). First case study in this portfolio whose root cause rests partly on primary-source verification of host-tool architecture (direct filesystem inspection, raw GitHub API fetches, live hook instrumentation) rather than model output alone. Numeric taxonomy code pending (see SANITIZATION.md). CS40–43 remain private by separate, unrelated decision (see numbering note above) — CS44 does not close that gap, by design.
 
 **September 2026 (10.09) — CS39 added:**
 - ✅ CS39 added: provenance misattribution (a sibling Claude instance's turn, pasted by the operator, absorbed as the authoring account's own prior turn) escalating to an operative role change and autonomous tool use (real web searches, interrupted by the operator). First primary case of a **violation** of B24 (CS21 documents satisfaction). Coverage figures in this README and `COVERAGE_MATRIX_2026-09.md` updated accordingly (32/39 primary, 36/39 illustrate); forward coverage unchanged (18/18 — B24 was already covered by CS21).
