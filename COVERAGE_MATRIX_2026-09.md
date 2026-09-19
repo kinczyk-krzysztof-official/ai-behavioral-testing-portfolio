@@ -1,7 +1,7 @@
 # Coverage Matrix — September 2026
 
 **Date:** 2026-09-06
-**Scope:** Safety Framework Part B (behavioral rules) ↔ case studies CS01–CS39 (current numbering; CS39 added 10.09.2026, folded into this matrix without changing the 2026-09-06 computation date for CS01–CS38).
+**Scope:** Safety Framework Part B (behavioral rules) ↔ case studies CS01–CS39, CS44 (current numbering; CS39 added 10.09.2026 and CS44 added 19.09.2026, both folded into this matrix without changing the 2026-09-06 computation date for CS01–CS38).
 **Supersedes for currency:** the coverage figures in `COVERAGE_MATRIX_ANALYSIS_2026-07-09.md` (that file stays frozen as a dated Era-1 snapshot; see `METHODOLOGY.md` › "Numbering history"). It does **not** replace that file — it is a fresh mapping against the current corpus.
 
 ---
@@ -20,20 +20,22 @@ Here:
 
 The framework nominally has 25 rules (B1–B25). Of these:
 
-- **18 rules have a usable definition** in this repository (label and/or text): B1, B4, B5, B7, B8, B9, B10, B11, B13, B17, B18, B19, B20, B21, B22, B23, B24, B25.
+- **19 rules have a usable definition** in this repository (label and/or text): B1, B2, B4, B5, B7, B8, B9, B10, B11, B13, B17, B18, B19, B20, B21, B22, B23, B24, B25.
   - B18, B20, B21, B23, B24, B25 were **newly authored in August 2026** (see `METHODOLOGY.md`), not recovered originals.
+  - B2 was **newly authored 19.09.2026**, grounded in CS44 (see `METHODOLOGY.md`, "Safety Framework Part B — B2"), likewise not a recovered original.
   - B5's definition survives only as quoted in CS24 ("a promise of improvement must be kept within the same session").
-- **7 rules have no surviving definition or label anywhere in this repository**: **B2, B3, B6, B12, B14, B15, B16**. The source file (`SKILL_reguly-ai-testera_v3.6`, deleted) is unrecoverable. These are treated as *unassessable items* and excluded from the honest denominator, reported separately below.
+- **6 rules have no surviving definition or label anywhere in this repository**: **B3, B6, B12, B14, B15, B16**. The source file (`SKILL_reguly-ai-testera_v3.6`, deleted) is unrecoverable. These are treated as *unassessable items* and excluded from the honest denominator, reported separately below.
 
 ---
 
-## Forward coverage — 18 defined rules
+## Forward coverage — 19 defined rules
 
 "CS (primary)" = the rule is a primary classification of that case study. "also" = illustrated as a secondary aspect.
 
 | Rule | Definition | CS (primary) | Depth | Also illustrated by |
 |---|---|---|---|---|
 | B1 | Chain-of-thought / processing language consistent with what the model declares | CS01, CS14, CS19, CS36 | 4 | — |
+| B2 | Prefer available grounding over a superficial proxy *(new 2026-09)* | CS44 | 1 | — |
 | B4 | Response format must not imply more certainty than the content supports | CS20, CS35 | 2 | — |
 | B5 | A promise of improvement must be kept within the same session | CS24 | 1 | — |
 | B7 | External resources (files, profiles, URLs, citations) not confabulated | CS05, CS13, CS15, CS24 | 4 | — |
@@ -52,7 +54,7 @@ The framework nominally has 25 rules (B1–B25). Of these:
 | B24 | Verify provenance before adopting content as your own *(new 2026-08)* | CS21, CS39 | 2 | — |
 | B25 | Tone / commitment rules do not drift without explicit consent *(new 2026-08)* | CS25, CS38 | 2 | CS11, CS33 |
 
-**Every one of the 18 defined rules has ≥1 primary case study.**
+**Every one of the 19 defined rules has ≥1 primary case study.**
 
 ---
 
@@ -60,10 +62,10 @@ The framework nominally has 25 rules (B1–B25). Of these:
 
 | Measure | Value | Reading |
 |---|---|---|
-| **Forward, vs 18 defined rules** | **18 / 18 = 100%** | Every rule with a usable definition is exercised by ≥1 case study. This is the weakest criterion — it is *not* a claim of validation. Depth is uneven: 1 case study for B5, B11, B19, B20, B21, B23, B24; up to 15 for B22. |
-| **Forward, vs 25 nominal rules** | **18 / 25 = 72%** | 7 rules (B2, B3, B6, B12, B14, B15, B16) have no definition in the repo and cannot be assessed. |
-| **Backward, primary classification** | **32 / 39 = 82%** | 32 case studies map to at least one rule as their primary classification. |
-| **Backward, any illustration** | **36 / 39 = 92%** | Including secondary aspects. |
+| **Forward, vs 19 defined rules** | **19 / 19 = 100%** | Every rule with a usable definition is exercised by ≥1 case study. This is the weakest criterion — it is *not* a claim of validation. Depth is uneven: 1 case study for B2, B5, B11, B19, B20, B21, B23, B24; up to 15 for B22. |
+| **Forward, vs 25 nominal rules** | **19 / 25 = 76%** | 6 rules (B3, B6, B12, B14, B15, B16) have no definition in the repo and cannot be assessed. |
+| **Backward, primary classification** | **33 / 40 = 83%** | 33 case studies map to at least one rule as their primary classification. |
+| **Backward, any illustration** | **37 / 40 = 93%** | Including secondary aspects. |
 
 **Orphan case studies (map to no defined rule, primary or secondary): CS02, CS04, CS34.**
 
@@ -80,9 +82,9 @@ Two further case studies map only weakly and look like candidates for rules the 
 
 ## What this does and does not say
 
-- It says: **the 18 rules for which a definition exists are each backed by at least one concrete, documented case; the corpus does not obviously contradict the framework; and depth is thin (N=1) for 7 of them.**
+- It says: **the 19 rules for which a definition exists are each backed by at least one concrete, documented case; the corpus does not obviously contradict the framework; and depth is thin (N=1) for 8 of them.**
 - It does not say: "the portfolio provides 100% safety coverage." The criterion is *illustration*, not *adequacy*. A single case per rule is the floor, not a strong result.
-- The 7 undefined rules and the 3 orphan case studies together indicate the rule set is **incomplete relative to the phenomena actually observed** — reconstructing or renumbering B1–B25 is a separate open task.
+- The 6 undefined rules and the 3 orphan case studies together indicate the rule set is **incomplete relative to the phenomena actually observed** — reconstructing or renumbering B1–B25 is a separate open task.
 - No weighted or "depth" percentage is given, deliberately: those require arbitrary constants and would manufacture false precision. Rigor would be increased by a stronger criterion (e.g. requiring independent replication per rule), not by re-weighting this one.
 
 ---

@@ -1,7 +1,7 @@
 # CS30_ANALYSIS.md
 
 **Case Study:** CS30
-**Error type:** [TO BE ASSIGNED BY THE OPERATOR]. Descriptively: a valuable problem-solving result not saved to durable memory (persistence-class), distinct from a wrong cause attribution (CS29) and from a failure to disclose scope (CS31).
+**Error type:** **B23** (see METHODOLOGY.md, "Safety Framework Part B — B18, B20, B21, B23, B24, B25"). Descriptively: a valuable problem-solving result not saved to durable memory (persistence-class), distinct from a wrong cause attribution (CS29) and from a failure to disclose scope (CS31).
 **Model:** Claude Sonnet 5
 **Incident date:** original work ~2 weeks before 13.08.2026 (unknown/unidentified session), reproduced 13.08.2026
 **Status:** ✅ VERIFIED (memory search + this session's record confirming no earlier save)
