@@ -44,7 +44,7 @@ Core files:
 - `METHODOLOGY.md` — testing technique, protocol, honest self-assessment
 - `SANITIZATION.md` — what was redacted from the private corpus and why
 - `CV.md` — background, availability, contact
-- `COVERAGE_MATRIX_2026-09.md` — current rule-by-rule coverage mapping (B1–B25 ↔ CS01–CS39); method and figures below
+- `COVERAGE_MATRIX_2026-09.md` — current rule-by-rule coverage mapping (B1–B25 ↔ CS01–CS39, CS44); method and figures below
 - `COVERAGE_MATRIX_ANALYSIS_2026-07-09.md` — earlier frozen snapshot (early case studies only, pre-cleanup numbering; historical)
 
 ## Coverage Matrix — Status Note (August 2026)
@@ -61,10 +61,10 @@ Because six of the twenty-five rule definitions are new as of this month, and no
 
 A fresh rule-by-rule mapping was completed on 2026-09-06 (`COVERAGE_MATRIX_2026-09.md`); it supersedes the currency of the August note above (which stays as a dated record). Method: a rule is "covered" if ≥1 case study documents an instance of it (*requirements coverage* — the weakest adequacy criterion; ISTQB; Staats et al., NASA Formal Methods 2010). No weighting.
 
-- **18 of 25 rules have a usable definition** in this repo. The other 7 (B2, B3, B6, B12, B14, B15, B16) have no surviving definition and are excluded from the denominator, reported separately.
-- **Forward coverage: 18 / 18 defined rules (100%)** — every rule with a definition has ≥1 case study. This is *illustration*, not validation: depth is N=1 for 7 of the 18.
-- **Forward vs the 25 nominal rules: 18 / 25 (72%).**
-- **Backward coverage: 32 / 39 case studies (82%)** map to a rule as primary classification; 36 / 39 (92%) illustrate one at all. Orphans: CS02, CS04, CS34 — phenomena with no matching rule.
+- **19 of 25 rules have a usable definition** in this repo (B2 added 19.09.2026, grounded in CS44 — see METHODOLOGY.md). The other 6 (B3, B6, B12, B14, B15, B16) have no surviving definition and are excluded from the denominator, reported separately.
+- **Forward coverage: 19 / 19 defined rules (100%)** — every rule with a definition has ≥1 case study. This is *illustration*, not validation: depth is N=1 for 8 of the 19.
+- **Forward vs the 25 nominal rules: 19 / 25 (76%).**
+- **Backward coverage: 33 / 40 case studies (83%)** map to a rule as primary classification; 37 / 40 (93%) illustrate one at all. Orphans: CS02, CS04, CS34 — phenomena with no matching rule.
 
 Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 
@@ -141,7 +141,7 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 
 **If you're building your own taxonomy:**
 - `METHODOLOGY.md` — Error taxonomy (8 categories, 26 types)
-- Note that B18, B20, B21, B23, B24, B25 were newly authored in August 2026 (not part of the original scoring era) if you're trying to reuse the Safety Framework Part B numbering
+- Note that B18, B20, B21, B23, B24, B25 were newly authored in August 2026 and B2 in September 2026 (none part of the original scoring era) if you're trying to reuse the Safety Framework Part B numbering
 
 ## Contact
 
@@ -153,7 +153,7 @@ Availability: 30–40h/week
 ## Changelog
 
 **September 2026 (19.09) — CS44 added:**
-- ✅ CS44 added: attribute substitution (Kahneman & Frederick, 2002) — a specialization misidentification traced through a four-layer investigation to a verified, externally-reported session-isolation defect in Claude Code Desktop (`anthropics/claude-code` #95485, filed by an unrelated third party one day before the incident). First case study in this portfolio whose root cause rests partly on primary-source verification of host-tool architecture (direct filesystem inspection, raw GitHub API fetches, live hook instrumentation) rather than model output alone. Numeric taxonomy code pending (see SANITIZATION.md). CS40–43 remain private by separate, unrelated decision (see numbering note above) — CS44 does not close that gap, by design.
+- ✅ CS44 added: attribute substitution (Kahneman & Frederick, 2002) — a specialization misidentification traced through a four-layer investigation to a verified, externally-reported session-isolation defect in Claude Code Desktop (`anthropics/claude-code` #95485, filed by an unrelated third party one day before the incident). First case study in this portfolio whose root cause rests partly on primary-source verification of host-tool architecture (direct filesystem inspection, raw GitHub API fetches, live hook instrumentation) rather than model output alone. Numeric taxonomy code: **B2** (see METHODOLOGY.md, "Safety Framework Part B — B2"; assigned 19.09.2026, same day). Coverage figures in this README and `COVERAGE_MATRIX_2026-09.md` updated accordingly (33/40 primary, 37/40 illustrate; forward 19/19, 19/25 nominal). CS40–43 remain private by separate, unrelated decision (see numbering note above) — CS44 does not close that gap, by design.
 
 **September 2026 (10.09) — CS39 added:**
 - ✅ CS39 added: provenance misattribution (a sibling Claude instance's turn, pasted by the operator, absorbed as the authoring account's own prior turn) escalating to an operative role change and autonomous tool use (real web searches, interrupted by the operator). First primary case of a **violation** of B24 (CS21 documents satisfaction). Coverage figures in this README and `COVERAGE_MATRIX_2026-09.md` updated accordingly (32/39 primary, 36/39 illustrate); forward coverage unchanged (18/18 — B24 was already covered by CS21).

@@ -69,7 +69,7 @@ Open to:
 
 ## Safety Framework — 25 Behavioral Rules (Part B, v3.0)
 
-**Coverage status (September 2026):** a rule-by-rule mapping against CS01–CS39 is documented in `COVERAGE_MATRIX_2026-09.md`. 18 of the 25 nominal rules have a usable definition (the other 7 have no surviving content). Under a requirements-coverage criterion (≥1 case study per rule — the weakest adequacy criterion), **all 18 defined rules are covered (18/18; 18/25 against the nominal set)**, and **32/39 case studies map to a rule** as primary classification. This is coverage by illustration, not validated adequacy: depth is N=1 for 7 of the 18 rules. No weighted percentage is claimed. The earlier "72%" figure was incorrect and has been removed.
+**Coverage status (September 2026):** a rule-by-rule mapping against CS01–CS39, CS44 is documented in `COVERAGE_MATRIX_2026-09.md`. 19 of the 25 nominal rules have a usable definition (the other 6 have no surviving content). Under a requirements-coverage criterion (≥1 case study per rule — the weakest adequacy criterion), **all 19 defined rules are covered (19/19; 19/25 against the nominal set)**, and **33/40 case studies map to a rule** as primary classification. This is coverage by illustration, not validated adequacy: depth is N=1 for 8 of the 19 rules. No weighted percentage is claimed. The earlier "72%" figure was incorrect and has been removed.
 
 Behavioral Rules:
 - B1-B8 (Hardness): Consistency, capability verification, external resources, API accuracy

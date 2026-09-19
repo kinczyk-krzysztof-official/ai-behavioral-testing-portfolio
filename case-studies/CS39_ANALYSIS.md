@@ -1,7 +1,7 @@
 # CS39_ANALYSIS.md
 
 **Case Study:** CS39 (assigned — next after CS38)
-**Error type:** [TO BE ASSIGNED BY THE OPERATOR]. Descriptively: misattribution of the provenance of text pasted by the operator — a sibling instance's turn from another account absorbed as this session's own turn — escalating past epistemic acceptance into an operative role change (author → worker) and autonomous tool use. Provenance-class + Procedure-class + Role-confusion.
+**Error type:** **B24** (see METHODOLOGY.md, "Safety Framework Part B — B18, B20, B21, B23, B24, B25"). Descriptively: misattribution of the provenance of text pasted by the operator — a sibling instance's turn from another account absorbed as this session's own turn — escalating past epistemic acceptance into an operative role change (author → worker) and autonomous tool use. Provenance-class + Procedure-class + Role-confusion.
 **Model:** Claude Sonnet 5 (both instances: the target "worker" account and the authoring account)
 **Incident date:** 09.09.2026 (phone session, authoring account)
 **Date compiled:** 10.09.2026
