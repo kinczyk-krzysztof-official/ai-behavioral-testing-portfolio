@@ -7,7 +7,7 @@ GitHub: kinczyk-krzysztof-official
 
 ## Executive Summary
 
-Independent AI behavioral tester with 14+ months of systematic LLM evaluation (June 2025 – present). Built and documented 40 case studies (CS01–CS39, CS44) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and alignment gaps.
+Independent AI behavioral tester, systematically evaluating LLMs since June 2025. Built and documented 40 case studies (CS01–CS39, CS44) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and calibration gaps.
 
 **Note on scoring:** an earlier version of this CV cited a numeric portfolio score ("8.93/10"). That figure came from an AI-scored process later documented in METHODOLOGY.md as using a flawed scale (a 6–10 range that mathematically guarantees a "good" floor regardless of content). It has been removed rather than corrected, since no re-scored, methodologically sound replacement exists yet — see METHODOLOGY.md for the full disclosure.
 
@@ -20,7 +20,7 @@ Open to:
 ## Core Competencies
 
 **AI Testing & Evaluation**
-- 14+ months systematic LLM behavioral testing
+- Systematic LLM behavioral testing since June 2025
 - Cross-model benchmarking (DeepSeek, Claude, Gemini, GPT-4, Perplexity, GitHub Copilot)
 - Error taxonomy development (8 categories, 26+ types)
 - Critical safety failure detection (physical safety, technical confabulation, deliberate deception)
@@ -34,7 +34,7 @@ Open to:
 - Technical writing (Polish/English, technical + philosophical)
 
 **Technical Background**
-- 14+ months hands-on LLM interaction (API flows, prompt engineering, voice dictation)
+- Hands-on LLM interaction since June 2025 (API flows, prompt engineering, voice dictation)
 - Linux Mint 22.3 XFCE + WSL2 Windows environment
 - Manual testing (no automation budget — 100% hand analysis)
 - Git/GitHub portfolio management
@@ -110,7 +110,7 @@ A good evaluation framework prioritizes:
 ✅ Cross-model comparative data
 ✅ Detection of deliberateness, not just random hallucination
 
-I bring exactly that: 14+ months of systematic testing, 40 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
+I bring exactly that: systematic testing since June 2025, 40 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
 
 ---
 Last updated: 19 września 2026

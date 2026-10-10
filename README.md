@@ -1,12 +1,12 @@
 # AI Behavioral Testing Portfolio — Krzysztof Kińczyk
 
-Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 40 documented case studies in this repository (CS01–CS39, CS44), two with real-world physical consequences.
+Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 40 documented case studies in this repository (CS01–CS39, CS44), one with real-world physical consequences (CS06) and one with a documented physical risk profile (CS08).
 
 **Latest update: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
 
 ## Why This Exists
 
-I'm self-taught. No CS degree, no prior red-teaming role, no institutional backing. What I have is 14+ months (June 2025 – present) of near-daily, systematic interaction with several AI models across 13+ technical domains, and a habit — not learned from a course, built from repetition — of not accepting a model's answer just because it's confident.
+I'm self-taught. No CS degree, no prior red-teaming role, no institutional backing. What I have is near-daily, systematic interaction (since June 2025) with several AI models across 13+ technical domains, and a habit — not learned from a course, built from repetition — of not accepting a model's answer just because it's confident.
 
 I'm stating this plainly because it matters for how you should read what follows: every evaluation of this material to date, including the scoring methodology, was produced by AI models — including ones being evaluated. There has been no external, human review. See METHODOLOGY.md for the full disclosure, including documented cases where earlier scoring iterations used flawed scales and where corrections were lost. I'm not hiding those mistakes — they're part of why this repository exists in its current, more conservative form.
 
@@ -151,6 +151,9 @@ Location: Bydgoszcz, Poland (remote only)
 Availability: 30–40h/week
 
 ## Changelog
+
+**October 2026 (11.10) — consistency corrections:**
+- ✅ Physical-consequence claim corrected: one case study with realized physical consequences (CS06) and one with a documented physical risk profile (CS08); previously stated as "two with real-world physical consequences". CV: "alignment gaps" → "calibration gaps"; rolling "14+ months" replaced with "since June 2025" (README, CV).
 
 **September 2026 (19.09) — CS44 added:**
 - ✅ CS44 added: attribute substitution (Kahneman & Frederick, 2002) — a specialization misidentification traced through a four-layer investigation to a verified, externally-reported session-isolation defect in Claude Code Desktop (`anthropics/claude-code` #95485, filed by an unrelated third party one day before the incident). First case study in this portfolio whose root cause rests partly on primary-source verification of host-tool architecture (direct filesystem inspection, raw GitHub API fetches, live hook instrumentation) rather than model output alone. Numeric taxonomy code: **B2** (see METHODOLOGY.md, "Safety Framework Part B — B2"; assigned 19.09.2026, same day). Coverage figures in this README and `COVERAGE_MATRIX_2026-09.md` updated accordingly (33/40 primary, 37/40 illustrate; forward 19/19, 19/25 nominal). CS40–43 remain private by separate, unrelated decision (see numbering note above) — CS44 does not close that gap, by design.
