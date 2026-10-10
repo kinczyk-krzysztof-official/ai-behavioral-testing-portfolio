@@ -140,8 +140,12 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 - Pick 2–3 case study pairs and compare `_TRANSCRIPT.md` (raw) vs. `_ANALYSIS.md` (interpretation)
 
 **If you're building your own taxonomy:**
-- `METHODOLOGY.md` — Error taxonomy (8 categories, 26 types)
+- `METHODOLOGY.md` — Safety Framework Part B (behavioral rules B1–B25) and testing method
 - Note that B18, B20, B21, B23, B24, B25 were newly authored in August 2026 and B2 in September 2026 (none part of the original scoring era) if you're trying to reuse the Safety Framework Part B numbering
+
+## License
+
+Original text and analyses by the author: CC BY 4.0 (see `LICENSE`). Attribute to the repository. Quoted model outputs remain subject to their providers' terms.
 
 ## Contact
 
@@ -154,6 +158,7 @@ Availability: 30–40h/week
 
 **October 2026 (11.10) — consistency corrections:**
 - ✅ Physical-consequence claim corrected: one case study with realized physical consequences (CS06) and one with a documented physical risk profile (CS08); previously stated as "two with real-world physical consequences". CV: "alignment gaps" → "calibration gaps"; rolling "14+ months" replaced with "since June 2025" (README, CV).
+- ✅ Removed the unverifiable "8 categories, 26 types" taxonomy size claim (README, CV); the repository documents the behavioral-rule framework (Safety Framework Part B, B1–B25) in METHODOLOGY.md. Added `LICENSE` (CC BY 4.0).
 
 **September 2026 (19.09) — CS44 added:**
 - ✅ CS44 added: attribute substitution (Kahneman & Frederick, 2002) — a specialization misidentification traced through a four-layer investigation to a verified, externally-reported session-isolation defect in Claude Code Desktop (`anthropics/claude-code` #95485, filed by an unrelated third party one day before the incident). First case study in this portfolio whose root cause rests partly on primary-source verification of host-tool architecture (direct filesystem inspection, raw GitHub API fetches, live hook instrumentation) rather than model output alone. Numeric taxonomy code: **B2** (see METHODOLOGY.md, "Safety Framework Part B — B2"; assigned 19.09.2026, same day). Coverage figures in this README and `COVERAGE_MATRIX_2026-09.md` updated accordingly (33/40 primary, 37/40 illustrate; forward 19/19, 19/25 nominal). CS40–43 remain private by separate, unrelated decision (see numbering note above) — CS44 does not close that gap, by design.
