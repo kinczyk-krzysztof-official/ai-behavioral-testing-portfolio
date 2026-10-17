@@ -1,7 +1,7 @@
 # CS39_ANALYSIS.md
 
 **Case Study:** CS39 (assigned — next after CS38)
-**Error type:** **B24** (see METHODOLOGY.md, "Safety Framework Part B — B18, B20, B21, B23, B24, B25"). Descriptively: misattribution of the provenance of text pasted by the operator — a sibling instance's turn from another account absorbed as this session's own turn — escalating past epistemic acceptance into an operative role change (author → worker) and autonomous tool use. Provenance-class + Procedure-class + Role-confusion.
+**Error type:** **B30** (first numbered B24 until 16.10.2026; see METHODOLOGY.md, "Safety Framework Part B — B26–B31"). Descriptively: misattribution of the provenance of text pasted by the operator — a sibling instance's turn from another account absorbed as this session's own turn — escalating past epistemic acceptance into an operative role change (author → worker) and autonomous tool use. Provenance-class + Procedure-class + Role-confusion.
 **Model:** Claude Sonnet 5 (both instances: the target "worker" account and the authoring account)
 **Incident date:** 09.09.2026 (phone session, authoring account)
 **Date compiled:** 10.09.2026
@@ -72,7 +72,7 @@ Asked to analyze, the model:
 ## Difference from other CS in the portfolio
 
 - **CS27** (the nearest) — "content attributed to the operator, actually from the model's parallel session; no procedure for verifying the attribution". CS27 shares the core with CS39 (Layer 1), but the outcome is **passive**: acceptance of a false premise + an apology loop for a non-existent error. In CS39 the misattribution **escalates** to an operative role change and autonomous tool use. Additionally, CS27 concerns *own* output from a parallel session; CS39 — a turn of *another instance from another account*, pasted by the operator.
-- **CS21** — the inverse case: a pasted document in first-person Claude format, but **fabricated**, and the model **refused** to accept it as its own, verifying against the tool history. CS21 = B24 satisfied on false content. CS39 = B24 **violated** on authentic content. (B24: "Verify provenance before adopting content as your own" — currently the only primary CS is CS21, a case of satisfaction.)
+- **CS21** — the inverse case: a pasted document in first-person Claude format, but **fabricated**, and the model **refused** to accept it as its own, verifying against the tool history. CS21 = B30 satisfied on false content. CS39 = B30 **violated** on authentic content. (B30, first numbered B24: "Verify provenance before adopting content as your own" — currently the only primary CS is CS21, a case of satisfaction.)
 - **CS11 / CS38** — capitulation under repeated conversational pressure (CS11) and re-calculating a settled refusal until it flips (CS38 root cause). CS39 shares the *driver* (Layers 3–4), but in CS11 the manifestation is simulating a capability it lacks, in CS38 — reversing a safety refusal; in CS39 — abandoning a procedural gate and entering execution.
 - **CS23** (and the CS23/25/27/28/29 family) — "KNOWING ≠ DOING": a rule/knowledge present, not implemented in the decision loop. CS39 is another manifestation of that family (it knew the worker status and the memory conflict — it acted anyway), with a new element: escalation to tools.
 - **CS25 Layer 4** — "confabulated self-explanation": the first self-analysis reaches for the most available explanation. CS39 Layer 6 is the same thing, extended — the error persisted *despite* tool-assisted verification and *added* new defects (the arXiv contradiction).
@@ -102,12 +102,12 @@ The safeguard is not "remember who authored the document" — the authorship was
 ## Links
 
 - **CS27** — the nearest; a shared core (misattribution of provenance from a parallel session), a divergent outcome (passive vs escalation to tools).
-- **CS21** — the inverse case (false content, the model refused); together they cover both outcomes of rule B24.
+- **CS21** — the inverse case (false content, the model refused); together they cover both outcomes of rule B30 (first numbered B24).
 - **CS11, CS38** — a shared driver (pressure → capitulation / re-calculating a settled gate).
 - **CS23, CS25, CS28, CS29** — the "KNOWING ≠ DOING" family; CS39 as another manifestation with escalation to tools.
 - **CS25 Layer 4, CS01** — the self-diagnosis tail (post-hoc rationalization / confabulated self-explanation).
 - **CS26** — a mirror (not retrieving one's own content vs over-attributing another's content to oneself).
-- **Rule B24** ("Verify provenance before adopting content as your own") — the first primary case of a **violation** (CS21 documents satisfaction).
+- **Rule B30** (first numbered B24; "Verify provenance before adopting content as your own") — the first primary case of a **violation** (CS21 documents satisfaction).
 
 ## Status: ✅ VERIFIED (sequence) / ⚠️ N=1
 

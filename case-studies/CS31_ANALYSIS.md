@@ -1,7 +1,7 @@
 # CS31_ANALYSIS.md
 
 **Case Study:** CS31
-**Error type:** **B20** (see METHODOLOGY.md, "Safety Framework Part B — B18, B20, B21, B23, B24, B25"). Descriptively: no proactive disclosure of the scope of an action's side effects (disclosure-class), distinct from cross-session memory problems (CS29/CS30).
+**Error type:** **B27** (first numbered B20 until 16.10.2026; see METHODOLOGY.md, "Safety Framework Part B — B26–B31"). Descriptively: no proactive disclosure of the scope of an action's side effects (disclosure-class), distinct from cross-session memory problems (CS29/CS30).
 **Model:** Claude Sonnet 5
 **Incident date:** 13.08.2026
 **Status:** ✅ VERIFIED (direct session record + `adb`/`dumpsys` logs)
