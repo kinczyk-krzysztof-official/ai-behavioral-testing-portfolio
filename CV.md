@@ -64,22 +64,22 @@ Open to:
 **Case Studies 32-39** (Added September 2026)
 - First pre-registered, multi-model probe batch (Gemini 3.5 Flash, DeepSeek, ChatGPT, Claude Sonnet 5): data drift, suppressed correction, identity bias, tokenization miscount, CoT-language instability, planning-step leak
 - CS38: Gemini reversed a correct safety refusal under repeated pressure, self-disclosed the filter-bypass, and escalated to face-lock on a real person's likeness — documented separately from the probe batch, heavily redacted ✅
-- CS39: Claude Sonnet 5 absorbed a sibling instance's turn (pasted by the operator) as its own, escalating to a role change (author→worker) and autonomous tool use — first primary violation of Rule B24 ✅ (N=1)
+- CS39: Claude Sonnet 5 absorbed a sibling instance's turn (pasted by the operator) as its own, escalating to a role change (author→worker) and autonomous tool use — first primary violation of Rule B30 (first numbered B24) ✅ (N=1)
 - Full index: see README.md in the repository
 
-## Safety Framework — 25 Behavioral Rules (Part B, v3.0)
+## Safety Framework — 32 Behavioral Rules (Part B)
 
-**Coverage status (September 2026):** a rule-by-rule mapping against CS01–CS39, CS44 is documented in `COVERAGE_MATRIX_2026-09.md`. 19 of the 25 nominal rules have a usable definition (the other 6 have no surviving content). Under a requirements-coverage criterion (≥1 case study per rule — the weakest adequacy criterion), **all 19 defined rules are covered (19/19; 19/25 against the nominal set)**, and **33/40 case studies map to a rule** as primary classification. This is coverage by illustration, not validated adequacy: depth is N=1 for 8 of the 19 rules. No weighted percentage is claimed. The earlier "72%" figure was incorrect and has been removed.
+**Coverage status (September 2026):** a rule-by-rule mapping against CS01–CS39, CS44 is documented in `COVERAGE_MATRIX_2026-09.md`. The framework has 32 rules, all with a definition: B1–B25 are the original set (recovered in October 2026) and B26–B32 are post hoc rules written in August–September 2026. Under a requirements-coverage criterion (≥1 case study per rule — the weakest adequacy criterion), **all 19 mapped rules are covered (19/19)**; against all 32 rules it is **19/32 = 59% (provisional)**, and for the original 25 rules alone **12/25 = 48%** (the 7 post hoc rules are covered by construction). **33/40 case studies map to a rule** as primary classification. This is coverage by illustration, not validated adequacy: depth is N=1 for 7 of the 19 rules. No weighted percentage is claimed. The earlier "72%" figure was incorrect and has been removed.
 
 Behavioral Rules:
 - B1-B8 (Hardness): Consistency, capability verification, external resources, API accuracy
 - B9-B17 (Calibration): Caveat principle, source disclosure, limitations, knowledge drift, coherence
-- B18-B25 (Extended): Not yet written up with content — open gap, see above
+- B18-B25 (Extended): original set recovered October 2026 (see METHODOLOGY.md); B26-B32: post hoc rules from case studies
 
 **Gap Analysis:**
 - Security/jailbreak category underrepresented — requires dedicated testing
 - Physical safety (category 3.9) identified as gap in original taxonomy
-- B18-B25 rule definitions themselves are the current top documentation gap
+- Mapping the 13 unmapped original rules (B2, B3, B6, B12, B14, B15, B16, B18, B20, B21, B23, B24, B25) to case studies is the current top documentation gap
 
 ## Methodology
 

@@ -44,7 +44,7 @@ Core files:
 - `METHODOLOGY.md` — testing technique, protocol, honest self-assessment
 - `SANITIZATION.md` — what was redacted from the private corpus and why
 - `CV.md` — background, availability, contact
-- `COVERAGE_MATRIX_2026-09.md` — current rule-by-rule coverage mapping (B1–B25 ↔ CS01–CS39, CS44); method and figures below
+- `COVERAGE_MATRIX_2026-09.md` — current rule-by-rule coverage mapping (B1–B32 ↔ CS01–CS39, CS44); method and figures below
 - `COVERAGE_MATRIX_ANALYSIS_2026-07-09.md` — earlier frozen snapshot (early case studies only, pre-cleanup numbering; historical)
 
 ## Coverage Matrix — Status Note (August 2026)
@@ -57,13 +57,15 @@ Because six of the twenty-five rule definitions are new as of this month, and no
 
 *(Numbering in this note predates the 05.09.2026 numbering cleanup; see Changelog and METHODOLOGY.md › "Numbering history".)*
 
+*(Update 16.10.2026: the original B1–B25 text was later found. The six rules this note calls new are numbered B26–B31 today and the numbers B18, B20, B21, B23, B24, B25 denote the original rules again; see METHODOLOGY.md, "Safety Framework Part B" and the crosswalk.)*
+
 ## Coverage Matrix — Update (September 2026)
 
 A fresh rule-by-rule mapping was completed on 2026-09-06 (`COVERAGE_MATRIX_2026-09.md`); it supersedes the currency of the August note above (which stays as a dated record). Method: a rule is "covered" if ≥1 case study documents an instance of it (*requirements coverage* — the weakest adequacy criterion; ISTQB; Staats et al., NASA Formal Methods 2010). No weighting.
 
-- **19 of 25 rules have a usable definition** in this repo (B2 added 19.09.2026, grounded in CS44 — see METHODOLOGY.md). The other 6 (B3, B6, B12, B14, B15, B16) have no surviving definition and are excluded from the denominator, reported separately.
-- **Forward coverage: 19 / 19 defined rules (100%)** — every rule with a definition has ≥1 case study. This is *illustration*, not validation: depth is N=1 for 8 of the 19.
-- **Forward vs the 25 nominal rules: 19 / 25 (76%).**
+- **The framework has 32 rules (B1–B32), all with a definition in this repo:** B1–B25 are the original set (recovered 16.10.2026 from `SKILL_reguly-ai-testera_v3.5`), B26–B32 are post hoc rules written in August and September 2026 (first numbered B18, B20, B21, B23, B24, B25 and B2; renumbered, see METHODOLOGY.md).
+- **Forward coverage of the 19 mapped rules: 19 / 19 (100%)** — every mapped rule has ≥1 case study. This is *illustration*, not validation: depth is N=1 for 7 of the 19. Seven of the 19 are post hoc rules, covered by construction.
+- **Original rules B1–B25: 12 / 25 (48%)** mapped; 13 original rules are defined but not yet mapped. **All 32 rules: 19 / 32 (59%, provisional).**
 - **Backward coverage: 33 / 40 case studies (83%)** map to a rule as primary classification; 37 / 40 (93%) illustrate one at all. Orphans: CS02, CS04, CS34 — phenomena with no matching rule.
 
 Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
@@ -112,7 +114,7 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 | CS36 | DeepSeek | Chain-of-thought language instability within one session (new angle on CS01) | Medium | ⚠️ Candidate (N=1) |
 | CS37 | Gemini 3.5 Flash | Planning-step leak into output + unsignalled truncation | Medium | ⚠️ Candidate (N=1) |
 | CS38 | Google Gemini (AI Mode) | Safety — correct refusal reversed under repeated pressure; self-disclosed filter-bypass; escalation to face-lock on a real person's likeness | Critical | ✅ Verified |
-| CS39 | Claude Sonnet 5 (two accounts) | Provenance misattribution — a sibling instance's turn absorbed as own, escalating to role change (author→worker) and autonomous tool use; first primary violation of B24 | Unrated | ✅ Verified (sequence) / N=1 |
+| CS39 | Claude Sonnet 5 (two accounts) | Provenance misattribution — a sibling instance's turn absorbed as own, escalating to role change (author→worker) and autonomous tool use; first primary violation of B30 (first numbered B24) | Unrated | ✅ Verified (sequence) / N=1 |
 | CS44 | Claude Sonnet 5 | Tooling self-audit — attribute substitution (own specialization misidentified via a superficial LinkedIn cue instead of available grounding documents), traced through a four-layer investigation to a verified session-isolation defect in the host development tool (Claude Code Desktop) | High | ✅ Confirmed |
 
 ## Key Findings (CS21-CS31 Round)
@@ -140,8 +142,8 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 - Pick 2–3 case study pairs and compare `_TRANSCRIPT.md` (raw) vs. `_ANALYSIS.md` (interpretation)
 
 **If you're building your own taxonomy:**
-- `METHODOLOGY.md` — Safety Framework Part B (behavioral rules B1–B25) and testing method
-- Note that B18, B20, B21, B23, B24, B25 were newly authored in August 2026 and B2 in September 2026 (none part of the original scoring era) if you're trying to reuse the Safety Framework Part B numbering
+- `METHODOLOGY.md` — Safety Framework Part B (behavioral rules B1–B32) and testing method
+- Note that B26–B32 are post hoc rules written in August–September 2026 (first numbered B18, B20, B21, B23, B24, B25 and B2) and that the numbers B18–B25 and B2 were reused for different rules between 22.08.2026 and 16.10.2026; B1–B25 now mean the original set again (none of B26–B32 is part of the original scoring era) if you're trying to reuse the Safety Framework Part B numbering
 
 ## License
 
@@ -155,6 +157,14 @@ Location: Bydgoszcz, Poland (remote only)
 Availability: 30–40h/week
 
 ## Changelog
+
+*Rule numbers (B…) in entries dated before 16.10.2026 use the numbering current at their date; see the crosswalk in METHODOLOGY.md.*
+
+**October 2026 (16.10) — original rule set recovered; seven rules renumbered:**
+- ✅ **The original B1–B25 text was found** (`SKILL_reguly-ai-testera_v3.5_2026-07-06`, all 25 rules, as an attachment in an exported conversation) and is added to METHODOLOGY.md (translated). The earlier statements that it was unrecoverable, and that B3, B6, B12, B14, B15, B16 had no surviving definition, were wrong.
+- ✅ **Seven post hoc rules renumbered:** B18, B20, B21, B23, B24, B25 (written 22.08.2026) → B26–B31; B2 (written 19.09.2026, CS44) → B32. The old numbers had been given to rules that differ from the originals at those numbers. CS30, CS31, CS39, CS44, METHODOLOGY.md, COVERAGE_MATRIX_2026-09.md and CV.md updated.
+- ✅ **Coverage figures revised:** 19 of 32 rules mapped (59%, provisional); original rules 12/25 (48%); post hoc rules 7/7 by construction. The earlier "19/19" excluded seven original rules as unassessable.
+- ✅ **Correction:** the count "depth N=1 for 8 of the 19 rules" was stale after CS39 was added; the matrix shows seven.
 
 **October 2026 (11.10) — consistency corrections:**
 - ✅ Physical-consequence claim corrected: one case study with realized physical consequences (CS06) and one with a documented physical risk profile (CS08); previously stated as "two with real-world physical consequences". CV: "alignment gaps" → "calibration gaps"; rolling "14+ months" replaced with "since June 2025" (README, CV).
