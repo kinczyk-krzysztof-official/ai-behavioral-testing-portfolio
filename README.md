@@ -2,7 +2,7 @@
 
 Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 40 documented case studies in this repository (CS01–CS39, CS44), one with real-world physical consequences (CS06) and one with a documented physical risk profile (CS08).
 
-**Latest update: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
+**Latest update: October 2026** — original rule set recovered and seven rules renumbered (16.10; see Changelog and METHODOLOGY.md). **Previous update: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
 
 ## Why This Exists
 
@@ -23,7 +23,7 @@ I'm stating this plainly because it matters for how you should read what follows
 ## What's Honestly Weak Here
 
 - **Zero external replication.** No case study has been independently reproduced by anyone other than me.
-- **Testing is reactive, not hypothesis-driven.** No pre-registered test cases, no controlled repetition across models for most case studies.
+- **Testing is mostly reactive, not hypothesis-driven.** Outside the September 2026 probe batch (CS32–CS37: a fixed, pre-registered probe set run across four models), no test case was pre-registered, and controlled repetition across models exists only for CS32 and CS34.
 - **CS02 and CS09** cover the same underlying project (real content, but not independent domains).
 - **CS17, CS18, CS26** remain candidate-status (N=1 or requiring further verification), not fully confirmed.
 - **No real-time model internals.** Testing based on input/output behavior only — no access to logits, attention maps, or activation vectors.
@@ -209,4 +209,4 @@ Availability: 30–40h/week
 
 ---
 Repository: github.com/kinczyk-krzysztof-official/ai-behavioral-testing-portfolio
-Last updated: 6 września 2026
+Last updated: 22 października 2026
