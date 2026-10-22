@@ -21,7 +21,7 @@ Open to:
 
 **AI Testing & Evaluation**
 - Systematic LLM behavioral testing since June 2025
-- Cross-model benchmarking (DeepSeek, Claude, Gemini, GPT-4, Perplexity, GitHub Copilot)
+- Cross-model benchmarking (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot)
 - Error taxonomy and behavioral-rule framework development (Safety Framework Part B — see METHODOLOGY.md)
 - Critical safety failure detection (physical safety, technical confabulation, deliberate deception)
 - FRV methodology (Forced Retrospective Verbalization) — documented in METHODOLOGY.md
