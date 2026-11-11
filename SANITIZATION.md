@@ -88,9 +88,11 @@ Both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full for each, checked against 
 
 **CS44 (added 19.09.2026, incident 18–19.09.2026) — reviewed, ✅ Clean after one redaction:** both `_ANALYSIS.md` and `_TRANSCRIPT.md` read in full against the same criteria (children, named family members, medical diagnoses, home address, financial data, phone numbers, personal emails, login credentials, API keys/tokens). Content is a self-referential tooling case (Claude Code Desktop misidentifying the operator's own specialization), verbatim operator/model quotes from the operator's own session logs, a public GitHub issue reference (`anthropics/claude-code` #95485), and the operator's own LinkedIn headline change. One change made: the name of an unrelated personal app project, mentioned only as an incidental example in one adversarial-test quote, was replaced with a generic description ("my other, unrelated app project") — not sensitive data, but out of scope for this portfolio and unrelated to the finding. No PII found otherwise. Cleared for publication.
 
+**CS45 (added 11.11.2026, study period 03–06.11.2026) — reviewed, ✅ Clean:** `CS45_ANALYSIS.md` and `CS45_TRANSCRIPT.md` read in full against the same criteria (children, named family, medical, address, financial-account and login data, third-party identity). The content is generic business questions (company registration, freelancer rates, company valuation) and model answers, framed around the author's own sole-proprietor business; no third-party personal data. One-time OAuth login codes that appeared in the working session are not in any file. Status: Candidate; three-stage verification by the author-model, no independent human verification.
+
 Note: CS40–43 are not part of this repository's numbering and are not reviewed here — they exist in the author's private (Desktop/Drive-only) numbering and are intentionally not published (see README numbering note). CS44 continues the CS01–CS39 sequence directly.
 
-Sanitization complete through CS39, plus CS44.
+Sanitization complete through CS39, plus CS44 and CS45.
 
 ---
 
@@ -108,4 +110,4 @@ Sanitization complete through CS39, plus CS44.
 
 ---
 
-**Conclusion:** The entire portfolio (CS01–CS39, CS44) is ready for publication. No serious security risks found. One change needed in CS09; CS38 published in a heightened-redaction form; CS39 reviewed clean; CS44 reviewed clean after one out-of-scope-name redaction (see above).
+**Conclusion:** The entire portfolio (CS01–CS39, CS44, CS45) is ready for publication. No serious security risks found. One change needed in CS09; CS38 published in a heightened-redaction form; CS39 reviewed clean; CS44 reviewed clean after one out-of-scope-name redaction (see above).

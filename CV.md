@@ -7,7 +7,7 @@ GitHub: kinczyk-krzysztof-official
 
 ## Executive Summary
 
-Independent AI behavioral tester, systematically evaluating LLMs since June 2025. Built and documented 40 case studies (CS01–CS39, CS44) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and calibration gaps.
+Independent AI behavioral tester, systematically evaluating LLMs since June 2025. Built and documented 41 case studies (CS01–CS39, CS44, CS45) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and calibration gaps.
 
 **Note on scoring:** an earlier version of this CV cited a numeric portfolio score ("8.93/10"). That figure came from an AI-scored process later documented in METHODOLOGY.md as using a flawed scale (a 6–10 range that mathematically guarantees a "good" floor regardless of content). It has been removed rather than corrected, since no re-scored, methodologically sound replacement exists yet — see METHODOLOGY.md for the full disclosure.
 
@@ -28,7 +28,7 @@ Open to:
 
 **Analysis & Documentation**
 - Deep-dive error analysis (root cause, mechanism, risk classification)
-- Structured case study documentation (40 published case studies)
+- Structured case study documentation (41 published case studies)
 - Cross-referenced 46 independently verified findings against ~21,475 entries across three established AI-incident registries (AIID, OECD.AI, AIAAIC) — source-verification discipline applied at scale, not just within this portfolio
 - Cross-reference verification and audit trails
 - Technical writing (Polish/English, technical + philosophical)
@@ -39,7 +39,7 @@ Open to:
 - Manual testing (no automation budget — 100% hand analysis)
 - Git/GitHub portfolio management
 
-## Portfolio — 40 Case Studies (CS01–CS39, CS44)
+## Portfolio — 41 Case Studies (CS01–CS39, CS44, CS45)
 
 **Case Studies 1–12** (Archived, June 2025 – June 2026)
 - Language inconsistency, physical safety errors (real consequences), trust/relapse cycles, attribution errors, hallucinations, calibration failures
@@ -67,9 +67,12 @@ Open to:
 - CS39: Claude Sonnet 5 absorbed a sibling instance's turn (pasted by the operator) as its own, escalating to a role change (author→worker) and autonomous tool use — first primary violation of Rule B30 (first numbered B24) ✅ (N=1)
 - Full index: see README.md in the repository
 
+**Case Study 45** (Added November 2026)
+- CS45: a measurement study, not an incident: eight installable advisory skills tested across Codex, Mistral Vibe and Claude on whether they make the model refuse to give figures without a source; rubric frozen before the runs, control arms, three external blind judges, explicit critique of the measurement; effect differs between models but is confounded with skill version and query set; status Candidate
+
 ## Safety Framework — 32 Behavioral Rules (Part B)
 
-**Coverage status (September 2026):** a rule-by-rule mapping against CS01–CS39, CS44 is documented in `COVERAGE_MATRIX_2026-09.md`. The framework has 32 rules, all with a definition: B1–B25 are the original set (recovered in October 2026) and B26–B32 are post hoc rules written in August–September 2026. Under a requirements-coverage criterion (≥1 case study per rule — the weakest adequacy criterion), **all 19 mapped rules are covered (19/19)**; against all 32 rules it is **19/32 = 59% (provisional)**, and for the original 25 rules alone **12/25 = 48%** (the 7 post hoc rules are covered by construction). **33/40 case studies map to a rule** as primary classification. This is coverage by illustration, not validated adequacy: depth is N=1 for 7 of the 19 rules. No weighted percentage is claimed. The earlier "72%" figure was incorrect and has been removed.
+**Coverage status (September 2026):** a rule-by-rule mapping against CS01–CS39, CS44 (CS45 is a measurement study, outside the mapping) is documented in `COVERAGE_MATRIX_2026-09.md`. The framework has 32 rules, all with a definition: B1–B25 are the original set (recovered in October 2026) and B26–B32 are post hoc rules written in August–September 2026. Under a requirements-coverage criterion (≥1 case study per rule — the weakest adequacy criterion), **all 19 mapped rules are covered (19/19)**; against all 32 rules it is **19/32 = 59% (provisional)**, and for the original 25 rules alone **12/25 = 48%** (the 7 post hoc rules are covered by construction). **33/40 case studies map to a rule** as primary classification. This is coverage by illustration, not validated adequacy: depth is N=1 for 7 of the 19 rules. No weighted percentage is claimed. The earlier "72%" figure was incorrect and has been removed.
 
 Behavioral Rules:
 - B1-B8 (Hardness): Consistency, capability verification, external resources, API accuracy
@@ -110,7 +113,7 @@ A good evaluation framework prioritizes:
 ✅ Cross-model comparative data
 ✅ Detection of deliberateness, not just random hallucination
 
-I bring exactly that: systematic testing since June 2025, 40 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
+I bring exactly that: systematic testing since June 2025, 41 case studies with traceability, documented methodology, and transparency about limits — including this CV's own past scoring mistake. No exaggeration, no black boxes, no institutional politics.
 
 ---
 Last updated: 19 września 2026
