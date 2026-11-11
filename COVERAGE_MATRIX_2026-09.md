@@ -85,9 +85,9 @@ Candidates are hypotheses, not findings.
 | **Post hoc rules B26–B32** | **7 / 7** | Covered **by construction**: each was written from its source case study. Reported separately; not evidence about the original rules. |
 | **Forward, all 32 rules** | **19 / 32 = 59% (provisional)** | The weakest criterion — *not* a claim of validation. Depth is uneven: 1 case study for B5, B11, B19, B27, B28, B29, B32 (seven rules; an earlier count of eight was stale after CS39 was added to B30); up to 15 for B22. The figure changes after the mapping pass. |
 | **Backward, primary classification** | **33 / 40 = 83%** | 33 case studies map to at least one rule as their primary classification. |
-| **Backward, any illustration** | **37 / 40 = 93%** | Including secondary aspects. |
+| **Backward, any illustration** | **36 / 40 = 90%** | Including secondary aspects. *(Corrected 12.11.2026 from 37 / 40 = 93%: CS12 appears in no row of this matrix.)* |
 
-**Orphan case studies (map to no defined rule, primary or secondary): CS02, CS04, CS34.**
+**Orphan case studies (map to no defined rule, primary or secondary): CS02, CS04, CS12, CS34.** *(CS12 added 12.11.2026 after a recount: it appears in no row of this matrix. Whether it fits an existing rule is open.)*
 
 - **CS02** — a physical-safety requirement (SOFT-CLOSE) lost across sessions on different accounts. No *mapped* rule covers cross-session requirement carry-over; the original B2 (physical-safety verification, recovered 16.10.2026) is a possible match, though CS08 fits it better (see the candidates table).
 - **CS04** — cross-model spatial-reasoning weakness (a benchmark comparison, not a rule violation).
@@ -104,7 +104,7 @@ Two further case studies map only weakly and look like candidates for rules the 
 
 - It says: **the 19 mapped rules are each backed by at least one concrete, documented case; the corpus does not obviously contradict the framework; and depth is thin (N=1) for 7 of them.** Seven of the 19 are post hoc rules that are covered by construction.
 - It does not say: "the portfolio provides 100% safety coverage." The criterion is *illustration*, not *adequacy*. A single case per rule is the floor, not a strong result.
-- The 13 unmapped original rules and the 3 orphan case studies show that **the mapping is not finished** and that, for CS04, CS34 and the two weakly mapped cases, the rule set may be incomplete relative to the phenomena actually observed. The open task is mapping the original rules to the current case studies; the renumbering of post hoc rules (B26–B32) is done and documented in `METHODOLOGY.md`.
+- The 13 unmapped original rules and the 4 orphan case studies show that **the mapping is not finished** and that, for CS04, CS34 and the two weakly mapped cases, the rule set may be incomplete relative to the phenomena actually observed. The open task is mapping the original rules to the current case studies; the renumbering of post hoc rules (B26–B32) is done and documented in `METHODOLOGY.md`.
 - No weighted or "depth" percentage is given, deliberately: those require arbitrary constants and would manufacture false precision. Rigor would be increased by a stronger criterion (e.g. requiring independent replication per rule), not by re-weighting this one.
 
 ---

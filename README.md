@@ -67,7 +67,7 @@ A fresh rule-by-rule mapping was completed on 2026-09-06 (`COVERAGE_MATRIX_2026-
 - **The framework has 32 rules (B1–B32), all with a definition in this repo:** B1–B25 are the original set (recovered 16.10.2026 from `SKILL_reguly-ai-testera_v3.5`), B26–B32 are post hoc rules written in August and September 2026 (first numbered B18, B20, B21, B23, B24, B25 and B2; renumbered, see METHODOLOGY.md).
 - **Forward coverage of the 19 mapped rules: 19 / 19 (100%)** — every mapped rule has ≥1 case study. This is *illustration*, not validation: depth is N=1 for 7 of the 19. Seven of the 19 are post hoc rules, covered by construction.
 - **Original rules B1–B25: 12 / 25 (48%)** mapped; 13 original rules are defined but not yet mapped. **All 32 rules: 19 / 32 (59%, provisional).**
-- **Backward coverage: 33 / 40 case studies (83%)** map to a rule as primary classification; 37 / 40 (93%) illustrate one at all. Orphans: CS02, CS04, CS34 — phenomena with no matching rule. *CS45 is a measurement study with no rule code and is outside these figures (computed over CS01–CS39 and CS44).*
+- **Backward coverage: 33 / 40 case studies (83%)** map to a rule as primary classification; 36 / 40 (90%) illustrate one at all. Orphans: CS02, CS04, CS12, CS34 — no matching rule in the matrix (CS02, CS04, CS34: phenomena with no matching rule; CS12: not mapped, open). *CS45 is a measurement study with no rule code and is outside these figures (computed over CS01–CS39 and CS44).*
 
 Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 
@@ -161,6 +161,10 @@ Availability: 30–40h/week
 ## Changelog
 
 *Rule numbers (B…) in entries dated before 16.10.2026 use the numbering current at their date; see the crosswalk in METHODOLOGY.md.*
+
+**November 2026 (12.11) — correction to the backward-coverage figure:**
+- ✅ **Recount of the coverage matrix** (script, from the matrix tables and the file list): the figures for the 19 mapped rules, 12/25 and 7/7, depth, and the count of 41 case studies were confirmed. One figure was wrong: CS12 appears in no row of `COVERAGE_MATRIX_2026-09.md` (neither as primary nor as "also illustrated by"), so the backward "any illustration" figure is **36 / 40 (90%)**, not 37 / 40 (93%), and there are **four orphan case studies** (CS02, CS04, CS12, CS34), not three. Corrected in README and the matrix. Whether CS12 fits an existing rule is open and is not decided here.
+- ⚠️ Still open: the cycle count of CS03 (4 in `CS03_ANALYSIS.md`; the matrix notes a "4 vs 14" discrepancy from the old numbering).
 
 **November 2026 (11.11) — CS45 added (measurement study):**
 - ✅ **CS45 added** (`CS45_ANALYSIS.md`, `CS45_TRANSCRIPT.md`): a measurement of whether eight installable advisory skills make models refuse to give figures without a source, across Codex, Mistral Vibe and Claude, with a rubric frozen before the runs, three arms (no intervention / one-sentence caution / skill) and an explicit critique of the measurement. It is the first entry that is a measurement of a corrective intervention rather than an incident. Status: Candidate (three-stage verification by the author-model, no independent human verification).
