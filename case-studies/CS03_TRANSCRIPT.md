@@ -1,7 +1,7 @@
 # CS03 — Source transcript
 **Model:** DeepSeek (chat) | **Session:** 67 messages, one continuous conversation
 
-> Raw layer. Analysis in CS03_ANALYSIS.md.
+> Summary layer: this is a description of the observed pattern, not a verbatim transcript (the raw session is not available; see the note in CS03_ANALYSIS.md). Analysis in CS03_ANALYSIS.md.
 
 ---
 

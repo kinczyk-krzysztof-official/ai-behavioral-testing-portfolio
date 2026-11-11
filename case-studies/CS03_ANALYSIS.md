@@ -21,3 +21,5 @@ The same mechanism (shallow error correction) is independently confirmed in CS08
 
 ## Status
 [CONFIRMED] — 4 cycles in one session. [ACTIVE] — pattern confirmed cross-model.
+
+**Note (12.11.2026) on the cycle count:** the figure of 4 comes from the author's original write-up of this case (20.06.2026). The raw session is not available in the author's archives (searched 12.11.2026: the DeepSeek export of 177 conversations and the project archives), so the count cannot be recomputed from source data. A later consolidation note (05.07.2026) gave 14 cycles, citing a list dated 3 July that could not be found; that figure is not used here. The pattern itself is also described in CS08.

@@ -162,6 +162,9 @@ Availability: 30–40h/week
 
 *Rule numbers (B…) in entries dated before 16.10.2026 use the numbering current at their date; see the crosswalk in METHODOLOGY.md.*
 
+**November 2026 (12.11) — CS03 cycle count marked as not recomputable:**
+- ⚠️ CS03: the figure of 4 cycles comes from the author's original write-up (20.06.2026). The raw session could not be found (DeepSeek export of 177 conversations and project archives searched), so the count cannot be recomputed. A later consolidation note (05.07.2026) gave 14 citing a list that could not be found; it is not used. `CS03_TRANSCRIPT.md` is relabelled "summary layer" because it is a description of the pattern, not a verbatim transcript. Closes the open item on this discrepancy as "not recomputable", not as "resolved".
+
 **November 2026 (12.11) — correction to the backward-coverage figure:**
 - ✅ **Recount of the coverage matrix** (script, from the matrix tables and the file list): the figures for the 19 mapped rules, 12/25 and 7/7, depth, and the count of 41 case studies were confirmed. One figure was wrong: CS12 appears in no row of `COVERAGE_MATRIX_2026-09.md` (neither as primary nor as "also illustrated by"), so the backward "any illustration" figure is **36 / 40 (90%)**, not 37 / 40 (93%), and there are **four orphan case studies** (CS02, CS04, CS12, CS34), not three. Corrected in README and the matrix. Whether CS12 fits an existing rule is open and is not decided here.
 - ⚠️ Still open: the cycle count of CS03 (4 in `CS03_ANALYSIS.md`; the matrix notes a "4 vs 14" discrepancy from the old numbering).

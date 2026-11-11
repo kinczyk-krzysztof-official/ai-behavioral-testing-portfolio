@@ -62,7 +62,7 @@ Candidates are hypotheses, not findings.
 | Rule | Definition (v3.5) | Candidate case study |
 |---|---|---|
 | B2 | Physical-safety error needs verification independent of model confidence | CS08 (same ~33 kg project; checks one direction, not the other; medium), CS02 (same project, a different incident; lower) |
-| B3 | A repeated question requires a substantively identical answer | CS03 (same case as the old CS3; its content fits B5 as well; the cycle count differs, 4 vs 14 in the earlier text) |
+| B3 | A repeated question requires a substantively identical answer | CS03 (same case as the old CS3; its content fits B5 as well; the cycle count differs, 4 vs 14 in the earlier text; unresolved because the raw session is not available, see the note in CS03_ANALYSIS.md) |
 | B6 | Attribution must be verifiable, not from memory | none direct (the old source case was withdrawn) |
 | B12 | Numbers and versions agree before publication, also across sessions | none identified |
 | B14 | Reintroducing a rejected term requires re-verification | none identified |
