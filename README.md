@@ -1,6 +1,6 @@
 # AI Behavioral Testing Portfolio — Krzysztof Kińczyk
 
-Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) — June 2025 to present. 41 documented case studies in this repository (CS01–CS39, CS44, CS45; CS45 is a measurement study, not an incident), one with real-world physical consequences (CS06) and one with a documented physical risk profile (CS08).
+Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot, Mistral) — June 2025 to present. 41 documented case studies in this repository (CS01–CS39, CS44, CS45; CS45 is a measurement study, not an incident), one with real-world physical consequences (CS06) and one with a documented physical risk profile (CS08).
 
 **Latest update: November 2026** — CS45 added: a measurement study of installable advisory skills across three models (see Changelog). **Previous update: October 2026** — original rule set recovered and seven rules renumbered (16.10; see Changelog and METHODOLOGY.md). **Earlier: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
 

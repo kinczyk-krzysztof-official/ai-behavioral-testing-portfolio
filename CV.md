@@ -7,7 +7,7 @@ GitHub: kinczyk-krzysztof-official
 
 ## Executive Summary
 
-Independent AI behavioral tester, systematically evaluating LLMs since June 2025. Built and documented 41 case studies (CS01–CS39, CS44, CS45) across 6 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot) identifying deliberateness markers, safety-critical failures, and calibration gaps.
+Independent AI behavioral tester, systematically evaluating LLMs since June 2025. Built and documented 41 case studies (CS01–CS39, CS44, CS45) across 7 model families (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot, Mistral) identifying deliberateness markers, safety-critical failures, and calibration gaps.
 
 **Note on scoring:** an earlier version of this CV cited a numeric portfolio score ("8.93/10"). That figure came from an AI-scored process later documented in METHODOLOGY.md as using a flawed scale (a 6–10 range that mathematically guarantees a "good" floor regardless of content). It has been removed rather than corrected, since no re-scored, methodologically sound replacement exists yet — see METHODOLOGY.md for the full disclosure.
 
@@ -21,7 +21,7 @@ Open to:
 
 **AI Testing & Evaluation**
 - Systematic LLM behavioral testing since June 2025
-- Cross-model benchmarking (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot)
+- Cross-model benchmarking (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot, Mistral)
 - Error taxonomy and behavioral-rule framework development (Safety Framework Part B — see METHODOLOGY.md)
 - Critical safety failure detection (physical safety, technical confabulation, deliberate deception)
 - FRV methodology (Forced Retrospective Verbalization) — documented in METHODOLOGY.md
