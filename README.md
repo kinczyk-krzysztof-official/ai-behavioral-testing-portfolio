@@ -162,6 +162,9 @@ Availability: 30–40h/week
 
 *Rule numbers (B…) in entries dated before 16.10.2026 use the numbering current at their date; see the crosswalk in METHODOLOGY.md.*
 
+**November 2026 (15.11) — follow-up correction in METHODOLOGY.md:**
+- ✅ The 12.11 correction of the backward-coverage figure (36 / 40, four orphans) had not been carried into `METHODOLOGY.md` ("Coverage as of September 2026"), which still read 37 / 40 including secondary and three orphans (CS02, CS04, CS34). Found by an independent number-consistency check of the repository text; corrected to 36 / 40 and CS02, CS04, CS12, CS34. The primary-classification figure (33 / 40) was re-checked against `COVERAGE_MATRIX_2026-09.md` and is unchanged.
+
 **November 2026 (12.11) — CS03 cycle count marked as not recomputable:**
 - ⚠️ CS03: the figure of 4 cycles comes from the author's original write-up (20.06.2026). The raw session could not be found (DeepSeek export of 177 conversations and project archives searched), so the count cannot be recomputed. A later consolidation note (05.07.2026) gave 14 citing a list that could not be found; it is not used. `CS03_TRANSCRIPT.md` is relabelled "summary layer" because it is a description of the pattern, not a verbatim transcript. Closes the open item on this discrepancy as "not recomputable", not as "resolved".
 
