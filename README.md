@@ -1,8 +1,8 @@
 # AI Behavioral Testing Portfolio — Krzysztof Kińczyk
 
-Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot, Mistral) — June 2025 to present. 41 documented case studies in this repository (CS01–CS39, CS44, CS45; CS45 is a measurement study, not an incident), one with real-world physical consequences (CS06) and one with a documented physical risk profile (CS08).
+Independent, longitudinal testing of consumer LLM behavior (DeepSeek, Claude, Gemini, ChatGPT, Perplexity, GitHub Copilot, Mistral) — June 2025 to present. 42 documented case studies in this repository (CS01–CS39, CS44–CS46; CS45 and CS46 are measurement studies, not incidents), one with real-world physical consequences (CS06) and one with a documented physical risk profile (CS08).
 
-**Latest update: November 2026** — CS45 added: a measurement study of installable advisory skills across three models (see Changelog). **Previous update: October 2026** — original rule set recovered and seven rules renumbered (16.10; see Changelog and METHODOLOGY.md). **Earlier: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
+**Latest update: November 2026** — CS46 added: a measurement study of how the definition of a "numerical claim" and the construction of a labelling pass change a count; CS45 added earlier in November: a measurement study of installable advisory skills across three models (see Changelog). **Previous update: October 2026** — original rule set recovered and seven rules renumbered (16.10; see Changelog and METHODOLOGY.md). **Earlier: September 2026** — Case studies 32-37 added (6 new): first pre-registered, multi-model probe batch, run across Gemini 3.5 Flash, DeepSeek, ChatGPT and Claude Sonnet 5, with controlled repetition on CS32/CS34 (see Changelog); plus CS38, a separately documented Gemini safety incident (a correct refusal reversed under repeated pressure). Coverage matrix: a fresh rule-by-rule mapping was completed — see `COVERAGE_MATRIX_2026-09.md` and the note below.
 
 ## Why This Exists
 
@@ -19,7 +19,8 @@ I'm stating this plainly because it matters for how you should read what follows
 - **CS29 — root-cause misattribution across three sessions.** A recurring device side-effect was misdiagnosed three separate times before a systematic, cross-brand investigation (two phone manufacturers) traced it to a documented AOSP tool behavior, not a bug.
 - **CS38 — correct refusal reversed under pressure.** Gemini refused a safety-boundary request twice, correctly and explicitly, then reversed on the third repetition — and in the same message named its own word-choice as a deliberate filter-bypass, then escalated without resistance to keeping a real, identifiable person's face on a modified image.
 - **CS45 — a measurement, not an incident.** Eight installable advisory skills tested across Codex, Mistral Vibe and Claude on whether they make the model refuse to give figures without a source. The effect differs between models, but the difference is confounded with skill version and query set; the Claude test is k=1. Status: Candidate.
-- **CS01–CS39, CS44, CS45 archive.** 41 case studies total. CS40–43 exist in the author's internal numbering as private research notes, not published here (see `SANITIZATION.md`); CS44 continues the same sequence — a deliberate gap, not an oversight.
+- **CS46 — a measurement, not an incident.** Counting the numerical claims in the author's own public repository (2351 candidates in 88 files). A single labelling run is a draw (750–800 for the same rule in one model); the three boundary decisions lower the count by about 9% in a full pass in both models, not by the 20% first attributed to them; how the rest of the drop splits depends on the construction of the pass and on the model (a suggestion at k=3, not an established finding). Status: Candidate.
+- **CS01–CS39, CS44–CS46 archive.** 42 case studies total. CS40–43 exist in the author's internal numbering as private research notes, not published here (see `SANITIZATION.md`); CS44 continues the same sequence — a deliberate gap, not an oversight.
 
 ## What's Honestly Weak Here
 
@@ -38,7 +39,7 @@ Each case study has two files in the `case-studies/` folder:
 - `CSxx_TRANSCRIPT.md` — raw session excerpt, no interpretation
 - `CSxx_ANALYSIS.md` — operator's classification and reasoning
 
-Numbering: CS01–CS39, CS44 and CS45 in repository. CS40–43 are intentionally unpublished (private research notes in the author's internal numbering — see `SANITIZATION.md`); the jump from CS39 to CS44 is deliberate, not an oversight.
+Numbering: CS01–CS39 and CS44–CS46 in repository. CS40–43 are intentionally unpublished (private research notes in the author's internal numbering — see `SANITIZATION.md`); the jump from CS39 to CS44 is deliberate, not an oversight.
 
 Core files:
 
@@ -67,7 +68,7 @@ A fresh rule-by-rule mapping was completed on 2026-09-06 (`COVERAGE_MATRIX_2026-
 - **The framework has 32 rules (B1–B32), all with a definition in this repo:** B1–B25 are the original set (recovered 16.10.2026 from `SKILL_reguly-ai-testera_v3.5`), B26–B32 are post hoc rules written in August and September 2026 (first numbered B18, B20, B21, B23, B24, B25 and B2; renumbered, see METHODOLOGY.md).
 - **Forward coverage of the 19 mapped rules: 19 / 19 (100%)** — every mapped rule has ≥1 case study. This is *illustration*, not validation: depth is N=1 for 7 of the 19. Seven of the 19 are post hoc rules, covered by construction.
 - **Original rules B1–B25: 12 / 25 (48%)** mapped; 13 original rules are defined but not yet mapped. **All 32 rules: 19 / 32 (59%, provisional).**
-- **Backward coverage: 33 / 40 case studies (83%)** map to a rule as primary classification; 36 / 40 (90%) illustrate one at all. Orphans: CS02, CS04, CS12, CS34 — no matching rule in the matrix (CS02, CS04, CS34: phenomena with no matching rule; CS12: not mapped, open). *CS45 is a measurement study with no rule code and is outside these figures (computed over CS01–CS39 and CS44).*
+- **Backward coverage: 33 / 40 case studies (83%)** map to a rule as primary classification; 36 / 40 (90%) illustrate one at all. Orphans: CS02, CS04, CS12, CS34 — no matching rule in the matrix (CS02, CS04, CS34: phenomena with no matching rule; CS12: not mapped, open). *CS45 and CS46 are measurement studies with no rule code and are outside these figures (computed over CS01–CS39 and CS44).*
 
 Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 
@@ -118,6 +119,7 @@ Full table, per-rule depth, and sources: `COVERAGE_MATRIX_2026-09.md`.
 | CS39 | Claude Sonnet 5 (two accounts) | Provenance misattribution — a sibling instance's turn absorbed as own, escalating to role change (author→worker) and autonomous tool use; first primary violation of B30 (first numbered B24) | Unrated | ✅ Verified (sequence) / N=1 |
 | CS44 | Claude Sonnet 5 | Tooling self-audit — attribute substitution (own specialization misidentified via a superficial LinkedIn cue instead of available grounding documents), traced through a four-layer investigation to a verified session-isolation defect in the host development tool (Claude Code Desktop) | High | ✅ Confirmed |
 | CS45 | Claude (Claude Code, headless), Codex, Mistral Vibe | Measurement study (not an incident) — effectiveness of installable advisory skills at suppressing unsourced figures (false precision under demand for specifics); effect differs between models but is confounded with skill version and query set; k=1 on Claude | Unrated | ⚠️ Candidate |
+| CS46 | Codex, Mistral Vibe (full passes and construction tests); DeepSeek, GLM, Claude, MiniMax (earlier stages and review) | Measurement study (not an incident) — how a metric definition and the construction of a labelling pass change a count; rule effect about −9% in a full pass, interaction with pass construction only suggested (k=3) | Unrated | ⚠️ Candidate |
 
 ## Key Findings (CS21-CS31 Round)
 
@@ -161,6 +163,11 @@ Availability: 30–40h/week
 ## Changelog
 
 *Rule numbers (B…) in entries dated before 16.10.2026 use the numbering current at their date; see the crosswalk in METHODOLOGY.md.*
+
+**November 2026 (20.11) — CS46 added (measurement study):**
+- ✅ **CS46 added** (`CS46_ANALYSIS.md`, `CS46_TRANSCRIPT.md`): a measurement of how the definition of a "numerical claim" changes a count over this repository, with repeated runs (k=3) in two model families, a factorial check of rule version against pass construction, and an explicit account of the author's own process errors (an omitted batch, two rule regimes mixed). Status: Candidate (three-stage verification by the author-model; one manual judgement of 9 contested rows by the author; no independent human verification).
+- ✅ **Counts:** 42 case studies in the repository (CS01–CS39, CS44–CS46). CS46 has no taxonomy code and is outside the coverage figures, which are unchanged.
+- ⚠️ The raw data and scripts behind CS46 are held locally by the author and are not in this repository.
 
 **November 2026 (15.11) — follow-up correction in METHODOLOGY.md:**
 - ✅ The 12.11 correction of the backward-coverage figure (36 / 40, four orphans) had not been carried into `METHODOLOGY.md` ("Coverage as of September 2026"), which still read 37 / 40 including secondary and three orphans (CS02, CS04, CS34). Found by an independent number-consistency check of the repository text; corrected to 36 / 40 and CS02, CS04, CS12, CS34. The primary-classification figure (33 / 40) was re-checked against `COVERAGE_MATRIX_2026-09.md` and is unchanged.
