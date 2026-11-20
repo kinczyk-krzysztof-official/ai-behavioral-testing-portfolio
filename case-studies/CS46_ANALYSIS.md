@@ -7,6 +7,8 @@
 
 *Original language: Polish (CS46_ANALIZA.md); this is a translation.*
 
+**Animated summary (25 s, no sound):** [media/CS46_SUMMARY_EN.mp4](media/CS46_SUMMARY_EN.mp4). It restates the headline numbers from this document (750 / 775 / 800; 780 vs 620; about 9%; 24 runs; the scale illustration is a scenario calculation, not a result). The text below is authoritative.
+
 ---
 
 ## In plain language
